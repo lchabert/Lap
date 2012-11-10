@@ -1,0 +1,35 @@
+Extensions:
+  type: entity
+  table: extensions
+  fields:
+    context:
+      id: true
+      type: string
+      length: 20
+      fixed: false
+      nullable: false
+    exten:
+      id: true
+      type: string
+      length: 20
+      fixed: false
+      nullable: false
+    priority:
+      id: true
+      type: boolean
+      nullable: false
+    id:
+      type: integer
+      unsigned: false
+      nullable: false
+    app:
+      type: string
+      length: 20
+      fixed: false
+      nullable: false
+    appdata:
+      type: string
+      length: 254
+      fixed: false
+      nullable: false
+  lifecycleCallbacks: {  }

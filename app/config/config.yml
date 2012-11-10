@@ -1,0 +1,113 @@
+imports:
+    - { resource: parameters.ini }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: %locale% }
+    secret:          %secret%
+    charset:         UTF-8
+    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
+    form:            true
+    csrf_protection: true
+    validation:      { enable_annotations: true }
+    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    session:
+        default_locale: %locale%
+        auto_start:     true
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    # java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        # closure:
+        #     jar: %kernel.root_dir%/java/compiler.jar
+        # yui_css:
+        #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar
+
+# Doctrine Configuration
+doctrine:
+  dbal:
+    default_connection: default
+    connections:
+      default:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+      asterisk:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name_asterisk%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+
+  orm:
+    default_entity_manager: default
+    entity_managers:
+      default:
+        connection: default
+        mappings:
+          LapAnnuBundle : ~
+          LapUserBundle : ~
+          FOSUserBundle : ~
+      asterisk:
+        connection: asterisk
+        mappings:
+          LapAsteriskBundle : ~         
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+
+jms_security_extra:
+    secure_controllers:  true
+    secure_all_services: false
+    
+fos_user:
+    db_driver:     orm                        # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
+    firewall_name: main                       # Le nom du firewall duquel on utilisera ces utilisateurs
+    user_class:    Lap\UserBundle\Entity\User # La classe de l'entité User que nous venons de définir
+    
+fr3d_ldap:
+    client:
+        host:         %ldap_server%
+#       port:         389    # Optional
+        version:        3    
+        username:     %ldap_dn_root%
+        password:     %ldap_root_pw%
+#       optReferrals: false  # Optional
+#       useSsl:       true   # Enable SSL negotiation. Optional
+#       useStartTls:  true   # Enable TLS negotiation. Optional
+    user:
+        baseDn: %ldap_dn_search%
+        filter: (&(ObjectClass=Person))
+        attributes:          # Specify ldap attributes mapping [ldap attribute, user object method]
+            - { ldap_attr: uid,  user_method: setUsername } # Default
+            - { ldap_attr: sn,   user_method: setFirstName }     # Optional
+            - { ldap_attr: givenname,  user_method: setLastName }         # Optional
+            - { ldap_attr: telephonenumber,  user_method: setPhoneNumber }         # Optional
+            - { ldap_attr: gofonhardware,  user_method: setPhoneHardware }
+            - { ldap_attr: gofonpin,  user_method: setPhonePin }
+            - { ldap_attr: gofonvoicemailpin,  user_method: setVoicemailPin }
+            - { ldap_attr: mail,  user_method: setEmail }
+            - { ldap_attr: ou,  user_method: setService }
+#    service:
+#         user_manager: fos_user.user_manager          # Overrides default user manager
+#        ldap_manager: fr3d_ldap.ldap_manager.default # Overrides default ldap manager

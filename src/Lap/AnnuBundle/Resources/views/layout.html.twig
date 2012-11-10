@@ -1,0 +1,29 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+    Annuaire - {{ parent() }}
+{% endblock %}
+    
+ {% block menu_title %}Menu{% endblock %}
+
+{% block body %}
+   <h1>{% block h1 %}Annuaire{% endblock %}</h1>
+
+    <hr>
+
+    {# On gère les messages flash de façon globale pour tout le bundle
+       On peut catégoriser les messages dans différents sacs (bag),
+       ici on les a mis dans "info", "success" et "error", qui correspondent aux classes CSS du Bootstrap #}
+
+        {% for name,flash in app.session.flashes %}
+            <div class="alert alert-{{ name }}">
+                {{ flash }}
+            </div>
+        {% endfor %}
+
+    {# On définit un nouveau block, que les vues du bundle pourront remplir #}
+    {% block lapannu_body %}
+    {% endblock %}
+
+{% endblock %}
+    

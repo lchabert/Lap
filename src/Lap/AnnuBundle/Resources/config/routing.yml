@@ -1,0 +1,27 @@
+LapAnnuBundle_homepage:
+    pattern:  /
+    defaults: { _controller: LapAnnuBundle:Annuaire:index }
+    
+LapAnnuBundle_show:
+    pattern:  /show
+    defaults: { _controller: LapAnnuBundle:Annuaire:show }
+    
+LapAnnuBundle_myService:
+    pattern:  /service
+    defaults: { _controller: LapAnnuBundle:Annuaire:service }
+
+LapAnnuBundle_addFavorite:
+    pattern:  /addfavorite/{email}
+    defaults: { _controller: LapAnnuBundle:Favorite:add }
+    
+LapAnnuBundle_removeFavorite:
+    pattern:  /rmfavorite
+    defaults: { _controller: LapAnnuBundle:Favorite:remove }
+
+LapAnnuBundle_showFavorite:
+    pattern:  /showfavorite
+    defaults: { _controller: LapAnnuBundle:Favorite:show }
+    
+LapAnnuBundle_dial:
+    pattern:  /dial
+    defaults: { _controller: LapAnnuBundle:Annuaire:dial }

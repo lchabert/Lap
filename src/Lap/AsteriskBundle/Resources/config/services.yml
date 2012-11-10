@@ -1,0 +1,7 @@
+parameters:
+#    lap_asterisk.example.class: Lap\AsteriskBundle\Example
+
+services:
+    lap_asterisk.sami:
+        class: Lap\AsteriskBundle\Service\Sami
+        arguments: [%ami_server%, %ami_scheme%, %ami_port%, %ami_username%, %ami_passwd%, %ami_connect_timeout%, %ami_read_timeout%]

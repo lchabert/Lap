@@ -1,0 +1,72 @@
+{% extends "LapAnnuBundle:Annuaire:index.html.twig" %}
+
+{% block title %}
+Profile - {{ parent() }}
+{% endblock %}
+
+{% block h1 %}Mon profile{% endblock %}
+
+{% block lapannu_body %} 
+<h2>{{ app.user.firstName }} {{ app.user.lastName }}</h2>
+<dl class="dl-horizontal">
+    <blockquote>
+        <h3>Général</h3>
+        <dt>Username</dt> : {{ app.user.username }}<br>
+        <dt>Adresse mail</dt> : {{ app.user.email }}<br>
+        <dt>N° téléphone</dt> : {{ app.user.phoneNumber }}<br>
+        
+    </blockquote>
+    <blockquote>
+        <br><h3>Téléphonie</h3>
+        <dt>Téléphone physique associé</dt> : {{ app.user.phoneHardware }}<br>
+        <dt>Code téléphone</dt> : {{ app.user.phonePin }}<br>
+        <dt>Code Messagerie</dt> : {{ app.user.voicemailPin }}<br>
+        <dt>Adresse IP du téléphone</dt> : {% if sip.ipaddr == "" %} 
+                                            Non connecté<br>
+                                        {% else %}
+                                                {{ sip.ipaddr }}<br>
+                                        {% endif %}
+        <dt>Messagerie</dt> :              {% if sip.mailbox == "" %} 
+                                            Non active<br>
+                                        {% else %}
+                                                Active<br>
+                                        {% endif %}                                        
+    </blockquote>                                        
+</dl>  
+
+<blockquote>
+<br><h3>Journal d'appel</h3>
+<ul>
+    <table class="table table-striped" id="cdr">
+        <thead>
+            <tr> 
+                <th></th>
+                <th>Date</th>
+                <th>Numero</th>
+                <th>Status</th>
+                <th>Durée</th>
+            </tr>
+        </thead>
+        <tbody>
+                    {% for cdr in cdrs %}
+                <tr>          
+                    <td>{% if cdr.state == "incoming" %}
+                        {% set number = cdr.src %}
+                           <i class="icon-arrow-left" id="{{cdr.state}}"></i>
+                        {% else %}
+                           {% set number = cdr.dst %}
+                           <i class="icon-arrow-right" id="{{cdr.state}}"></i>
+                        {% endif %}
+                    </td>
+                    <td>{{ cdr.calldate|date('d/m/Y \\à H:i') }}</td>
+                    <td>{{ number }}</td>
+                    <td>{{ cdr.disposition |trans({}, 'LapUserBundle')}}</td> 
+                    <td>{{ cdr.duration }}</td>
+                </tr>
+		{% endfor %}
+            </tbody>
+        </table>
+    </ul>
+</blockquote>
+
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends "LapAnnuBundle::layout.html.twig" %}
+
+{% block title %}
+Accueil - {{ parent() }}
+{% endblock %}
+
+
+{% block lapannu_body %}
+<h2>Liste du personnel</h2>
+<ul>
+    <table class="table table-striped" id="table_id">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Telephone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+                    {% for user in users %}
+                <tr>
+                    <td>{{user.sn }}</td>
+                    <td>{{user.givenName }}</td>
+                    <td>{{user.telephoneNumber}}</td>
+                    <td>{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %} 
+                        <i title="Details" id="{{user.uidNumber}}" class="icon-eye-open"></i>
+                        <a rel="tooltip" title="Envoyer un mail à {{user.givenName}}" href="mailto:{{user.mail}}"><i class="icon-envelope"></i></a>
+                        <a href="{{path("LapAsteriskBundle_clickToDial",{'phoneNumber': user.telephoneNumber}) }}"><i id="{{user.telephoneNumber}}" rel="tooltip" title="Appeler {{user.givenName}}" class="icon-headphones"></i></a>
+                        <a href="{{ path("LapAnnuBundle_addFavorite",{'email': user.mail}) }}"><i rel="tooltip" title="Ajouter {{user.givenName}} aux favoris" class="icon-heart"></i></a> 
+                        {% else %}
+                        Vous devez etre connecté.
+                        {% endif %}
+                    </td> 
+                </tr>
+		{% endfor %}
+            </tbody>
+        </table>
+    </ul>
+{% endblock %}
+
+
+    {% block javascripts %}
+            {{ parent() }}
+    <script>
+    $(document).ready(function() {
+   
+        /*
+         * Initialse DataTables, with no sorting on the 'details' column
+         */
+    
+        var oTable = $('#table_id').dataTable( {
+            "aaSorting": [[ 0, "asc" ]],
+            "oLanguage": {
+                "sSearch": "Recherche:",
+                "oPaginate": {
+                    "sPrevious": "Précedent",
+                    "sNext": "Suivant",
+                    "sLast": "Derniere",
+                    "sFirst": "Première"
+                },
+                "sLengthMenu": "Afficher _MENU_ entrées",
+                "sZeroRecords": "Aucun agent - Desolé",
+                "sInfo": "Affichage de _START_ à _END_ sur un total de  _TOTAL_ entrées",
+                "sInfoEmpty": "Affichage de 0 à 0 sur 0 entrée",
+                "sInfoFiltered": "(Filtré depuis _MAX_ entrées)"
+            },
+            "aLengthMenu": [[1, 2, 10, -1], [1, 2, 10, "Tout"]],
+        } );
+ 
+        function fnFormatDetails ( uid )
+    {  
+         var DATA = 'uid=' + uid;
+         var result = null;
+         $.ajax({
+                    type: "POST",
+                    dataType: "html",
+                    async: false,
+                    url: "{{ path('LapAnnuBundle_show')}}",
+                    data: DATA,
+                    cache: true,
+                    success: function(data){
+                        result = data;
+                    }
+                });
+                return result;
+           
+    }
+    
+        /* Add event listener for opening and closing details
+         * Note that the indicator for showing which row is open is not controlled by DataTables,
+         * rather it is done here
+         */
+        $('#table_id tbody td i[class="icon-eye-open"]').live('click', function () {
+            var nTr = $(this).parents('tr')[0];
+            var uid = $(this).attr("id");
+            if ( oTable.fnIsOpen(nTr) )
+            {
+                /* This row is already open - close it */
+                oTable.fnClose( nTr );
+            }
+            else
+            {
+                oTable.fnOpen( nTr, fnFormatDetails(uid), 'details' );
+            }
+        } );
+    
+        /*Function which make call
+        ToDO : Le generer de facon dynamique soit ici, soit dans un controller
+        */
+        $('i[class="icon-headphones"]').live('click', function () {
+        
+         var DATA = 'number=' + $(this).attr("id");
+         $.ajax({
+                    type: "POST",
+                    url: "{{path('LapAnnuBundle_dial')}}",
+                    data: DATA,
+                    cache: false,
+                }); 
+        } );
+    
+    $(".nav-list li").click(function() {
+        $(".nav li").removeClass('active');
+        setTimeout(function() {
+            var page = $.QueryString("page");
+            $(".nav li:eq(" + page + ")").addClass("active");
+        }, 300);
+
+    });
+    } );
+        </script>
+         {% endblock %}

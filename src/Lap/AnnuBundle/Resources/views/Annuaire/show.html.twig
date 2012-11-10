@@ -1,0 +1,23 @@
+{% for user in users %} 
+
+<dl class="dl-horizontal">
+    <dt>Adresse mail</dt> : <a href="mailto:{{user.mail}}">{{ user.mail }}</a> <br>
+    <dt>Sexe </dt>: {{ user.gender }} <br>
+    <dt>Date de naissance </dt>: 
+                               {% if user.dateOfBirth == "Element non renseigné" %} 
+                                    Element non renseigné <br>
+                               {% else %}
+                                    {{ user.dateOfBirth |date('d/m/Y')}} <br>
+                               {% endif %}
+    <dt>Langue préferée </dt>: 
+                               {% if user.preferredLanguage == "fr_FR" %} 
+                                    Français <br>
+                               {% else %}
+                                    {{user.preferredLanguage}}<br>
+                               {% endif %}
+
+    <dt>Employeur </dt>: {{ user.o}} <br>
+    <dt>Service </dt>: {{ user.ou }}<br>
+    <dt>Numero de bureau </dt>: {{ user.roomNumber }}<br>
+</dl>
+{% endfor %}      

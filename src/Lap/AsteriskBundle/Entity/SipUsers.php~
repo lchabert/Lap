@@ -1,0 +1,319 @@
+<?php
+
+namespace Smh\AsteriskBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Smh\AsteriskBundle\Entity\SipUsers
+ *
+ * @ORM\Table(name="sip_users")
+ * @ORM\Entity
+ */
+class SipUsers
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string $name
+     *
+     * @ORM\Column(name="name", type="string", length=80, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string $accountcode
+     *
+     * @ORM\Column(name="accountcode", type="string", length=20, nullable=true)
+     */
+    private $accountcode;
+
+    /**
+     * @var string $amaflags
+     *
+     * @ORM\Column(name="amaflags", type="string", length=7, nullable=true)
+     */
+    private $amaflags;
+
+    /**
+     * @var string $callgroup
+     *
+     * @ORM\Column(name="callgroup", type="string", length=10, nullable=true)
+     */
+    private $callgroup;
+
+    /**
+     * @var string $callerid
+     *
+     * @ORM\Column(name="callerid", type="string", length=80, nullable=true)
+     */
+    private $callerid;
+
+    /**
+     * @var string $canreinvite
+     *
+     * @ORM\Column(name="canreinvite", type="string", length=3, nullable=true)
+     */
+    private $canreinvite;
+
+    /**
+     * @var string $context
+     *
+     * @ORM\Column(name="context", type="string", length=80, nullable=true)
+     */
+    private $context;
+
+    /**
+     * @var string $defaultip
+     *
+     * @ORM\Column(name="defaultip", type="string", length=15, nullable=true)
+     */
+    private $defaultip;
+
+    /**
+     * @var string $dtmfmode
+     *
+     * @ORM\Column(name="dtmfmode", type="string", length=7, nullable=true)
+     */
+    private $dtmfmode;
+
+    /**
+     * @var string $fromuser
+     *
+     * @ORM\Column(name="fromuser", type="string", length=80, nullable=true)
+     */
+    private $fromuser;
+
+    /**
+     * @var string $fromdomain
+     *
+     * @ORM\Column(name="fromdomain", type="string", length=80, nullable=true)
+     */
+    private $fromdomain;
+
+    /**
+     * @var string $fullcontact
+     *
+     * @ORM\Column(name="fullcontact", type="string", length=80, nullable=true)
+     */
+    private $fullcontact;
+
+    /**
+     * @var string $host
+     *
+     * @ORM\Column(name="host", type="string", length=31, nullable=false)
+     */
+    private $host;
+
+    /**
+     * @var string $insecure
+     *
+     * @ORM\Column(name="insecure", type="string", length=4, nullable=true)
+     */
+    private $insecure;
+
+    /**
+     * @var string $language
+     *
+     * @ORM\Column(name="language", type="string", length=2, nullable=true)
+     */
+    private $language;
+
+    /**
+     * @var string $mailbox
+     *
+     * @ORM\Column(name="mailbox", type="string", length=50, nullable=true)
+     */
+    private $mailbox;
+
+    /**
+     * @var string $md5secret
+     *
+     * @ORM\Column(name="md5secret", type="string", length=80, nullable=true)
+     */
+    private $md5secret;
+
+    /**
+     * @var string $nat
+     *
+     * @ORM\Column(name="nat", type="string", length=5, nullable=false)
+     */
+    private $nat;
+
+    /**
+     * @var string $permit
+     *
+     * @ORM\Column(name="permit", type="string", length=95, nullable=true)
+     */
+    private $permit;
+
+    /**
+     * @var string $deny
+     *
+     * @ORM\Column(name="deny", type="string", length=95, nullable=true)
+     */
+    private $deny;
+
+    /**
+     * @var string $mask
+     *
+     * @ORM\Column(name="mask", type="string", length=95, nullable=true)
+     */
+    private $mask;
+
+    /**
+     * @var string $pickupgroup
+     *
+     * @ORM\Column(name="pickupgroup", type="string", length=10, nullable=true)
+     */
+    private $pickupgroup;
+
+    /**
+     * @var string $port
+     *
+     * @ORM\Column(name="port", type="string", length=5, nullable=false)
+     */
+    private $port;
+
+    /**
+     * @var string $qualify
+     *
+     * @ORM\Column(name="qualify", type="string", length=3, nullable=true)
+     */
+    private $qualify;
+
+    /**
+     * @var string $restrictcid
+     *
+     * @ORM\Column(name="restrictcid", type="string", length=1, nullable=true)
+     */
+    private $restrictcid;
+
+    /**
+     * @var string $rtptimeout
+     *
+     * @ORM\Column(name="rtptimeout", type="string", length=3, nullable=true)
+     */
+    private $rtptimeout;
+
+    /**
+     * @var string $rtpholdtimeout
+     *
+     * @ORM\Column(name="rtpholdtimeout", type="string", length=3, nullable=true)
+     */
+    private $rtpholdtimeout;
+
+    /**
+     * @var string $secret
+     *
+     * @ORM\Column(name="secret", type="string", length=80, nullable=true)
+     */
+    private $secret;
+
+    /**
+     * @var string $type
+     *
+     * @ORM\Column(name="type", type="string", length=6, nullable=false)
+     */
+    private $type;
+
+    /**
+     * @var string $defaultuser
+     *
+     * @ORM\Column(name="defaultuser", type="string", length=80, nullable=false)
+     */
+    private $defaultuser;
+
+    /**
+     * @var string $disallow
+     *
+     * @ORM\Column(name="disallow", type="string", length=100, nullable=true)
+     */
+    private $disallow;
+
+    /**
+     * @var string $allow
+     *
+     * @ORM\Column(name="allow", type="string", length=100, nullable=true)
+     */
+    private $allow;
+
+    /**
+     * @var string $musiconhold
+     *
+     * @ORM\Column(name="musiconhold", type="string", length=100, nullable=true)
+     */
+    private $musiconhold;
+
+    /**
+     * @var integer $regseconds
+     *
+     * @ORM\Column(name="regseconds", type="integer", nullable=false)
+     */
+    private $regseconds;
+
+    /**
+     * @var string $ipaddr
+     *
+     * @ORM\Column(name="ipaddr", type="string", length=45, nullable=false)
+     */
+    private $ipaddr;
+
+    /**
+     * @var string $regexten
+     *
+     * @ORM\Column(name="regexten", type="string", length=80, nullable=false)
+     */
+    private $regexten;
+
+    /**
+     * @var string $cancallforward
+     *
+     * @ORM\Column(name="cancallforward", type="string", length=3, nullable=true)
+     */
+    private $cancallforward;
+
+    /**
+     * @var string $setvar
+     *
+     * @ORM\Column(name="setvar", type="string", length=100, nullable=false)
+     */
+    private $setvar;
+
+    /**
+     * @var integer $callLimit
+     *
+     * @ORM\Column(name="call-limit", type="integer", nullable=false)
+     */
+    private $callLimit;
+
+    /**
+     * @var string $regserver
+     *
+     * @ORM\Column(name="regserver", type="string", length=100, nullable=true)
+     */
+    private $regserver;
+
+    /**
+     * @var integer $lastms
+     *
+     * @ORM\Column(name="lastms", type="integer", nullable=false)
+     */
+    private $lastms;
+
+    /**
+     * @var string $useragent
+     *
+     * @ORM\Column(name="useragent", type="string", length=255, nullable=false)
+     */
+    private $useragent;
+
+
+}

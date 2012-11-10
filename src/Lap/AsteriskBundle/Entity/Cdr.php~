@@ -1,0 +1,130 @@
+<?php
+
+namespace Smh\AsteriskBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Smh\AsteriskBundle\Entity\Cdr
+ *
+ * @ORM\Table(name="cdr")
+ * @ORM\Entity
+ */
+class Cdr
+{
+    /**
+     * @var string $uniqueid
+     *
+     * @ORM\Column(name="uniqueid", type="string", length=32, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $uniqueid;
+
+    /**
+     * @var datetime $calldate
+     *
+     * @ORM\Column(name="calldate", type="datetime", nullable=false)
+     */
+    private $calldate;
+
+    /**
+     * @var string $clid
+     *
+     * @ORM\Column(name="clid", type="string", length=80, nullable=false)
+     */
+    private $clid;
+
+    /**
+     * @var string $src
+     *
+     * @ORM\Column(name="src", type="string", length=80, nullable=false)
+     */
+    private $src;
+
+    /**
+     * @var string $dst
+     *
+     * @ORM\Column(name="dst", type="string", length=80, nullable=false)
+     */
+    private $dst;
+
+    /**
+     * @var string $dcontext
+     *
+     * @ORM\Column(name="dcontext", type="string", length=80, nullable=false)
+     */
+    private $dcontext;
+
+    /**
+     * @var string $channel
+     *
+     * @ORM\Column(name="channel", type="string", length=80, nullable=false)
+     */
+    private $channel;
+
+    /**
+     * @var string $dstchannel
+     *
+     * @ORM\Column(name="dstchannel", type="string", length=80, nullable=false)
+     */
+    private $dstchannel;
+
+    /**
+     * @var string $lastapp
+     *
+     * @ORM\Column(name="lastapp", type="string", length=80, nullable=false)
+     */
+    private $lastapp;
+
+    /**
+     * @var string $lastdata
+     *
+     * @ORM\Column(name="lastdata", type="string", length=80, nullable=false)
+     */
+    private $lastdata;
+
+    /**
+     * @var integer $duration
+     *
+     * @ORM\Column(name="duration", type="integer", nullable=false)
+     */
+    private $duration;
+
+    /**
+     * @var integer $billsec
+     *
+     * @ORM\Column(name="billsec", type="integer", nullable=false)
+     */
+    private $billsec;
+
+    /**
+     * @var string $disposition
+     *
+     * @ORM\Column(name="disposition", type="string", length=45, nullable=false)
+     */
+    private $disposition;
+
+    /**
+     * @var integer $amaflags
+     *
+     * @ORM\Column(name="amaflags", type="integer", nullable=false)
+     */
+    private $amaflags;
+
+    /**
+     * @var string $accountcode
+     *
+     * @ORM\Column(name="accountcode", type="string", length=20, nullable=false)
+     */
+    private $accountcode;
+
+    /**
+     * @var string $userfield
+     *
+     * @ORM\Column(name="userfield", type="string", length=255, nullable=false)
+     */
+    private $userfield;
+
+
+}

@@ -1,0 +1,83 @@
+Cdr:
+  type: entity
+  table: cdr
+  fields:
+    uniqueid:
+      id: true
+      type: string
+      length: 32
+      fixed: false
+      nullable: false
+      generator:
+        strategy: IDENTITY
+    calldate:
+      type: datetime
+      nullable: false
+    clid:
+      type: string
+      length: 80
+      fixed: false
+      nullable: false
+    src:
+      type: string
+      length: 80
+      fixed: false
+      nullable: false
+    dst:
+      type: string
+      length: 80
+      fixed: false
+      nullable: false
+    dcontext:
+      type: string
+      length: 80
+      fixed: false
+      nullable: false
+    channel:
+      type: string
+      length: 80
+      fixed: false
+      nullable: false
+    dstchannel:
+      type: string
+      length: 80
+      fixed: false
+      nullable: false
+    lastapp:
+      type: string
+      length: 80
+      fixed: false
+      nullable: false
+    lastdata:
+      type: string
+      length: 80
+      fixed: false
+      nullable: false
+    duration:
+      type: integer
+      unsigned: false
+      nullable: false
+    billsec:
+      type: integer
+      unsigned: false
+      nullable: false
+    disposition:
+      type: string
+      length: 45
+      fixed: false
+      nullable: false
+    amaflags:
+      type: integer
+      unsigned: false
+      nullable: false
+    accountcode:
+      type: string
+      length: 20
+      fixed: false
+      nullable: false
+    userfield:
+      type: string
+      length: 255
+      fixed: false
+      nullable: false
+  lifecycleCallbacks: {  }

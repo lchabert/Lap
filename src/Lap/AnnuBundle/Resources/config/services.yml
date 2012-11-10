@@ -1,0 +1,7 @@
+parameters:
+#    lap_annu.example.class: Lap\AnnuBundle\Example
+
+services:
+    lap_annu.ldapsearch:
+        class: Lap\AnnuBundle\Service\LapLdapSearch
+        arguments: [%ldap_server%, %ldap_dn_root%,%ldap_root_pw%,%ldap_dn_search%,%ldap_filter%,%ldap_restriction%]

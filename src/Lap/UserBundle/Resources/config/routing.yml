@@ -1,0 +1,3 @@
+LapUserBundle_profile:
+    pattern:  /profile
+    defaults: { _controller: LapUserBundle:Profile:show }

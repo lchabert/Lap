@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Lap{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Ldap directory">
+        <meta name="author" content="Chabert Loic">
+      {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-responsive.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.css') }}" type="text/css" />
+      {% endblock %}
+
+        <style type="text/css">
+                body {
+                    padding-top: 60px;
+                    padding-bottom: 40px;
+                }
+        </style>
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Le fav and touch icons -->
+        <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+        </head>
+
+        <body>
+            <div class="navbar navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="#">Annuaire Lap</a>
+                        <div class="nav-collapse">
+                            <ul class="nav">
+                                <li class="active"><a href="{{ path('LapAnnuBundle_homepage') }}">Liste</a></li>
+                                <li><a href="#Favoris">Favoris</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                        <div class="btn-group pull-right">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <i class="icon-user"></i> {{ app.user.username }}
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+                                    <li><a href="#">Gerer mon téléphone</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="{{ path('fos_user_security_logout') }}">Deconnexion</a></li>
+                                </ul>
+                                {% else %}
+                                <i class="icon-user"></i>Connexion
+                                <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+                                </ul>
+                                {% endif %}
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div id="header" class="hero-unit">
+                    <h1>Annuaire de votre entreprise</h1>
+                    <p>Cet intranet vous permet d'obtenir rapidement les coordonnées de contact d'un collègue.</p>
+                    <p><a class="btn btn-primary btn-large" href="#">
+                            Comment l'utiliser ? &raquo;
+                        </a></p>
+                </div>
+                <!-- Main hero unit for a primary marketing message or call to action -->
+                <div class="row">
+                    <div class="span3" id="menu">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            {{ knp_menu_render('LapAnnuBundle:Builder:connectedMainMenu', {'currentClass': 'active'}) }}
+                        {% else %}
+                            {{ knp_menu_render('LapAnnuBundle:Builder:notConnectedMainMenu', {'currentClass': 'active'}) }}
+                        {% endif %}
+                    </div>
+                    <div id="content" class="span9">
+					{% block body %}
+                                	{% endblock %}
+                        </div>
+                    </div>
+                    <hr>
+                    <footer>
+                        <p>&copy; Chabert Loic pour Lap Project</p>
+                    </footer>
+
+                </div> <!-- /container -->
+
+                <!-- Le javascript
+                ================================================== -->
+                <!-- On le place a la fin du document pour charger la page plus rapidement -->
+         {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('js/jquery-1.8.2.js')}}"></script>  
+            <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/SmhAnnu.js') }}"></script>
+        {% endblock %}
+
+    </body>
+</html>

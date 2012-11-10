@@ -1,0 +1,35 @@
+QueueMembers:
+  type: entity
+  table: queue_members
+  fields:
+    uniqueid:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      generator:
+        strategy: IDENTITY
+    membername:
+      type: string
+      length: 40
+      fixed: false
+      nullable: true
+    queueName:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+      column: queue_name
+    interface:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+    penalty:
+      type: integer
+      unsigned: false
+      nullable: true
+    paused:
+      type: boolean
+      nullable: true
+  lifecycleCallbacks: {  }

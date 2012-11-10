@@ -1,0 +1,193 @@
+<?php
+
+namespace Smh\AsteriskBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Smh\AsteriskBundle\Entity\VoicemailUsers
+ *
+ * @ORM\Table(name="voicemail_users")
+ * @ORM\Entity
+ */
+class VoicemailUsers
+{
+    /**
+     * @var integer $uniqueid
+     *
+     * @ORM\Column(name="uniqueid", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $uniqueid;
+
+    /**
+     * @var string $customerId
+     *
+     * @ORM\Column(name="customer_id", type="string", length=11, nullable=false)
+     */
+    private $customerId;
+
+    /**
+     * @var string $context
+     *
+     * @ORM\Column(name="context", type="string", length=50, nullable=false)
+     */
+    private $context;
+
+    /**
+     * @var string $mailbox
+     *
+     * @ORM\Column(name="mailbox", type="string", length=11, nullable=false)
+     */
+    private $mailbox;
+
+    /**
+     * @var string $password
+     *
+     * @ORM\Column(name="password", type="string", length=10, nullable=false)
+     */
+    private $password;
+
+    /**
+     * @var string $fullname
+     *
+     * @ORM\Column(name="fullname", type="string", length=150, nullable=false)
+     */
+    private $fullname;
+
+    /**
+     * @var string $email
+     *
+     * @ORM\Column(name="email", type="string", length=50, nullable=false)
+     */
+    private $email;
+
+    /**
+     * @var string $pager
+     *
+     * @ORM\Column(name="pager", type="string", length=50, nullable=false)
+     */
+    private $pager;
+
+    /**
+     * @var string $tz
+     *
+     * @ORM\Column(name="tz", type="string", length=10, nullable=false)
+     */
+    private $tz;
+
+    /**
+     * @var string $attach
+     *
+     * @ORM\Column(name="attach", type="string", length=4, nullable=false)
+     */
+    private $attach;
+
+    /**
+     * @var string $saycid
+     *
+     * @ORM\Column(name="saycid", type="string", length=4, nullable=false)
+     */
+    private $saycid;
+
+    /**
+     * @var string $dialout
+     *
+     * @ORM\Column(name="dialout", type="string", length=10, nullable=false)
+     */
+    private $dialout;
+
+    /**
+     * @var string $callback
+     *
+     * @ORM\Column(name="callback", type="string", length=10, nullable=false)
+     */
+    private $callback;
+
+    /**
+     * @var string $review
+     *
+     * @ORM\Column(name="review", type="string", length=4, nullable=false)
+     */
+    private $review;
+
+    /**
+     * @var string $operator
+     *
+     * @ORM\Column(name="operator", type="string", length=4, nullable=false)
+     */
+    private $operator;
+
+    /**
+     * @var string $envelope
+     *
+     * @ORM\Column(name="envelope", type="string", length=4, nullable=false)
+     */
+    private $envelope;
+
+    /**
+     * @var string $sayduration
+     *
+     * @ORM\Column(name="sayduration", type="string", length=4, nullable=false)
+     */
+    private $sayduration;
+
+    /**
+     * @var boolean $saydurationm
+     *
+     * @ORM\Column(name="saydurationm", type="boolean", nullable=false)
+     */
+    private $saydurationm;
+
+    /**
+     * @var string $sendvoicemail
+     *
+     * @ORM\Column(name="sendvoicemail", type="string", length=4, nullable=false)
+     */
+    private $sendvoicemail;
+
+    /**
+     * @var string $delete
+     *
+     * @ORM\Column(name="delete", type="string", length=4, nullable=false)
+     */
+    private $delete;
+
+    /**
+     * @var string $nextaftercmd
+     *
+     * @ORM\Column(name="nextaftercmd", type="string", length=4, nullable=false)
+     */
+    private $nextaftercmd;
+
+    /**
+     * @var string $forcename
+     *
+     * @ORM\Column(name="forcename", type="string", length=4, nullable=false)
+     */
+    private $forcename;
+
+    /**
+     * @var string $forcegreetings
+     *
+     * @ORM\Column(name="forcegreetings", type="string", length=4, nullable=false)
+     */
+    private $forcegreetings;
+
+    /**
+     * @var string $hidefromdir
+     *
+     * @ORM\Column(name="hidefromdir", type="string", length=4, nullable=false)
+     */
+    private $hidefromdir;
+
+    /**
+     * @var datetime $stamp
+     *
+     * @ORM\Column(name="stamp", type="datetime", nullable=false)
+     */
+    private $stamp;
+
+
+}

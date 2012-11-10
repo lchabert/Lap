@@ -1,0 +1,220 @@
+SipUsers:
+  type: entity
+  table: sip_users
+  fields:
+    id:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      generator:
+        strategy: IDENTITY
+    name:
+      type: string
+      length: 80
+      fixed: false
+      nullable: false
+    accountcode:
+      type: string
+      length: 20
+      fixed: false
+      nullable: true
+    amaflags:
+      type: string
+      length: 7
+      fixed: false
+      nullable: true
+    callgroup:
+      type: string
+      length: 10
+      fixed: false
+      nullable: true
+    callerid:
+      type: string
+      length: 80
+      fixed: false
+      nullable: true
+    canreinvite:
+      type: string
+      length: 3
+      fixed: true
+      nullable: true
+    context:
+      type: string
+      length: 80
+      fixed: false
+      nullable: true
+    defaultip:
+      type: string
+      length: 15
+      fixed: false
+      nullable: true
+    dtmfmode:
+      type: string
+      length: 7
+      fixed: false
+      nullable: true
+    fromuser:
+      type: string
+      length: 80
+      fixed: false
+      nullable: true
+    fromdomain:
+      type: string
+      length: 80
+      fixed: false
+      nullable: true
+    fullcontact:
+      type: string
+      length: 80
+      fixed: false
+      nullable: true
+    host:
+      type: string
+      length: 31
+      fixed: false
+      nullable: false
+    insecure:
+      type: string
+      length: 4
+      fixed: false
+      nullable: true
+    language:
+      type: string
+      length: 2
+      fixed: true
+      nullable: true
+    mailbox:
+      type: string
+      length: 50
+      fixed: false
+      nullable: true
+    md5secret:
+      type: string
+      length: 80
+      fixed: false
+      nullable: true
+    nat:
+      type: string
+      length: 5
+      fixed: false
+      nullable: false
+    permit:
+      type: string
+      length: 95
+      fixed: false
+      nullable: true
+    deny:
+      type: string
+      length: 95
+      fixed: false
+      nullable: true
+    mask:
+      type: string
+      length: 95
+      fixed: false
+      nullable: true
+    pickupgroup:
+      type: string
+      length: 10
+      fixed: false
+      nullable: true
+    port:
+      type: string
+      length: 5
+      fixed: false
+      nullable: false
+    qualify:
+      type: string
+      length: 3
+      fixed: true
+      nullable: true
+    restrictcid:
+      type: string
+      length: 1
+      fixed: true
+      nullable: true
+    rtptimeout:
+      type: string
+      length: 3
+      fixed: true
+      nullable: true
+    rtpholdtimeout:
+      type: string
+      length: 3
+      fixed: true
+      nullable: true
+    secret:
+      type: string
+      length: 80
+      fixed: false
+      nullable: true
+    type:
+      type: string
+      length: 6
+      fixed: false
+      nullable: false
+    defaultuser:
+      type: string
+      length: 80
+      fixed: false
+      nullable: false
+    disallow:
+      type: string
+      length: 100
+      fixed: false
+      nullable: true
+    allow:
+      type: string
+      length: 100
+      fixed: false
+      nullable: true
+    musiconhold:
+      type: string
+      length: 100
+      fixed: false
+      nullable: true
+    regseconds:
+      type: integer
+      unsigned: false
+      nullable: false
+    ipaddr:
+      type: string
+      length: 45
+      fixed: false
+      nullable: false
+    regexten:
+      type: string
+      length: 80
+      fixed: false
+      nullable: false
+    cancallforward:
+      type: string
+      length: 3
+      fixed: true
+      nullable: true
+    setvar:
+      type: string
+      length: 100
+      fixed: false
+      nullable: false
+    callLimit:
+      type: integer
+      unsigned: false
+      nullable: false
+      column: call-limit
+    regserver:
+      type: string
+      length: 100
+      fixed: false
+      nullable: true
+    lastms:
+      type: integer
+      unsigned: false
+      nullable: false
+    useragent:
+      type: string
+      length: 255
+      fixed: false
+      nullable: false
+  lifecycleCallbacks: {  }

@@ -1,0 +1,60 @@
+<?php
+
+namespace Smh\AsteriskBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Smh\AsteriskBundle\Entity\QueueMembers
+ *
+ * @ORM\Table(name="queue_members")
+ * @ORM\Entity
+ */
+class QueueMembers
+{
+    /**
+     * @var integer $uniqueid
+     *
+     * @ORM\Column(name="uniqueid", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $uniqueid;
+
+    /**
+     * @var string $membername
+     *
+     * @ORM\Column(name="membername", type="string", length=40, nullable=true)
+     */
+    private $membername;
+
+    /**
+     * @var string $queueName
+     *
+     * @ORM\Column(name="queue_name", type="string", length=128, nullable=true)
+     */
+    private $queueName;
+
+    /**
+     * @var string $interface
+     *
+     * @ORM\Column(name="interface", type="string", length=128, nullable=true)
+     */
+    private $interface;
+
+    /**
+     * @var integer $penalty
+     *
+     * @ORM\Column(name="penalty", type="integer", nullable=true)
+     */
+    private $penalty;
+
+    /**
+     * @var boolean $paused
+     *
+     * @ORM\Column(name="paused", type="boolean", nullable=true)
+     */
+    private $paused;
+
+
+}

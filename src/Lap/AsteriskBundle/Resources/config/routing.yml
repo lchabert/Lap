@@ -1,0 +1,3 @@
+LapAsteriskBundle_clickToDial:
+    pattern: /clicktodial/{phoneNumber}
+    defaults: {_controller: LapAsteriskBundle:Ami:clickToDial }

@@ -1,0 +1,174 @@
+Queues:
+  type: entity
+  table: queues
+  fields:
+    name:
+      id: true
+      type: string
+      length: 128
+      fixed: false
+      nullable: false
+      generator:
+        strategy: IDENTITY
+    musiconhold:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+    announce:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+    context:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+    timeout:
+      type: integer
+      unsigned: false
+      nullable: true
+    monitorJoin:
+      type: boolean
+      nullable: true
+      column: monitor_join
+    monitorFormat:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+      column: monitor_format
+    queueYouarenext:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+      column: queue_youarenext
+    queueThereare:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+      column: queue_thereare
+    queueCallswaiting:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+      column: queue_callswaiting
+    queueHoldtime:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+      column: queue_holdtime
+    queueMinutes:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+      column: queue_minutes
+    queueSeconds:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+      column: queue_seconds
+    queueLessthan:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+      column: queue_lessthan
+    queueThankyou:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+      column: queue_thankyou
+    queueReporthold:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+      column: queue_reporthold
+    announceFrequency:
+      type: integer
+      unsigned: false
+      nullable: true
+      column: announce_frequency
+    announceRoundSeconds:
+      type: integer
+      unsigned: false
+      nullable: true
+      column: announce_round_seconds
+    announceHoldtime:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+      column: announce_holdtime
+    retry:
+      type: integer
+      unsigned: false
+      nullable: true
+    wrapuptime:
+      type: integer
+      unsigned: false
+      nullable: true
+    maxlen:
+      type: integer
+      unsigned: false
+      nullable: true
+    servicelevel:
+      type: integer
+      unsigned: false
+      nullable: true
+    strategy:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+    joinempty:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+    leavewhenempty:
+      type: string
+      length: 128
+      fixed: false
+      nullable: true
+    eventmemberstatus:
+      type: boolean
+      nullable: true
+    eventwhencalled:
+      type: boolean
+      nullable: true
+    reportholdtime:
+      type: boolean
+      nullable: true
+    memberdelay:
+      type: integer
+      unsigned: false
+      nullable: true
+    weight:
+      type: integer
+      unsigned: false
+      nullable: true
+    timeoutrestart:
+      type: boolean
+      nullable: true
+    periodicAnnounce:
+      type: string
+      length: 50
+      fixed: false
+      nullable: true
+      column: periodic_announce
+    periodicAnnounceFrequency:
+      type: integer
+      unsigned: false
+      nullable: true
+      column: periodic_announce_frequency
+  lifecycleCallbacks: {  }

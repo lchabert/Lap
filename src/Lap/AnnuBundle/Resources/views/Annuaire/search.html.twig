@@ -1,0 +1,19 @@
+{% extends "LapAnnuBundle:Annuaire:index.html.twig" %}
+
+{% block title %}
+	Recherche d'agents
+{% endblock %}
+
+{% block menu_content %}
+<li>
+<a href="{{ path('LapAnnuBundle_homepage') }}">Tous les agents</a>
+</li>
+<li>
+<a href="#">Mon service</a>
+</li>
+{% endblock %}
+        
+{% block lapannu_body %}
+<h3>Rechercher un agent</h3>
+{% include "LapAnnuBundle:Annuaire:templateContent.html.twig" %}
+{% endblock %}        

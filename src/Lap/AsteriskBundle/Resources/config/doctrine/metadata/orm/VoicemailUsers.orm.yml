@@ -1,0 +1,129 @@
+VoicemailUsers:
+  type: entity
+  table: voicemail_users
+  fields:
+    uniqueid:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      generator:
+        strategy: IDENTITY
+    customerId:
+      type: string
+      length: 11
+      fixed: false
+      nullable: false
+      column: customer_id
+    context:
+      type: string
+      length: 50
+      fixed: false
+      nullable: false
+    mailbox:
+      type: string
+      length: 11
+      fixed: false
+      nullable: false
+    password:
+      type: string
+      length: 10
+      fixed: false
+      nullable: false
+    fullname:
+      type: string
+      length: 150
+      fixed: false
+      nullable: false
+    email:
+      type: string
+      length: 50
+      fixed: false
+      nullable: false
+    pager:
+      type: string
+      length: 50
+      fixed: false
+      nullable: false
+    tz:
+      type: string
+      length: 10
+      fixed: false
+      nullable: false
+    attach:
+      type: string
+      length: 4
+      fixed: false
+      nullable: false
+    saycid:
+      type: string
+      length: 4
+      fixed: false
+      nullable: false
+    dialout:
+      type: string
+      length: 10
+      fixed: false
+      nullable: false
+    callback:
+      type: string
+      length: 10
+      fixed: false
+      nullable: false
+    review:
+      type: string
+      length: 4
+      fixed: false
+      nullable: false
+    operator:
+      type: string
+      length: 4
+      fixed: false
+      nullable: false
+    envelope:
+      type: string
+      length: 4
+      fixed: false
+      nullable: false
+    sayduration:
+      type: string
+      length: 4
+      fixed: false
+      nullable: false
+    saydurationm:
+      type: boolean
+      nullable: false
+    sendvoicemail:
+      type: string
+      length: 4
+      fixed: false
+      nullable: false
+    delete:
+      type: string
+      length: 4
+      fixed: false
+      nullable: false
+    nextaftercmd:
+      type: string
+      length: 4
+      fixed: false
+      nullable: false
+    forcename:
+      type: string
+      length: 4
+      fixed: false
+      nullable: false
+    forcegreetings:
+      type: string
+      length: 4
+      fixed: false
+      nullable: false
+    hidefromdir:
+      type: string
+      length: 4
+      fixed: false
+      nullable: false
+    stamp:
+      type: datetime
+      nullable: false
+  lifecycleCallbacks: {  }
