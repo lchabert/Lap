@@ -1,0 +1,8 @@
+<?php
+
+require_once __DIR__.'/src/geshi.php';
+
+class Pami_Pami extends Pami {
+}
+
+?>

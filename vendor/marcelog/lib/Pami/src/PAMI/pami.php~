@@ -1,0 +1,6 @@
+<?php
+
+class Pami_Pami extends Pami {
+}
+
+?>
