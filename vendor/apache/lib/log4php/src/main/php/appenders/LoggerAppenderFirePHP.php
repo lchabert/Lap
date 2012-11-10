@@ -40,13 +40,13 @@
  * @since 2.3
  */
 class LoggerAppenderFirePHP extends LoggerAppender {
-	
+
 	/**
 	 * Instance of the Insight console class.
 	 * @var Insight_Plugin_Console
 	 */
 	protected $console;
-	
+
 	/**
 	 * The target for log messages. Possible values are: 'page' (default), 
 	 * 'request', 'package' and 'contoller'.
@@ -58,36 +58,38 @@ class LoggerAppenderFirePHP extends LoggerAppender {
 			$this->console = FirePHP::to($this->target)->console();
 			$this->closed = false;
 		} else {
-			$this->warn('FirePHP is not installed correctly. Closing appender.');
+			$this
+					->warn(
+							'FirePHP is not installed correctly. Closing appender.');
 		}
 	}
-	
+
 	public function append(LoggerLoggingEvent $event) {
 		$msg = $event->getMessage();
-		
+
 		// Skip formatting for objects and arrays which are handled by FirePHP.
 		if (!is_array($msg) && !is_object($msg)) {
 			$msg = $this->getLayout()->format($event);
 		}
-		
+
 		switch ($event->getLevel()->toInt()) {
-			case LoggerLevel::TRACE:
-			case LoggerLevel::DEBUG:
-				$this->console->log($msg);
-				break;
-			case LoggerLevel::INFO:
-				$this->console->info($msg);
-				break;
-			case LoggerLevel::WARN:
-				$this->console->warn($msg);
-				break;
-			case LoggerLevel::ERROR:
-			case LoggerLevel::FATAL:
-				$this->console->error($msg);
-				break;
+		case LoggerLevel::TRACE:
+		case LoggerLevel::DEBUG:
+			$this->console->log($msg);
+			break;
+		case LoggerLevel::INFO:
+			$this->console->info($msg);
+			break;
+		case LoggerLevel::WARN:
+			$this->console->warn($msg);
+			break;
+		case LoggerLevel::ERROR:
+		case LoggerLevel::FATAL:
+			$this->console->error($msg);
+			break;
 		}
 	}
-	
+
 	/** Returns the target. */
 	public function getTarget() {
 		return $this->target;

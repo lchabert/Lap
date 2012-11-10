@@ -10,88 +10,78 @@
  */
 
 namespace FOS\UserBundle\Model;
-
 /**
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */
-abstract class Group implements GroupInterface
-{
-    protected $id;
-    protected $name;
-    protected $roles;
+abstract class Group implements GroupInterface {
+	protected $id;
+	protected $name;
+	protected $roles;
 
-    public function __construct($name, $roles = array())
-    {
-        $this->name = $name;
-        $this->roles = $roles;
-    }
+	public function __construct($name, $roles = array()) {
+		$this->name = $name;
+		$this->roles = $roles;
+	}
 
-    /**
-     * @param string $role
-     * @return Group
-     */
-    public function addRole($role)
-    {
-        if (!$this->hasRole($role)) {
-            $this->roles[] = strtoupper($role);
-        }
+	/**
+	 * @param string $role
+	 * @return Group
+	 */
+	public function addRole($role) {
+		if (!$this->hasRole($role)) {
+			$this->roles[] = strtoupper($role);
+		}
 
-        return $this;
-    }
+		return $this;
+	}
 
-    public function getId()
-    {
-        return $this->id;
-    }
+	public function getId() {
+		return $this->id;
+	}
 
-    public function getName()
-    {
-        return $this->name;
-    }
+	public function getName() {
+		return $this->name;
+	}
 
-    public function hasRole($role)
-    {
-        return in_array(strtoupper($role), $this->roles, true);
-    }
+	public function hasRole($role) {
+		return in_array(strtoupper($role), $this->roles, true);
+	}
 
-    public function getRoles()
-    {
-        return $this->roles;
-    }
+	public function getRoles() {
+		return $this->roles;
+	}
 
-    /**
-     * @param string $role
-     * @return Group
-     */
-    public function removeRole($role)
-    {
-        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
-            unset($this->roles[$key]);
-            $this->roles = array_values($this->roles);
-        }
+	/**
+	 * @param string $role
+	 * @return Group
+	 */
+	public function removeRole($role) {
+		if (false
+				!== $key = array_search(strtoupper($role), $this->roles, true)) {
+			unset($this->roles[$key]);
+			$this->roles = array_values($this->roles);
+		}
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * @param string $name
-     * @return Group
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
+	/**
+	 * @param string $name
+	 * @return Group
+	 */
+	public function setName($name) {
+		$this->name = $name;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * @param array $roles
-     * @return Group
-     */
-    public function setRoles(array $roles)
-    {
-        $this->roles = $roles;
+	/**
+	 * @param array $roles
+	 * @return Group
+	 */
+	public function setRoles(array $roles) {
+		$this->roles = $roles;
 
-        return $this;
-    }
+		return $this;
+	}
 }

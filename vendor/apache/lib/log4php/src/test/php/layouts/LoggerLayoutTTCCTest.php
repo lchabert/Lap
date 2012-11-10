@@ -27,7 +27,7 @@
  * @group layouts
  */
 class LoggerLayoutTTCCTest extends PHPUnit_Framework_TestCase {
-    
+
 	/**
 	 * @expectedException PHPUnit_Framework_Error
 	 * @expectedExceptionMessage LoggerLayout TTCC is deprecated and will be removed in a future release.
@@ -35,34 +35,38 @@ class LoggerLayoutTTCCTest extends PHPUnit_Framework_TestCase {
 	public function testDeprecationWarning() {
 		$layout = new LoggerLayoutTTCC();
 	}
-	
+
 	public function testErrorLayout() {
-		$event = new LoggerLoggingEvent("LoggerLayoutTTCC", new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
+		$event = new LoggerLoggingEvent("LoggerLayoutTTCC", new Logger("TEST"),
+				LoggerLevel::getLevelError(), "testmessage");
 
 		$layout = @new LoggerLayoutTTCC();
 		$v = $layout->format($event);
 
-		$pos = strpos($v, "[".$event->getThreadName()."] ERROR TEST - testmessage");
+		$pos = strpos($v,
+				"[" . $event->getThreadName() . "] ERROR TEST - testmessage");
 
 		if ($pos === false) {
-		    self::assertTrue(false);
+			self::assertTrue(false);
 		} else if ($pos === true) {
-		    self::assertTrue(true);
+			self::assertTrue(true);
 		}
-    }
-    
-    public function testWarnLayout() {
-		$event = new LoggerLoggingEvent("LoggerLayoutXml", new Logger("TEST"), LoggerLevel::getLevelWarn(), "testmessage");
+	}
+
+	public function testWarnLayout() {
+		$event = new LoggerLoggingEvent("LoggerLayoutXml", new Logger("TEST"),
+				LoggerLevel::getLevelWarn(), "testmessage");
 
 		$layout = @new LoggerLayoutTTCC();
 		$v = $layout->format($event);
 
-		$pos = strpos($v, "[".$event->getThreadName()."] WARN TEST - testmessage");
+		$pos = strpos($v,
+				"[" . $event->getThreadName() . "] WARN TEST - testmessage");
 
 		if ($pos === false) {
-		    self::assertTrue(false);
+			self::assertTrue(false);
 		} else if ($pos === true) {
-		    self::assertTrue(true);
+			self::assertTrue(true);
 		}
-    }
+	}
 }

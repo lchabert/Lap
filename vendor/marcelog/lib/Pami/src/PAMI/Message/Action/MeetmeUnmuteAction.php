@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * MeetmeUnmute action message.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class MeetmeUnmuteAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $conference Conference number.
-     * @param string $user       User.
-     *
-     * @return void
-     */
-    public function __construct($conference, $user)
-    {
-        parent::__construct('MeetmeUnmute');
-        $this->setKey('Meetme', $conference);
-        $this->setKey('Usernum', $user);
-    }
+class MeetmeUnmuteAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $conference Conference number.
+	 * @param string $user       User.
+	 *
+	 * @return void
+	 */
+	public function __construct($conference, $user) {
+		parent::__construct('MeetmeUnmute');
+		$this->setKey('Meetme', $conference);
+		$this->setKey('Usernum', $user);
+	}
 }

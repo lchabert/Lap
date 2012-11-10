@@ -49,35 +49,37 @@
  * @version $Revision: 1343601 $
  * @since 2.2
  */
-class LoggerConfigurationAdapterPHP implements LoggerConfigurationAdapter
-{
+class LoggerConfigurationAdapterPHP implements LoggerConfigurationAdapter {
 	public function convert($url) {
 		if (!file_exists($url)) {
 			throw new LoggerException("File [$url] does not exist.");
 		}
-		
+
 		// Load the config file
 		$data = @file_get_contents($url);
 		if ($data === false) {
 			$error = error_get_last();
-			throw new LoggerException("Error loading config file: {$error['message']}");
+			throw new LoggerException(
+					"Error loading config file: {$error['message']}");
 		}
-		
+
 		$config = @eval('?>' . $data);
-		
+
 		if ($config === false) {
 			$error = error_get_last();
-			throw new LoggerException("Error parsing configuration: " . $error['message']);
+			throw new LoggerException(
+					"Error parsing configuration: " . $error['message']);
 		}
-		
+
 		if (empty($config)) {
-			throw new LoggerException("Invalid configuration: empty configuration array.");
+			throw new LoggerException(
+					"Invalid configuration: empty configuration array.");
 		}
-		
+
 		if (!is_array($config)) {
 			throw new LoggerException("Invalid configuration: not an array.");
 		}
-		
+
 		return $config;
 	}
 }

@@ -22,76 +22,69 @@
  * @version    $Revision: 1374580 $
  * @link       http://logging.apache.org/log4php
  */
- 
+
 function errorHandler($errno, $errstr, $errfile, $errline) {
-	PHPUnit_Framework_TestCase::assertEquals(LoggerAppenderPhpTest::$expectedError, $errno);
-	PHPUnit_Framework_TestCase::assertEquals(LoggerAppenderPhpTest::$expectedMessage, $errstr);
+	PHPUnit_Framework_TestCase::assertEquals(
+			LoggerAppenderPhpTest::$expectedError, $errno);
+	PHPUnit_Framework_TestCase::assertEquals(
+			LoggerAppenderPhpTest::$expectedMessage, $errstr);
 }
 
 /**
  * @group appenders
  */
 class LoggerAppenderPhpTest extends PHPUnit_Framework_TestCase {
-	
+
 	public static $expectedMessage;
-	
+
 	public static $expectedError;
-	
+
 	private $config = array(
-		'rootLogger' => array(
-			'appenders' => array('default'),
-			'level' => 'trace'
-		),
-		'appenders' => array(
-			'default' => array(
-				'class' => 'LoggerAppenderPHP',
-				'layout' => array(
-					'class' => 'LoggerLayoutSimple'
-				),
-			)
-		)
-	);
-	
-    protected function setUp() {
+			'rootLogger' => array('appenders' => array('default'),
+					'level' => 'trace'),
+			'appenders' => array(
+					'default' => array('class' => 'LoggerAppenderPHP',
+							'layout' => array('class' => 'LoggerLayoutSimple'),)));
+
+	protected function setUp() {
 		set_error_handler("errorHandler");
 	}
-		
+
 	public function testRequiresLayout() {
 		$appender = new LoggerAppenderPhp();
 		$this->assertTrue($appender->requiresLayout());
 	}
-    
+
 	public function testPhp() {
 		Logger::configure($this->config);
 		$logger = Logger::getRootLogger();
-		
-		 
+
 		self::$expectedError = E_USER_ERROR;
 		self::$expectedMessage = "FATAL - This is a test" . PHP_EOL;
 		$logger->fatal("This is a test");
-		
+
 		self::$expectedError = E_USER_ERROR;
 		self::$expectedMessage = "ERROR - This is a test" . PHP_EOL;
 		$logger->error("This is a test");
-		
+
 		self::$expectedError = E_USER_WARNING;
 		self::$expectedMessage = "WARN - This is a test" . PHP_EOL;
 		$logger->warn("This is a test");
-		
+
 		self::$expectedError = E_USER_NOTICE;
 		self::$expectedMessage = "INFO - This is a test" . PHP_EOL;
 		$logger->info("This is a test");
-		
+
 		self::$expectedError = E_USER_NOTICE;
 		self::$expectedMessage = "DEBUG - This is a test" . PHP_EOL;
 		$logger->debug("This is a test");
-		
+
 		self::$expectedError = E_USER_NOTICE;
 		self::$expectedMessage = "TRACE - This is a test" . PHP_EOL;
 		$logger->trace("This is a test");
-    }
-    
-    protected function tearDown() {
+	}
+
+	protected function tearDown() {
 		restore_error_handler();
 	}
 }

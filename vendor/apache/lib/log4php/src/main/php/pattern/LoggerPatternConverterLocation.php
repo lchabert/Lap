@@ -30,10 +30,9 @@
 class LoggerPatternConverterLocation extends LoggerPatternConverter {
 
 	public function convert(LoggerLoggingEvent $event) {
-		return 
-			$event->getLocationInformation()->getClassName() . '.' .
-			$event->getLocationInformation()->getMethodName() . '(' .
-			$event->getLocationInformation()->getFileName() . ':' .
-			$event->getLocationInformation()->getLineNumber() . ')';
+		return $event->getLocationInformation()->getClassName() . '.'
+				. $event->getLocationInformation()->getMethodName() . '('
+				. $event->getLocationInformation()->getFileName() . ':'
+				. $event->getLocationInformation()->getLineNumber() . ')';
 	}
 }

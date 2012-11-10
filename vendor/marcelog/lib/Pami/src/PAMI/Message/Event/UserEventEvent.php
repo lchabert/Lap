@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,35 +42,31 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class UserEventEvent extends EventMessage
-{
-    /**
-     * Returns key: 'UserEvent'.
-     *
-     * @return string
-     */
-    public function getUserEventName()
-    {
-        return $this->getKey('UserEvent');
-    }
-    
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class UserEventEvent extends EventMessage {
+	/**
+	 * Returns key: 'UserEvent'.
+	 *
+	 * @return string
+	 */
+	public function getUserEventName() {
+		return $this->getKey('UserEvent');
+	}
 
-    /**
-     * Returns key: 'UniqueID'.
-     *
-     * @return string
-     */
-    public function getUniqueID()
-    {
-        return $this->getKey('UniqueID');
-    }
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
+
+	/**
+	 * Returns key: 'UniqueID'.
+	 *
+	 * @return string
+	 */
+	public function getUniqueID() {
+		return $this->getKey('UniqueID');
+	}
 }

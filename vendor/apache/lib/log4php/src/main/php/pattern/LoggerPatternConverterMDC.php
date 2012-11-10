@@ -38,18 +38,17 @@ class LoggerPatternConverterMDC extends LoggerPatternConverter {
 			$this->key = $this->option;
 		}
 	}
-	
+
 	public function convert(LoggerLoggingEvent $event) {
 		if (isset($this->key)) {
 			return $event->getMDC($this->key);
 		} else {
 			$buff = array();
 			$map = $event->getMDCMap();
-			foreach($map as $key => $value) {
-				$buff []= "$key=$value";
+			foreach ($map as $key => $value) {
+				$buff[] = "$key=$value";
 			}
 			return implode(', ', $buff);
 		}
 	}
 }
- 

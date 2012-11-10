@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * AGI action message.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class AGIAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @return void
-     */
-    public function __construct($channel, $command, $commandId = false)
-    {
-        parent::__construct('AGI');
-        $this->setKey('Channel', $channel);
-        $this->setKey('Command', $command);
-        if ($commandId !== false) {
-            $this->setKey('CommandId', $commandId);
-        }
-    }
+class AGIAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @return void
+	 */
+	public function __construct($channel, $command, $commandId = false) {
+		parent::__construct('AGI');
+		$this->setKey('Channel', $channel);
+		$this->setKey('Command', $command);
+		if ($commandId !== false) {
+			$this->setKey('CommandId', $commandId);
+		}
+	}
 }

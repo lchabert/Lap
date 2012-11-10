@@ -32,19 +32,19 @@
  * @since 0.3
  */
 abstract class LoggerPatternConverter {
-	
+
 	/**
 	 * Next converter in the converter chain.
 	 * @var LoggerPatternConverter 
 	 */
 	public $next = null;
-	
+
 	/**
 	 * Formatting information, parsed from pattern modifiers. 
 	 * @var LoggerFormattingInfo
 	 */
 	protected $formattingInfo;
-	
+
 	/**
 	 * Converter-specific formatting options.
 	 * @var array
@@ -56,18 +56,20 @@ abstract class LoggerPatternConverter {
 	 * @param LoggerFormattingInfo $formattingInfo
 	 * @param array $option
 	 */
-	public function __construct(LoggerFormattingInfo $formattingInfo = null, $option = null) {  
+	public function __construct(LoggerFormattingInfo $formattingInfo = null,
+			$option = null) {
 		$this->formattingInfo = $formattingInfo;
 		$this->option = $option;
 		$this->activateOptions();
 	}
-	
+
 	/**
 	 * Called in constructor. Converters which need to process the options 
 	 * can override this method. 
 	 */
-	public function activateOptions() { }
-  
+	public function activateOptions() {
+	}
+
 	/**
 	 * Converts the logging event to the desired format. Derived pattern 
 	 * converters must implement this method.
@@ -85,36 +87,35 @@ abstract class LoggerPatternConverter {
 	 */
 	public function format(&$sbuf, $event) {
 		$string = $this->convert($event);
-		
+
 		if (!isset($this->formattingInfo)) {
 			$sbuf .= $string;
-			return;	
+			return;
 		}
-		
+
 		$fi = $this->formattingInfo;
-		
+
 		// Empty string
-		if($string === '' || is_null($string)) {
-			if($fi->min > 0) {
+		if ($string === '' || is_null($string)) {
+			if ($fi->min > 0) {
 				$sbuf .= str_repeat(' ', $fi->min);
 			}
 			return;
 		}
-		
+
 		$len = strlen($string);
-	
+
 		// Trim the string if needed
-		if($len > $fi->max) {
+		if ($len > $fi->max) {
 			if ($fi->trimLeft) {
 				$sbuf .= substr($string, $len - $fi->max, $fi->max);
 			} else {
-				$sbuf .= substr($string , 0, $fi->max);
+				$sbuf .= substr($string, 0, $fi->max);
 			}
 		}
-		
 		// Add padding if needed
-		else if($len < $fi->min) {
-			if($fi->padLeft) {
+ else if ($len < $fi->min) {
+			if ($fi->padLeft) {
 				$sbuf .= str_repeat(' ', $fi->min - $len);
 				$sbuf .= $string;
 			} else {
@@ -122,9 +123,8 @@ abstract class LoggerPatternConverter {
 				$sbuf .= str_repeat(' ', $fi->min - $len);
 			}
 		}
-		
 		// No action needed
-		else {
+ else {
 			$sbuf .= $string;
 		}
 	}

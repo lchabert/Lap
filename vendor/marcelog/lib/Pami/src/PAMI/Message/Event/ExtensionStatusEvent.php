@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,55 +42,49 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class ExtensionStatusEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class ExtensionStatusEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'Exten'.
-     *
-     * @return string
-     */
-    public function getExtension()
-    {
-        return $this->getKey('Exten');
-    }
+	/**
+	 * Returns key: 'Exten'.
+	 *
+	 * @return string
+	 */
+	public function getExtension() {
+		return $this->getKey('Exten');
+	}
 
-    /**
-     * Returns key: 'Context'.
-     *
-     * @return string
-     */
-    public function getContext()
-    {
-        return $this->getKey('Context');
-    }
+	/**
+	 * Returns key: 'Context'.
+	 *
+	 * @return string
+	 */
+	public function getContext() {
+		return $this->getKey('Context');
+	}
 
-    /**
-     * Returns key: 'Hint'.
-     *
-     * @return string
-     */
-    public function getHint()
-    {
-        return $this->getKey('Hint');
-    }
+	/**
+	 * Returns key: 'Hint'.
+	 *
+	 * @return string
+	 */
+	public function getHint() {
+		return $this->getKey('Hint');
+	}
 
-    /**
-     * Returns key: 'Status'.
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->getKey('Status');
-    }
+	/**
+	 * Returns key: 'Status'.
+	 *
+	 * @return string
+	 */
+	public function getStatus() {
+		return $this->getKey('Status');
+	}
 }

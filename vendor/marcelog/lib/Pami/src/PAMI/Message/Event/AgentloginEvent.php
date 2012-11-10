@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,45 +42,40 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class AgentloginEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class AgentloginEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'Agent'.
-     *
-     * @return string
-     */
-    public function getAgent()
-    {
-        return $this->getKey('Agent');
-    }
+	/**
+	 * Returns key: 'Agent'.
+	 *
+	 * @return string
+	 */
+	public function getAgent() {
+		return $this->getKey('Agent');
+	}
 
-    /**
-     * Returns key: 'UniqueID'.
-     *
-     * @return string
-     */
-    public function getUniqueID()
-    {
-        return $this->getKey('UniqueID');
-    }
+	/**
+	 * Returns key: 'UniqueID'.
+	 *
+	 * @return string
+	 */
+	public function getUniqueID() {
+		return $this->getKey('UniqueID');
+	}
 
-    /**
-     * Returns key: 'Channel'.
-     *
-     * @return string
-     */
-    public function getChannel()
-    {
-        return $this->getKey('Channel');
-    }
+	/**
+	 * Returns key: 'Channel'.
+	 *
+	 * @return string
+	 */
+	public function getChannel() {
+		return $this->getKey('Channel');
+	}
 }

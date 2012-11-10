@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,55 +42,49 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class ShowDialPlanCompleteEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('privilege');
-    }
+class ShowDialPlanCompleteEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('privilege');
+	}
 
-    /**
-     * Returns key: 'ListItems'.
-     *
-     * @return string
-     */
-    public function getListItems()
-    {
-        return $this->getKey('listitems');
-    }
+	/**
+	 * Returns key: 'ListItems'.
+	 *
+	 * @return string
+	 */
+	public function getListItems() {
+		return $this->getKey('listitems');
+	}
 
-    /**
-     * Returns key: 'ListExtensions'.
-     *
-     * @return string
-     */
-    public function getListExtensions()
-    {
-        return $this->getKey('listextensions');
-    }
+	/**
+	 * Returns key: 'ListExtensions'.
+	 *
+	 * @return string
+	 */
+	public function getListExtensions() {
+		return $this->getKey('listextensions');
+	}
 
-    /**
-     * Returns key: 'ListPriorities'.
-     *
-     * @return string
-     */
-    public function getListPriorities()
-    {
-        return $this->getKey('listpriorities');
-    }
+	/**
+	 * Returns key: 'ListPriorities'.
+	 *
+	 * @return string
+	 */
+	public function getListPriorities() {
+		return $this->getKey('listpriorities');
+	}
 
-    /**
-     * Returns key: 'ListContexts'.
-     *
-     * @return string
-     */
-    public function getListContexts()
-    {
-        return $this->getKey('listcontexts');
-    }
+	/**
+	 * Returns key: 'ListContexts'.
+	 *
+	 * @return string
+	 */
+	public function getListContexts() {
+		return $this->getKey('listcontexts');
+	}
 }

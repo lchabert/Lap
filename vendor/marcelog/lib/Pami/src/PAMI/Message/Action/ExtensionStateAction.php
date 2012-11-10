@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * ExtensionState action message.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class ExtensionStateAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $exten   Extension to check for.
-     * @param string $context Context for extension.
-     *
-     * @return void
-     */
-    public function __construct($exten, $context)
-    {
-        parent::__construct('ExtensionState');
-        $this->setKey('Exten', $exten);
-        $this->setKey('Context', $context);
-    }
+class ExtensionStateAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $exten   Extension to check for.
+	 * @param string $context Context for extension.
+	 *
+	 * @return void
+	 */
+	public function __construct($exten, $context) {
+		parent::__construct('ExtensionState');
+		$this->setKey('Exten', $exten);
+		$this->setKey('Context', $context);
+	}
 }

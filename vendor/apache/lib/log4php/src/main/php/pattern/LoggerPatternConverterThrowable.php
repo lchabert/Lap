@@ -37,4 +37,3 @@ class LoggerPatternConverterThrowable extends LoggerPatternConverter {
 		return '';
 	}
 }
- 

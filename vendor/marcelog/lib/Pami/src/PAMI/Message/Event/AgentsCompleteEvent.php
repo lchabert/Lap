@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,6 +42,5 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class AgentsCompleteEvent extends EventMessage
-{
+class AgentsCompleteEvent extends EventMessage {
 }

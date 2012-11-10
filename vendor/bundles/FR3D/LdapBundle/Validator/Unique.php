@@ -10,37 +10,31 @@
  */
 
 namespace FR3D\LdapBundle\Validator;
-
 use Symfony\Component\Validator\Constraint;
 
 /**
  * @Annotation
  */
-class Unique extends Constraint
-{
-    public $message = 'The value for "%property%" already exists.';
-    public $property;
+class Unique extends Constraint {
+	public $message = 'The value for "%property%" already exists.';
+	public $property;
 
-    public function getDefaultOption()
-    {
-        return 'property';
-    }
+	public function getDefaultOption() {
+		return 'property';
+	}
 
-    public function getRequiredOptions()
-    {
-        return array('property');
-    }
+	public function getRequiredOptions() {
+		return array('property');
+	}
 
-    public function validatedBy()
-    {
-        return 'fr3d_ldap.validator.unique';
-    }
+	public function validatedBy() {
+		return 'fr3d_ldap.validator.unique';
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getTargets()
-    {
-        return self::CLASS_CONSTRAINT;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getTargets() {
+		return self::CLASS_CONSTRAINT;
+	}
 }

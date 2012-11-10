@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 // START SNIPPET: doxia
-require_once dirname(__FILE__).'/../../main/php/Logger.php';
-Logger::configure(dirname(__FILE__).'/../resources/ndc.properties');
+require_once dirname(__FILE__) . '/../../main/php/Logger.php';
+Logger::configure(dirname(__FILE__) . '/../resources/ndc.properties');
 $logger = Logger::getRootLogger();
 
 LoggerNDC::push('conn=1234');

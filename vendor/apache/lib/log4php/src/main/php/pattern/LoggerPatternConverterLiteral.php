@@ -29,11 +29,11 @@
 class LoggerPatternConverterLiteral extends LoggerPatternConverter {
 
 	private $literalValue;
-	
+
 	public function __construct($literalValue) {
 		$this->literalValue = $literalValue;
 	}
-	
+
 	public function convert(LoggerLoggingEvent $event) {
 		return $this->literalValue;
 	}

@@ -10,9 +10,7 @@
  */
 
 namespace FOS\UserBundle\Document;
-
 use FOS\UserBundle\Model\User as AbstractUser;
 
-abstract class User extends AbstractUser
-{
+abstract class User extends AbstractUser {
 }

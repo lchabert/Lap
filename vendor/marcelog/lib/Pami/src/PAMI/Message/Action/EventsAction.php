@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Events action message.
  *
@@ -41,22 +40,20 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class EventsAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string[] $mask Asterisk events to handle (system, call, log, etc).
-     *
-     * @return void
-     */
-    public function __construct(array $mask = array())
-    {
-        parent::__construct('Events');
-        if (empty($mask)) {
-            $this->setKey('EventMask', 'off');
-        } else {
-            $this->setKey('EventMask', implode(',', $mask));
-        }
-    }
+class EventsAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string[] $mask Asterisk events to handle (system, call, log, etc).
+	 *
+	 * @return void
+	 */
+	public function __construct(array $mask = array()) {
+		parent::__construct('Events');
+		if (empty($mask)) {
+			$this->setKey('EventMask', 'off');
+		} else {
+			$this->setKey('EventMask', implode(',', $mask));
+		}
+	}
 }

@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Send a PDU through dongle.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DongleSendPDUAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $device Device name (like dongle01).
-     * @param string $pdu    PDU to send.
-     *
-     * @return void
-     */
-    public function __construct($device, $pdu)
-    {
-        parent::__construct('DongleSendPDU');
-        $this->setKey('Device', $device);
-        $this->setKey('Pdu', $pdu);
-    }
+class DongleSendPDUAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $device Device name (like dongle01).
+	 * @param string $pdu    PDU to send.
+	 *
+	 * @return void
+	 */
+	public function __construct($device, $pdu) {
+		parent::__construct('DongleSendPDU');
+		$this->setKey('Device', $device);
+		$this->setKey('Pdu', $pdu);
+	}
 }

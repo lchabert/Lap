@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * AbsoluteTimeout action message.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class AbsoluteTimeoutAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string  $channel Channel to work on.
-     * @param integer $timeout Maximum duration of the call (sec).
-     *
-     * @return void
-     */
-    public function __construct($channel, $timeout)
-    {
-        parent::__construct('AbsoluteTimeout');
-        $this->setKey('Channel', $channel);
-        $this->setKey('Timeout', $timeout);
-    }
+class AbsoluteTimeoutAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string  $channel Channel to work on.
+	 * @param integer $timeout Maximum duration of the call (sec).
+	 *
+	 * @return void
+	 */
+	public function __construct($channel, $timeout) {
+		parent::__construct('AbsoluteTimeout');
+		$this->setKey('Channel', $channel);
+		$this->setKey('Timeout', $timeout);
+	}
 }

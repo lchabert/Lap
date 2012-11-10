@@ -10,11 +10,10 @@
  */
 
 namespace FOS\UserBundle\Security;
-
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-interface LoginManagerInterface
-{
-    public function loginUser($firewallName, UserInterface $user, Response $response = null);
+interface LoginManagerInterface {
+	public function loginUser($firewallName, UserInterface $user,
+			Response $response = null);
 }

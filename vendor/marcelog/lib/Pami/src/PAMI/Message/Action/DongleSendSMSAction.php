@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Send a SMS through Dongle.
  *
@@ -41,22 +40,20 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DongleSendSMSAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $device  Device name (like dongle01).
-     * @param string $number  Destination number.
-     * @param string $message What to send.
-     *
-     * @return void
-     */
-    public function __construct($device, $number, $message)
-    {
-        parent::__construct('DongleSendSMS');
-        $this->setKey('Device', $device);
-        $this->setKey('Number', $number);
-        $this->setKey('Message', $message);
-    }
+class DongleSendSMSAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $device  Device name (like dongle01).
+	 * @param string $number  Destination number.
+	 * @param string $message What to send.
+	 *
+	 * @return void
+	 */
+	public function __construct($device, $number, $message) {
+		parent::__construct('DongleSendSMS');
+		$this->setKey('Device', $device);
+		$this->setKey('Number', $number);
+		$this->setKey('Message', $message);
+	}
 }

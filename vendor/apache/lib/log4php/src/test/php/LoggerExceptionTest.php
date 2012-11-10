@@ -21,19 +21,20 @@
  * @version    $Revision: 1374580 $
  * @link       http://logging.apache.org/log4php
  */
-class MyException extends Exception { }
+class MyException extends Exception {
+}
 
 /**
  * @group main
  */
 class LoggerExceptionTest extends PHPUnit_Framework_TestCase {
-  	/**
+	/**
 	 * @expectedException LoggerException
 	 */
 	public function testMessage() {
 		try {
 			throw new LoggerException("TEST");
-    	} catch (LoggerException $e) {
+		} catch (LoggerException $e) {
 			self::assertEquals("TEST", $e->getMessage());
 			throw $e;
 		}

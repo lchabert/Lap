@@ -54,12 +54,12 @@
  * @subpackage layouts
  */
 class LoggerLayoutXml extends LoggerLayout {
-	const LOG4J_NS_PREFIX ='log4j';
+	const LOG4J_NS_PREFIX = 'log4j';
 	const LOG4J_NS = 'http://jakarta.apache.org/log4j/';
-	
+
 	const LOG4PHP_NS_PREFIX = 'log4php';
 	const LOG4PHP_NS = 'http://logging.apache.org/log4php/';
-	
+
 	const CDATA_START = '<![CDATA[';
 	const CDATA_END = ']]>';
 	const CDATA_PSEUDO_END = ']]&gt;';
@@ -71,39 +71,39 @@ class LoggerLayoutXml extends LoggerLayout {
 	 * @var boolean
 	 */
 	protected $locationInfo = true;
-  
+
 	/**
 	 * If set to true, log4j namespace will be used instead of the log4php 
 	 * namespace.
 	 * @var boolean 
 	 */
 	protected $log4jNamespace = false;
-	
+
 	/** The namespace in use. */
 	protected $namespace = self::LOG4PHP_NS;
-	
+
 	/** The namespace prefix in use */
 	protected $namespacePrefix = self::LOG4PHP_NS_PREFIX;
-	 
+
 	public function activateOptions() {
 		if ($this->getLog4jNamespace()) {
-			$this->namespace        = self::LOG4J_NS;
-			$this->namespacePrefix  = self::LOG4J_NS_PREFIX;
+			$this->namespace = self::LOG4J_NS;
+			$this->namespacePrefix = self::LOG4J_NS_PREFIX;
 		} else {
-			$this->namespace        = self::LOG4PHP_NS;
-			$this->namespacePrefix  = self::LOG4PHP_NS_PREFIX;
+			$this->namespace = self::LOG4PHP_NS;
+			$this->namespacePrefix = self::LOG4PHP_NS_PREFIX;
 		}
 	}
-	
+
 	/**
 	 * @return string
 	 */
 	public function getHeader() {
-		return "<{$this->namespacePrefix}:eventSet ".
-			"xmlns:{$this->namespacePrefix}=\"{$this->namespace}\" ".
-			"version=\"0.3\" ".
-			"includesLocationInfo=\"".($this->getLocationInfo() ? "true" : "false")."\"".
-			">" . PHP_EOL;
+		return "<{$this->namespacePrefix}:eventSet "
+				. "xmlns:{$this->namespacePrefix}=\"{$this->namespace}\" "
+				. "version=\"0.3\" " . "includesLocationInfo=\""
+				. ($this->getLocationInfo() ? "true" : "false") . "\"" . ">"
+				. PHP_EOL;
 	}
 
 	/**
@@ -114,56 +114,59 @@ class LoggerLayoutXml extends LoggerLayout {
 	 */
 	public function format(LoggerLoggingEvent $event) {
 		$ns = $this->namespacePrefix;
-		
+
 		$loggerName = $event->getLoggerName();
-		$timeStamp = number_format((float)($event->getTimeStamp() * 1000), 0, '', '');
+		$timeStamp = number_format((float) ($event->getTimeStamp() * 1000), 0,
+				'', '');
 		$thread = $event->getThreadName();
 		$level = $event->getLevel()->toString();
 
-		$buf  = "<$ns:event logger=\"{$loggerName}\" level=\"{$level}\" thread=\"{$thread}\" timestamp=\"{$timeStamp}\">".PHP_EOL;
-		$buf .= "<$ns:message>"; 
-		$buf .= $this->encodeCDATA($event->getRenderedMessage()); 
-		$buf .= "</$ns:message>".PHP_EOL;
+		$buf = "<$ns:event logger=\"{$loggerName}\" level=\"{$level}\" thread=\"{$thread}\" timestamp=\"{$timeStamp}\">"
+				. PHP_EOL;
+		$buf .= "<$ns:message>";
+		$buf .= $this->encodeCDATA($event->getRenderedMessage());
+		$buf .= "</$ns:message>" . PHP_EOL;
 
 		$ndc = $event->getNDC();
-		if(!empty($ndc)) {
+		if (!empty($ndc)) {
 			$buf .= "<$ns:NDC><![CDATA[";
 			$buf .= $this->encodeCDATA($ndc);
-			$buf .= "]]></$ns:NDC>".PHP_EOL;
+			$buf .= "]]></$ns:NDC>" . PHP_EOL;
 		}
-		
+
 		$mdcMap = $event->getMDCMap();
 		if (!empty($mdcMap)) {
-			$buf .= "<$ns:properties>".PHP_EOL;
-			foreach ($mdcMap as $name=>$value) {
-				$buf .= "<$ns:data name=\"$name\" value=\"$value\" />".PHP_EOL;
+			$buf .= "<$ns:properties>" . PHP_EOL;
+			foreach ($mdcMap as $name => $value) {
+				$buf .= "<$ns:data name=\"$name\" value=\"$value\" />"
+						. PHP_EOL;
 			}
-			$buf .= "</$ns:properties>".PHP_EOL;
+			$buf .= "</$ns:properties>" . PHP_EOL;
 		}
 
 		if ($this->getLocationInfo()) {
 			$locationInfo = $event->getLocationInformation();
-			$buf .= "<$ns:locationInfo ". 
-					"class=\"" . $locationInfo->getClassName() . "\" ".
-					"file=\"" .  htmlentities($locationInfo->getFileName(), ENT_QUOTES) . "\" ".
-					"line=\"" .  $locationInfo->getLineNumber() . "\" ".
-					"method=\"" . $locationInfo->getMethodName() . "\" ";
-			$buf .= "/>".PHP_EOL;
+			$buf .= "<$ns:locationInfo " . "class=\""
+					. $locationInfo->getClassName() . "\" " . "file=\""
+					. htmlentities($locationInfo->getFileName(), ENT_QUOTES)
+					. "\" " . "line=\"" . $locationInfo->getLineNumber()
+					. "\" " . "method=\"" . $locationInfo->getMethodName()
+					. "\" ";
+			$buf .= "/>" . PHP_EOL;
 		}
 
-		$buf .= "</$ns:event>".PHP_EOL;
-		
+		$buf .= "</$ns:event>" . PHP_EOL;
+
 		return $buf;
 	}
-	
+
 	/**
 	 * @return string
 	 */
 	public function getFooter() {
 		return "</{$this->namespacePrefix}:eventSet>" . PHP_EOL;
 	}
-	
-	
+
 	/** 
 	 * Whether or not file name and line number will be included in the output.
 	 * @return boolean
@@ -171,7 +174,7 @@ class LoggerLayoutXml extends LoggerLayout {
 	public function getLocationInfo() {
 		return $this->locationInfo;
 	}
-  
+
 	/**
 	 * The {@link $locationInfo} option takes a boolean value. By default,
 	 * it is set to false which means there will be no location
@@ -182,13 +185,13 @@ class LoggerLayoutXml extends LoggerLayout {
 	public function setLocationInfo($flag) {
 		$this->setBoolean('locationInfo', $flag);
 	}
-  
+
 	/**
 	 * @return boolean
 	 */
-	 public function getLog4jNamespace() {
-	 	return $this->log4jNamespace;
-	 }
+	public function getLog4jNamespace() {
+		return $this->log4jNamespace;
+	}
 
 	/**
 	 * @param boolean
@@ -196,14 +199,15 @@ class LoggerLayoutXml extends LoggerLayout {
 	public function setLog4jNamespace($flag) {
 		$this->setBoolean('log4jNamespace', $flag);
 	}
-	
+
 	/** 
 	 * Encases a string in CDATA tags, and escapes any existing CDATA end 
 	 * tags already present in the string.
 	 * @param string $string 
 	 */
 	private function encodeCDATA($string) {
-		$string = str_replace(self::CDATA_END, self::CDATA_EMBEDDED_END, $string);
+		$string = str_replace(self::CDATA_END, self::CDATA_EMBEDDED_END,
+				$string);
 		return self::CDATA_START . $string . self::CDATA_END;
 	}
 }

@@ -17,15 +17,15 @@
  * 
  * @package log4php
  */
- 
+
 /**
  * Provides methods for reflective use on php objects
  * @package log4php
  */
 class LoggerReflectionUtils {
-		/** the target object */
+	/** the target object */
 	private $obj;
-	
+
 	/**
 	 * Create a new LoggerReflectionUtils for the specified Object. 
 	 * This is done in prepartion for invoking {@link setProperty()} 
@@ -35,7 +35,7 @@ class LoggerReflectionUtils {
 	public function __construct($obj) {
 		$this->obj = $obj;
 	}
-	
+
 	/**
 	 * Set the properties of an object passed as a parameter in one
 	 * go. The <code>properties</code> are parsed relative to a
@@ -45,13 +45,12 @@ class LoggerReflectionUtils {
 	 * @param array $properties An array containing keys and values.
 	 * @param string $prefix Only keys having the specified prefix will be set.
 	 */
-	 // TODO: check, if this is really useful
+	// TODO: check, if this is really useful
 	public static function setPropertiesByObject($obj, $properties, $prefix) {
 		$pSetter = new LoggerReflectionUtils($obj);
 		return $pSetter->setProperties($properties, $prefix);
 	}
-	
-	
+
 	/**
 	 * Set the properites for the object that match the
 	 * <code>prefix</code> passed as parameter.
@@ -59,7 +58,7 @@ class LoggerReflectionUtils {
 	 * Example:
 	 * 
 	 * $arr['xxxname'] = 'Joe';
- 	 * $arr['xxxmale'] = true;
+	 * $arr['xxxmale'] = true;
 	 * and prefix xxx causes setName and setMale.	
 	 *
 	 * @param array $properties An array containing keys and values.
@@ -68,14 +67,14 @@ class LoggerReflectionUtils {
 	public function setProperties($properties, $prefix) {
 		$len = strlen($prefix);
 		reset($properties);
-		while(list($key,) = each($properties)) {
-			if(strpos($key, $prefix) === 0) {
-				if(strpos($key, '.', ($len + 1)) > 0) {
+		while (list($key, ) = each($properties)) {
+			if (strpos($key, $prefix) === 0) {
+				if (strpos($key, '.', ($len + 1)) > 0) {
 					continue;
 				}
 				$value = $properties[$key];
 				$key = substr($key, $len);
-				if($key == 'layout' and ($this->obj instanceof LoggerAppender)) {
+				if ($key == 'layout' and ($this->obj instanceof LoggerAppender)) {
 					continue;
 				}
 				$this->setProperty($key, $value);
@@ -83,7 +82,7 @@ class LoggerReflectionUtils {
 		}
 		$this->activate();
 	}
-	
+
 	/**
 	 * Set a property on this PropertySetter's Object. If successful, this
 	 * method will invoke a setter method on the underlying Object. The
@@ -100,25 +99,27 @@ class LoggerReflectionUtils {
 	 * @param string $value	String value of the property
 	 */
 	public function setProperty($name, $value) {
-		if($value === null) {
+		if ($value === null) {
 			return;
 		}
-		
+
 		$method = "set" . ucfirst($name);
-		
-		if(!method_exists($this->obj, $method)) {
-			throw new Exception("Error setting log4php property $name to $value: no method $method in class ".get_class($this->obj)."!");
+
+		if (!method_exists($this->obj, $method)) {
+			throw new Exception(
+					"Error setting log4php property $name to $value: no method $method in class "
+							. get_class($this->obj) . "!");
 		} else {
 			return call_user_func(array($this->obj, $method), $value);
-		} 
+		}
 	}
-	
+
 	public function activate() {
-		if(method_exists($this->obj, 'activateoptions')) {
+		if (method_exists($this->obj, 'activateoptions')) {
 			return call_user_func(array($this->obj, 'activateoptions'));
-		} 
+		}
 	}
-	
+
 	/**
 	 * Creates an instances from the given class name.
 	 *
@@ -126,12 +127,12 @@ class LoggerReflectionUtils {
 	 * @return an object from the class with the given classname
 	 */
 	public static function createObject($class) {
-		if(!empty($class)) {
+		if (!empty($class)) {
 			return new $class();
 		}
 		return null;
 	}
-	
+
 	/**
 	 * @param object $object
 	 * @param string $name
@@ -141,12 +142,12 @@ class LoggerReflectionUtils {
 		if (empty($name)) {
 			return false;
 		}
-		$methodName = 'set'.ucfirst($name);
+		$methodName = 'set' . ucfirst($name);
 		if (method_exists($object, $methodName)) {
 			return call_user_func(array($object, $methodName), $value);
 		} else {
 			return false;
 		}
 	}
-	
+
 }

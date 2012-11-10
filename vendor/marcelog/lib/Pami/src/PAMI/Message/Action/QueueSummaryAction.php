@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * QueueSummary action message.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class QueueSummaryAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $queue The queue (optional).
-     *
-     * @return void
-     */
-    public function __construct($queue = false)
-    {
-        parent::__construct('QueueSummary');
-        if ($queue != false) {
-            $this->setKey('Queue', $queue);
-        }
-    }
+class QueueSummaryAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $queue The queue (optional).
+	 *
+	 * @return void
+	 */
+	public function __construct($queue = false) {
+		parent::__construct('QueueSummary');
+		if ($queue != false) {
+			$this->setKey('Queue', $queue);
+		}
+	}
 }

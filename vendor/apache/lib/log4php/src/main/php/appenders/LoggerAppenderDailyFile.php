@@ -48,7 +48,7 @@ class LoggerAppenderDailyFile extends LoggerAppenderFile {
 	 * @var string
 	 */
 	protected $datePattern = "Ymd";
-	
+
 	/**
 	 * Current date which was used when opening a file.
 	 * Used to determine if a rollover is needed when the date changes.
@@ -59,9 +59,11 @@ class LoggerAppenderDailyFile extends LoggerAppenderFile {
 	/** Additional validation for the date pattern. */
 	public function activateOptions() {
 		parent::activateOptions();
-	
+
 		if (empty($this->datePattern)) {
-			$this->warn("Required parameter 'datePattern' not set. Closing appender.");
+			$this
+					->warn(
+							"Required parameter 'datePattern' not set. Closing appender.");
 			$this->closed = true;
 			return;
 		}
@@ -76,16 +78,15 @@ class LoggerAppenderDailyFile extends LoggerAppenderFile {
 	 */
 	public function append(LoggerLoggingEvent $event) {
 		$eventDate = $this->getDate($event->getTimestamp());
-		
+
 		// Initial setting of current date
 		if (!isset($this->currentDate)) {
 			$this->currentDate = $eventDate;
-		} 
-		
+		}
 		// Check if rollover is needed
-		else if ($this->currentDate !== $eventDate) {
+ else if ($this->currentDate !== $eventDate) {
 			$this->currentDate = $eventDate;
-			
+
 			// Close the file if it's open.
 			// Note: $this->close() is not called here because it would set
 			//       $this->closed to true and the appender would not recieve
@@ -96,22 +97,22 @@ class LoggerAppenderDailyFile extends LoggerAppenderFile {
 			}
 			$this->fp = null;
 		}
-	
+
 		parent::append($event);
 	}
-	
+
 	/** Renders the date using the configured <var>datePattern<var>. */
 	protected function getDate($timestamp = null) {
 		return date($this->datePattern, $timestamp);
 	}
-	
+
 	/**
 	 * Determines target file. Replaces %s in file path with a date. 
 	 */
 	protected function getTargetFile() {
 		return str_replace('%s', $this->currentDate, $this->file);
 	}
-	
+
 	/**
 	 * Sets the 'datePattern' parameter.
 	 * @param string $datePattern
@@ -119,7 +120,7 @@ class LoggerAppenderDailyFile extends LoggerAppenderFile {
 	public function setDatePattern($datePattern) {
 		$this->setString('datePattern', $datePattern);
 	}
-	
+
 	/**
 	 * Returns the 'datePattern' parameter.
 	 * @return string

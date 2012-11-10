@@ -10,26 +10,24 @@
  */
 
 namespace FOS\UserBundle\Model;
-
 /**
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  * @author Christophe Coevoet <stof@notk.org>
  */
-interface GroupInterface
-{
-    function addRole($role);
+interface GroupInterface {
+	function addRole($role);
 
-    function getId();
+	function getId();
 
-    function getName();
+	function getName();
 
-    function hasRole($role);
+	function hasRole($role);
 
-    function getRoles();
+	function getRoles();
 
-    function removeRole($role);
+	function removeRole($role);
 
-    function setName($name);
+	function setName($name);
 
-    function setRoles(array $roles);
+	function setRoles(array $roles);
 }

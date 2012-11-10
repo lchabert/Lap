@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * MeetmeList action message.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class MeetmeListAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $conference Conference number.
-     *
-     * @return void
-     */
-    public function __construct($conference)
-    {
-        parent::__construct('MeetmeList');
-        $this->setKey('Conference', $conference);
-    }
+class MeetmeListAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $conference Conference number.
+	 *
+	 * @return void
+	 */
+	public function __construct($conference) {
+		parent::__construct('MeetmeList');
+		$this->setKey('Conference', $conference);
+	}
 }

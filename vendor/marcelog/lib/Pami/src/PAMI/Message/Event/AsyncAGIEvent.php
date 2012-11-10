@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,80 +42,72 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class AsyncAGIEvent extends EventMessage
-{
-    private $_envVariables = array();
+class AsyncAGIEvent extends EventMessage {
+	private $_envVariables = array();
 
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'SubEvent'.
-     *
-     * @return string
-     */
-    public function getSubEvent()
-    {
-        return $this->getKey('SubEvent');
-    }
+	/**
+	 * Returns key: 'SubEvent'.
+	 *
+	 * @return string
+	 */
+	public function getSubEvent() {
+		return $this->getKey('SubEvent');
+	}
 
-    /**
-     * Returns key: 'Channel'.
-     *
-     * @return string
-     */
-    public function getChannel()
-    {
-        return $this->getKey('Channel');
-    }
+	/**
+	 * Returns key: 'Channel'.
+	 *
+	 * @return string
+	 */
+	public function getChannel() {
+		return $this->getKey('Channel');
+	}
 
-    /**
-     * Returns the original environment received with this event.
-     *
-     * @return string
-     */
-    public function getEnvironment()
-    {
-        return $this->getKey('Env');
-    }
+	/**
+	 * Returns the original environment received with this event.
+	 *
+	 * @return string
+	 */
+	public function getEnvironment() {
+		return $this->getKey('Env');
+	}
 
-    /**
-     * Returns the agi result for the command issued.
-     *
-     * @return string
-     */
-    public function getResult()
-    {
-        return $this->getKey('Result');
-    }
+	/**
+	 * Returns the agi result for the command issued.
+	 *
+	 * @return string
+	 */
+	public function getResult() {
+		return $this->getKey('Result');
+	}
 
-    /**
-     * Returns the command id associated with this event.
-     *
-     * @return string
-     */
-    public function getCommandId()
-    {
-        return $this->getKey('CommandId');
-    }
-    /**
-     * Constructor.
-     *
-     * @param string $rawContent Literal message as received from ami.
-     *
-     * @return void
-     */
-    public function __construct($rawContent)
-    {
-        parent::__construct($rawContent);
-        $this->setKey('Env', urldecode($this->getEnvironment()));
-        $this->setKey('Result', urldecode($this->getResult()));
-    }
+	/**
+	 * Returns the command id associated with this event.
+	 *
+	 * @return string
+	 */
+	public function getCommandId() {
+		return $this->getKey('CommandId');
+	}
+	/**
+	 * Constructor.
+	 *
+	 * @param string $rawContent Literal message as received from ami.
+	 *
+	 * @return void
+	 */
+	public function __construct($rawContent) {
+		parent::__construct($rawContent);
+		$this->setKey('Env', urldecode($this->getEnvironment()));
+		$this->setKey('Result', urldecode($this->getResult()));
+	}
 }

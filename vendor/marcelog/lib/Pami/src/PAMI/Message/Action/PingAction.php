@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Ping action message.
  *
@@ -41,15 +40,13 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class PingAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct('Ping');
-    }
+class PingAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @return void
+	 */
+	public function __construct() {
+		parent::__construct('Ping');
+	}
 }

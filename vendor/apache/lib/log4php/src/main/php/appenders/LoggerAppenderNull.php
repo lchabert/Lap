@@ -33,7 +33,7 @@ class LoggerAppenderNull extends LoggerAppender {
 	 * This appender does not require a layout. 
 	 */
 	protected $requiresLayout = false;
-	
+
 	/**
 	 * Do nothing. 
 	 * 

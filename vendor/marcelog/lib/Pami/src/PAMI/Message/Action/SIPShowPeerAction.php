@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Sipshowpeer action message.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class SIPShowPeerAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $peer Peer name.
-     *
-     * @return void
-     */
-    public function __construct($peer)
-    {
-        parent::__construct('SIPshowpeer');
-        $this->setKey('Peer', $peer);
-    }
+class SIPShowPeerAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $peer Peer name.
+	 *
+	 * @return void
+	 */
+	public function __construct($peer) {
+		parent::__construct('SIPshowpeer');
+		$this->setKey('Peer', $peer);
+	}
 }

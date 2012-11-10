@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Bridge action message.
  *
@@ -41,22 +40,20 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class BridgeAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string  $channel1 Channel1
-     * @param string  $channel1 Channel1
-     * @param boolean $tone     Play courtesy tone to Channel2
-     *
-     * @return void
-     */
-    public function __construct($channel1, $channel2, $tone = false)
-    {
-        parent::__construct('Bridge');
-        $this->setKey('Channel1', $channel1);
-        $this->setKey('Channel2', $channel2);
-        $this->setKey('Tone', $tone ? 'true' : 'false');
-    }
+class BridgeAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string  $channel1 Channel1
+	 * @param string  $channel1 Channel1
+	 * @param boolean $tone     Play courtesy tone to Channel2
+	 *
+	 * @return void
+	 */
+	public function __construct($channel1, $channel2, $tone = false) {
+		parent::__construct('Bridge');
+		$this->setKey('Channel1', $channel1);
+		$this->setKey('Channel2', $channel2);
+		$this->setKey('Tone', $tone ? 'true' : 'false');
+	}
 }

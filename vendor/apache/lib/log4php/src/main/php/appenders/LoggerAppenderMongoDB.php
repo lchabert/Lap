@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /**
  * Appender for writing to MongoDB.
  * 
@@ -41,54 +41,54 @@
  * @link http://www.mongodb.org/ MongoDB website.
  */
 class LoggerAppenderMongoDB extends LoggerAppender {
-	
+
 	// ******************************************
 	// ** Constants                            **
 	// ******************************************
-	
-	/** Default prefix for the {@link $host}. */	
+
+	/** Default prefix for the {@link $host}. */ 
 	const DEFAULT_MONGO_URL_PREFIX = 'mongodb://';
-	
+
 	/** Default value for {@link $host}, without a prefix. */
 	const DEFAULT_MONGO_HOST = 'localhost';
-	
+
 	/** Default value for {@link $port} */
 	const DEFAULT_MONGO_PORT = 27017;
-	
+
 	/** Default value for {@link $databaseName} */
 	const DEFAULT_DB_NAME = 'log4php_mongodb';
-	
+
 	/** Default value for {@link $collectionName} */
 	const DEFAULT_COLLECTION_NAME = 'logs';
-	
+
 	/** Default value for {@link $timeout} */
 	const DEFAULT_TIMEOUT_VALUE = 3000;
-	
+
 	// ******************************************
 	// ** Configurable parameters              **
 	// ******************************************
-	
+
 	/** Server on which mongodb instance is located. */
 	protected $host;
-	
+
 	/** Port on which the instance is bound. */
 	protected $port;
-	
+
 	/** Name of the database to which to log. */
 	protected $databaseName;
-	
+
 	/** Name of the collection within the given database. */
 	protected $collectionName;
-			
+
 	/** Username used to connect to the database. */
 	protected $userName;
-	
+
 	/** Password used to connect to the database. */
 	protected $password;
-	
+
 	/** Timeout value used when connecting to the database (in milliseconds). */
 	protected $timeout;
-	
+
 	// ******************************************
 	// ** Member variables                     **
 	// ******************************************
@@ -98,7 +98,7 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 	 * @var Mongo
 	 */
 	protected $connection;
-	
+
 	/** 
 	 * The collection to which log is written. 
 	 * @var MongoCollection
@@ -114,7 +114,7 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 		$this->timeout = self::DEFAULT_TIMEOUT_VALUE;
 		$this->requiresLayout = false;
 	}
-	
+
 	/**
 	 * Setup db connection.
 	 * Based on defined options, this method connects to the database and 
@@ -122,24 +122,37 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 	 */
 	public function activateOptions() {
 		try {
-			$this->connection = new Mongo(sprintf('%s:%d', $this->host, $this->port), array('timeout' => $this->timeout));
-			$db	= $this->connection->selectDB($this->databaseName);
+			$this->connection = new Mongo(
+					sprintf('%s:%d', $this->host, $this->port),
+					array('timeout' => $this->timeout));
+			$db = $this->connection->selectDB($this->databaseName);
 			if ($this->userName !== null && $this->password !== null) {
-				$authResult = $db->authenticate($this->userName, $this->password);
+				$authResult = $db
+						->authenticate($this->userName, $this->password);
 				if ($authResult['ok'] == floatval(0)) {
-					throw new Exception($authResult['errmsg'], $authResult['ok']);
+					throw new Exception($authResult['errmsg'],
+							$authResult['ok']);
 				}
 			}
 			$this->collection = $db->selectCollection($this->collectionName);
 		} catch (MongoConnectionException $ex) {
 			$this->closed = true;
-			$this->warn(sprintf('Failed to connect to mongo deamon: %s', $ex->getMessage()));
+			$this
+					->warn(
+							sprintf('Failed to connect to mongo deamon: %s',
+									$ex->getMessage()));
 		} catch (InvalidArgumentException $ex) {
 			$this->closed = true;
-			$this->warn(sprintf('Error while selecting mongo database: %s', $ex->getMessage()));
+			$this
+					->warn(
+							sprintf(
+									'Error while selecting mongo database: %s',
+									$ex->getMessage()));
 		} catch (Exception $ex) {
 			$this->closed = true;
-			$this->warn('Invalid credentials for mongo database authentication');
+			$this
+					->warn(
+							'Invalid credentials for mongo database authentication');
 		}
 	}
 
@@ -154,10 +167,14 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 				$this->collection->insert($this->format($event));
 			}
 		} catch (MongoCursorException $ex) {
-			$this->warn(sprintf('Error while writing to mongo collection: %s', $ex->getMessage()));
+			$this
+					->warn(
+							sprintf(
+									'Error while writing to mongo collection: %s',
+									$ex->getMessage()));
 		}
 	}
-	
+
 	/**
 	 * Converts the logging event into an array which can be logged to mongodb.
 	 * 
@@ -166,32 +183,34 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 	 */
 	protected function format(LoggerLoggingEvent $event) {
 		$timestampSec = (int) $event->getTimestamp();
-		$timestampUsec = (int) (($event->getTimestamp() - $timestampSec) * 1000000);
+		$timestampUsec = (int) (($event->getTimestamp() - $timestampSec)
+				* 1000000);
 
 		$document = array(
-			'timestamp' => new MongoDate($timestampSec, $timestampUsec),
-			'level' => $event->getLevel()->toString(),
-			'thread' => (int) $event->getThreadName(),
-			'message' => $event->getMessage(),
-			'loggerName' => $event->getLoggerName() 
-		);	
+				'timestamp' => new MongoDate($timestampSec, $timestampUsec),
+				'level' => $event->getLevel()->toString(),
+				'thread' => (int) $event->getThreadName(),
+				'message' => $event->getMessage(),
+				'loggerName' => $event->getLoggerName());
 
 		$locationInfo = $event->getLocationInformation();
 		if ($locationInfo != null) {
 			$document['fileName'] = $locationInfo->getFileName();
 			$document['method'] = $locationInfo->getMethodName();
-			$document['lineNumber'] = ($locationInfo->getLineNumber() == 'NA') ? 'NA' : (int) $locationInfo->getLineNumber();
+			$document['lineNumber'] = ($locationInfo->getLineNumber() == 'NA') ? 'NA'
+					: (int) $locationInfo->getLineNumber();
 			$document['className'] = $locationInfo->getClassName();
-		}	
+		}
 
 		$throwableInfo = $event->getThrowableInformation();
 		if ($throwableInfo != null) {
-			$document['exception'] = $this->formatThrowable($throwableInfo->getThrowable());
+			$document['exception'] = $this
+					->formatThrowable($throwableInfo->getThrowable());
 		}
-		
+
 		return $document;
 	}
-	
+
 	/**
 	 * Converts an Exception into an array which can be logged to mongodb.
 	 * 
@@ -201,24 +220,23 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 	 * @return array
 	 */
 	protected function formatThrowable(Exception $ex) {
-		$array = array(				
-			'message' => $ex->getMessage(),
-			'code' => $ex->getCode(),
-			'stackTrace' => $ex->getTraceAsString(),
-		);
-        
+		$array = array('message' => $ex->getMessage(),
+				'code' => $ex->getCode(),
+				'stackTrace' => $ex->getTraceAsString(),);
+
 		if (method_exists($ex, 'getPrevious') && $ex->getPrevious() !== null) {
-			$array['innerException'] = $this->formatThrowable($ex->getPrevious());
+			$array['innerException'] = $this
+					->formatThrowable($ex->getPrevious());
 		}
-		
+
 		return $array;
 	}
-		
+
 	/**
 	 * Closes the connection to the logging database
 	 */
 	public function close() {
-		if($this->closed != true) {
+		if ($this->closed != true) {
 			$this->collection = null;
 			if ($this->connection !== null) {
 				$this->connection->close();
@@ -227,7 +245,7 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 			$this->closed = true;
 		}
 	}
-	
+
 	/** 
 	 * Sets the value of {@link $host} parameter.
 	 * @param string $host
@@ -238,7 +256,7 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 		}
 		$this->host = $host;
 	}
-		
+
 	/** 
 	 * Returns the value of {@link $host} parameter.
 	 * @return string
@@ -254,7 +272,7 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 	public function setPort($port) {
 		$this->setPositiveInteger('port', $port);
 	}
-		
+
 	/** 
 	 * Returns the value of {@link $port} parameter.
 	 * @return int
@@ -270,7 +288,7 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 	public function setDatabaseName($databaseName) {
 		$this->setString('databaseName', $databaseName);
 	}
-		
+
 	/** 
 	 * Returns the value of {@link $databaseName} parameter.
 	 * @return string
@@ -286,7 +304,7 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 	public function setCollectionName($collectionName) {
 		$this->setString('collectionName', $collectionName);
 	}
-		
+
 	/** 
 	 * Returns the value of {@link $collectionName} parameter.
 	 * @return string
@@ -302,7 +320,7 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 	public function setUserName($userName) {
 		$this->setString('userName', $userName, true);
 	}
-	
+
 	/** 
 	 * Returns the value of {@link $userName} parameter.
 	 * @return string
@@ -318,7 +336,7 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 	public function setPassword($password) {
 		$this->setString('password', $password, true);
 	}
-		
+
 	/** 
 	 * Returns the value of {@link $password} parameter.
 	 * @return string 
@@ -349,7 +367,7 @@ class LoggerAppenderMongoDB extends LoggerAppender {
 	public function getConnection() {
 		return $this->connection;
 	}
-	
+
 	/** 
 	 * Returns the active mongodb collection.
 	 * @return MongoCollection

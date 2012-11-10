@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * MailboxStatus action message.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class MailboxStatusAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $mailbox MailboxId (mailbox@vm-context)
-     *
-     * @return void
-     */
-    public function __construct($mailbox)
-    {
-        parent::__construct('MailboxStatus');
-        $this->setKey('Mailbox', $mailbox);
-    }
+class MailboxStatusAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $mailbox MailboxId (mailbox@vm-context)
+	 *
+	 * @return void
+	 */
+	public function __construct($mailbox) {
+		parent::__construct('MailboxStatus');
+		$this->setKey('Mailbox', $mailbox);
+	}
 }

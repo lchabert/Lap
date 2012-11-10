@@ -46,7 +46,7 @@
  * @since 0.6
  */
 class LoggerFilterLevelMatch extends LoggerFilter {
-  
+
 	/** 
 	 * Indicates if this event should be accepted or denied on match
 	 * @var boolean
@@ -58,14 +58,14 @@ class LoggerFilterLevelMatch extends LoggerFilter {
 	 * @var LoggerLevel
 	 */
 	protected $levelToMatch;
-  
+
 	/**
 	 * @param boolean $acceptOnMatch
 	 */
 	public function setAcceptOnMatch($acceptOnMatch) {
 		$this->setBoolean('acceptOnMatch', $acceptOnMatch);
 	}
-	
+
 	/**
 	 * @param string $l the level to match
 	 */
@@ -87,12 +87,13 @@ class LoggerFilterLevelMatch extends LoggerFilter {
 	 * @return integer
 	 */
 	public function decide(LoggerLoggingEvent $event) {
-		if($this->levelToMatch === null) {
+		if ($this->levelToMatch === null) {
 			return LoggerFilter::NEUTRAL;
 		}
-		
-		if($this->levelToMatch->equals($event->getLevel())) {	
-			return $this->acceptOnMatch ? LoggerFilter::ACCEPT : LoggerFilter::DENY;
+
+		if ($this->levelToMatch->equals($event->getLevel())) {
+			return $this->acceptOnMatch ? LoggerFilter::ACCEPT
+					: LoggerFilter::DENY;
 		} else {
 			return LoggerFilter::NEUTRAL;
 		}

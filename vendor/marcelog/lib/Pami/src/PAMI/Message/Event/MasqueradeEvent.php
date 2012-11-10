@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,54 +42,48 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class MasqueradeEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class MasqueradeEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'Clone'.
-     *
-     * @return string
-     */
-    public function getClone()
-    {
-        return $this->getKey('Clone');
-    }
+	/**
+	 * Returns key: 'Clone'.
+	 *
+	 * @return string
+	 */
+	public function getClone() {
+		return $this->getKey('Clone');
+	}
 
-    /**
-     * Returns key: 'CloneState'.
-     *
-     * @return string
-     */
-    public function getCloneState()
-    {
-        return $this->getKey('CloneState');
-    }
-    /**
-     * Returns key: 'Original'.
-     *
-     * @return string
-     */
-    public function getOriginal()
-    {
-        return $this->getKey('Original');
-    }
+	/**
+	 * Returns key: 'CloneState'.
+	 *
+	 * @return string
+	 */
+	public function getCloneState() {
+		return $this->getKey('CloneState');
+	}
+	/**
+	 * Returns key: 'Original'.
+	 *
+	 * @return string
+	 */
+	public function getOriginal() {
+		return $this->getKey('Original');
+	}
 
-    /**
-     * Returns key: 'OriginalState'.
-     *
-     * @return string
-     */
-    public function getOriginalState()
-    {
-        return $this->getKey('OriginalState');
-    }
+	/**
+	 * Returns key: 'OriginalState'.
+	 *
+	 * @return string
+	 */
+	public function getOriginalState() {
+		return $this->getKey('OriginalState');
+	}
 }

@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,45 +42,40 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DongleSMSStatusEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Status'.
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->getKey('Status');
-    }
+class DongleSMSStatusEvent extends EventMessage {
+	/**
+	 * Returns key: 'Status'.
+	 *
+	 * @return string
+	 */
+	public function getStatus() {
+		return $this->getKey('Status');
+	}
 
-    /**
-     * Returns key: 'Id'.
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->getKey('Id');
-    }
+	/**
+	 * Returns key: 'Id'.
+	 *
+	 * @return string
+	 */
+	public function getId() {
+		return $this->getKey('Id');
+	}
 
-    /**
-     * Returns key: 'Device'.
-     *
-     * @return string
-     */
-    public function getDevice()
-    {
-        return $this->getKey('Device');
-    }
+	/**
+	 * Returns key: 'Device'.
+	 *
+	 * @return string
+	 */
+	public function getDevice() {
+		return $this->getKey('Device');
+	}
 
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 }

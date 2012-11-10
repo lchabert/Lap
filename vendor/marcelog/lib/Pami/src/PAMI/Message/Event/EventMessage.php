@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\IncomingMessage;
 
 /**
@@ -43,15 +42,13 @@ use PAMI\Message\IncomingMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-abstract class EventMessage extends IncomingMessage
-{
-    /**
-     * Returns key 'Event'.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->getKey('Event');
-    }
+abstract class EventMessage extends IncomingMessage {
+	/**
+	 * Returns key 'Event'.
+	 *
+	 * @return string
+	 */
+	public function getName() {
+		return $this->getKey('Event');
+	}
 }

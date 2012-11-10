@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * DAHDIDiallOffhook action message.
  *
@@ -41,17 +40,15 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DAHDIDialOffHookAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @return void
-     */
-    public function __construct($channel, $number)
-    {
-        parent::__construct('DAHDIDialOffhook');
-        $this->setKey('DAHDIChannel', $channel);
-        $this->setKey('Number', $number);
-    }
+class DAHDIDialOffHookAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @return void
+	 */
+	public function __construct($channel, $number) {
+		parent::__construct('DAHDIDialOffhook');
+		$this->setKey('DAHDIChannel', $channel);
+		$this->setKey('Number', $number);
+	}
 }

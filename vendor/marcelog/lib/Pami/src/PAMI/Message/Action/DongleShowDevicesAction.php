@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Show all dongle devices.
  *
@@ -41,19 +40,17 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DongleShowDevicesAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $device  Device name (like dongle01).
-     * @param string $number  Destination number.
-     * @param string $message What to send.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct('DongleShowDevices');
-    }
+class DongleShowDevicesAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $device  Device name (like dongle01).
+	 * @param string $number  Destination number.
+	 * @param string $message What to send.
+	 *
+	 * @return void
+	 */
+	public function __construct() {
+		parent::__construct('DongleShowDevices');
+	}
 }

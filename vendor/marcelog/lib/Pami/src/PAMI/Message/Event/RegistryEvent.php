@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,35 +42,31 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class RegistryEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Channel'.
-     *
-     * @return string
-     */
-    public function getChannel()
-    {
-        return $this->getKey('Channel');
-    }
+class RegistryEvent extends EventMessage {
+	/**
+	 * Returns key: 'Channel'.
+	 *
+	 * @return string
+	 */
+	public function getChannel() {
+		return $this->getKey('Channel');
+	}
 
-    /**
-     * Returns key: 'Domain'.
-     *
-     * @return string
-     */
-    public function getDomain()
-    {
-        return $this->getKey('Domain');
-    }
+	/**
+	 * Returns key: 'Domain'.
+	 *
+	 * @return string
+	 */
+	public function getDomain() {
+		return $this->getKey('Domain');
+	}
 
-    /**
-     * Returns key: 'Status'.
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->getKey('Status');
-    }
+	/**
+	 * Returns key: 'Status'.
+	 *
+	 * @return string
+	 */
+	public function getStatus() {
+		return $this->getKey('Status');
+	}
 }

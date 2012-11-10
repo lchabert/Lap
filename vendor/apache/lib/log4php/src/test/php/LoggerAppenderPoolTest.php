@@ -27,39 +27,38 @@
  * @group filters
  */
 class LoggerAppenderPoolTest extends PHPUnit_Framework_TestCase {
-        
+
 	private $appenderMock;
-	
+
 	public function setUp() {
-		$this->appenderMock = $this->getMock('LoggerAppenderConsole', array(), array(), '', false);
+		$this->appenderMock = $this
+				->getMock('LoggerAppenderConsole', array(), array(), '', false);
 	}
-	
- 	/**
- 	 * @expectedException PHPUnit_Framework_Error
- 	 * @expectedExceptionMessage log4php: Cannot add unnamed appender to pool.
- 	 */
+
+	/**
+	 * @expectedException PHPUnit_Framework_Error
+	 * @expectedExceptionMessage log4php: Cannot add unnamed appender to pool.
+	 */
 	public function testAppenderHasNoName() {
-		$this->appenderMock->expects($this->once())
-						   ->method('getName')
-						   ->will($this->returnValue(''));
-						   
-		LoggerAppenderPool::add($this->appenderMock);			
+		$this->appenderMock->expects($this->once())->method('getName')
+				->will($this->returnValue(''));
+
+		LoggerAppenderPool::add($this->appenderMock);
 	}
-	
- 	/**
- 	 * @expectedException PHPUnit_Framework_Error
- 	 * @expectedExceptionMessage log4php: Appender [foo] already exists in pool. Overwriting existing appender.
- 	 */
+
+	/**
+	 * @expectedException PHPUnit_Framework_Error
+	 * @expectedExceptionMessage log4php: Appender [foo] already exists in pool. Overwriting existing appender.
+	 */
 	public function testAppenderIsAdded() {
-		$this->appenderMock->expects($this->any())
-						   ->method('getName')
-						   ->will($this->returnValue('foo'));
-						   
-		LoggerAppenderPool::add($this->appenderMock);	
-		LoggerAppenderPool::add($this->appenderMock);	
+		$this->appenderMock->expects($this->any())->method('getName')
+				->will($this->returnValue('foo'));
+
+		LoggerAppenderPool::add($this->appenderMock);
+		LoggerAppenderPool::add($this->appenderMock);
 
 		$expected = 1;
 		$actual = count(LoggerAppenderPool::getAppenders());
 		$this->assertEquals($expected, $actual);
-	}	
+	}
 }

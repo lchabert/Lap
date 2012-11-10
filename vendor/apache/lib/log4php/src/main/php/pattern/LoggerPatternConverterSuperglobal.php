@@ -43,15 +43,15 @@ abstract class LoggerPatternConverterSuperglobal extends LoggerPatternConverter 
 	 * For example: "_SERVER" or "_ENV". 
 	 */
 	protected $name;
-	
+
 	protected $value = '';
-	
+
 	public function activateOptions() {
 		// Read the key from options array
 		if (isset($this->option) && $this->option !== '') {
 			$key = $this->option;
 		}
-	
+
 		/*
 		 * There is a bug in PHP which doesn't allow superglobals to be 
 		 * accessed when their name is stored in a variable, e.g.:
@@ -69,33 +69,34 @@ abstract class LoggerPatternConverterSuperglobal extends LoggerPatternConverter 
 		 * That's why global is used here.
 		 */
 		global ${$this->name};
-			
+
 		// Check the given superglobal exists. It is possible that it is not initialized.
 		if (!isset(${$this->name})) {
 			$class = get_class($this);
-			trigger_error("log4php: $class: Cannot find superglobal variable \${$this->name}.", E_USER_WARNING);
+			trigger_error(
+					"log4php: $class: Cannot find superglobal variable \${$this
+							->name}.", E_USER_WARNING);
 			return;
 		}
-		
+
 		$source = ${$this->name};
-		
+
 		// When the key is set, display the matching value
 		if (isset($key)) {
 			if (isset($source[$key])) {
-				$this->value = $source[$key]; 
+				$this->value = $source[$key];
 			}
 		}
-		
 		// When the key is not set, display all values
-		else {
+ else {
 			$values = array();
-			foreach($source as $key => $value) {
+			foreach ($source as $key => $value) {
 				$values[] = "$key=$value";
 			}
-			$this->value = implode(', ', $values);			
+			$this->value = implode(', ', $values);
 		}
 	}
-	
+
 	public function convert(LoggerLoggingEvent $event) {
 		return $this->value;
 	}

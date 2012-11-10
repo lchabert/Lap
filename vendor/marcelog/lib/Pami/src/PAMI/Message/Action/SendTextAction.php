@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * SendText action message.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class SendTextAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $channel Channel to send message to.
-     * @param string $message Message to send.
-     *
-     * @return void
-     */
-    public function __construct($channel, $message)
-    {
-        parent::__construct('SendText');
-        $this->setKey('Channel', $channel);
-        $this->setKey('Message', $message);
-    }
+class SendTextAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $channel Channel to send message to.
+	 * @param string $message Message to send.
+	 *
+	 * @return void
+	 */
+	public function __construct($channel, $message) {
+		parent::__construct('SendText');
+		$this->setKey('Channel', $channel);
+		$this->setKey('Message', $message);
+	}
 }

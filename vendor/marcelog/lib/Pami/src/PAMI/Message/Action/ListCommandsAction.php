@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Lists avaiable manager actions.
  *
@@ -41,15 +40,13 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class ListCommandsAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct('ListCommands');
-    }
+class ListCommandsAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @return void
+	 */
+	public function __construct() {
+		parent::__construct('ListCommands');
+	}
 }

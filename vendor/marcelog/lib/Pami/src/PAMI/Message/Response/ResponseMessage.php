@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Response;
-
 use PAMI\Message\Message;
 use PAMI\Message\IncomingMessage;
 use PAMI\Message\Event\EventMessage;
@@ -45,134 +44,120 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class ResponseMessage extends IncomingMessage
-{
-    /**
-     * Child events.
-     * @var EventMessage[]
-     */
-    private $_events;
+class ResponseMessage extends IncomingMessage {
+	/**
+	 * Child events.
+	 * @var EventMessage[]
+	 */
+	private $_events;
 
-    /**
-     * Is this response completed? (with all its events).
-     * @var boolean
-     */
-    private $_completed;
+	/**
+	 * Is this response completed? (with all its events).
+	 * @var boolean
+	 */
+	private $_completed;
 
-    /**
-     * Serialize function.
-     *
-     * @return string[]
-     */
-    public function __sleep()
-    {
-        $ret = parent::__sleep();
-        $ret[] = '_completed';
-        $ret[] = '_events';
-        return $ret;
-    }
+	/**
+	 * Serialize function.
+	 *
+	 * @return string[]
+	 */
+	public function __sleep() {
+		$ret = parent::__sleep();
+		$ret[] = '_completed';
+		$ret[] = '_events';
+		return $ret;
+	}
 
-    /**
-     * True if this response is complete. A response is considered complete
-     * if it's not a list OR it's a list with its last child event containing
-     * an EventList = Complete.
-     *
-     * @return boolean
-     */
-    public function isComplete()
-    {
-        return $this->_completed;
-    }
+	/**
+	 * True if this response is complete. A response is considered complete
+	 * if it's not a list OR it's a list with its last child event containing
+	 * an EventList = Complete.
+	 *
+	 * @return boolean
+	 */
+	public function isComplete() {
+		return $this->_completed;
+	}
 
-    /**
-     * Adds an event to this response.
-     *
-     * @param EventMessage $event Child event to add.
-     *
-     * @return void
-     */
-    public function addEvent(EventMessage $event)
-    {
-        $this->_events[] = $event;
-        if (
-            stristr($event->getEventList(), 'complete') !== false
-            || stristr($event->getName(), 'complete') !== false
-            || stristr($event->getName(), 'DBGetResponse') !== false
-        ) {
-            $this->_completed = true;
-        }
-    }
+	/**
+	 * Adds an event to this response.
+	 *
+	 * @param EventMessage $event Child event to add.
+	 *
+	 * @return void
+	 */
+	public function addEvent(EventMessage $event) {
+		$this->_events[] = $event;
+		if (stristr($event->getEventList(), 'complete') !== false
+				|| stristr($event->getName(), 'complete') !== false
+				|| stristr($event->getName(), 'DBGetResponse') !== false) {
+			$this->_completed = true;
+		}
+	}
 
-    /**
-     * Returns all associated events for this response.
-     *
-     * @return EventMessage[]
-     */
-    public function getEvents()
-    {
-        return $this->_events;
-    }
+	/**
+	 * Returns all associated events for this response.
+	 *
+	 * @return EventMessage[]
+	 */
+	public function getEvents() {
+		return $this->_events;
+	}
 
-    /**
-     * Checks if the Response field has the word Error in it.
-     *
-     * @return boolean
-     */
-    public function isSuccess()
-    {
-        return stristr($this->getKey('Response'), 'Error') === false;
-    }
+	/**
+	 * Checks if the Response field has the word Error in it.
+	 *
+	 * @return boolean
+	 */
+	public function isSuccess() {
+		return stristr($this->getKey('Response'), 'Error') === false;
+	}
 
-    /**
-     * Returns true if this response contains the key EventList with the
-     * word 'start' in it. Another way is to have a Message key, like:
-     * Message: Result will follow
-     *
-     * @return boolean
-     */
-    public function isList()
-    {
-        return
-            stristr($this->getKey('EventList'), 'start') !== false
-            || stristr($this->getMessage(), 'follow') !== false
-        ;
-    }
+	/**
+	 * Returns true if this response contains the key EventList with the
+	 * word 'start' in it. Another way is to have a Message key, like:
+	 * Message: Result will follow
+	 *
+	 * @return boolean
+	 */
+	public function isList() {
+		return stristr($this->getKey('EventList'), 'start') !== false
+				|| stristr($this->getMessage(), 'follow') !== false;
+	}
 
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->getKey('Message');
-    }
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getMessage() {
+		return $this->getKey('Message');
+	}
 
-    /**
-     * Sets an action id. This should not be necessary, but asterisk sometimes
-     * decides to not send the Response: or Event: headers.
-     *
-     * @param string $actionId New ActionId.
-     *
-     * @return void
-     */
-    public function setActionId($actionId)
-    {
-        $this->setKey('ActionId', $actionId);
-    }
+	/**
+	 * Sets an action id. This should not be necessary, but asterisk sometimes
+	 * decides to not send the Response: or Event: headers.
+	 *
+	 * @param string $actionId New ActionId.
+	 *
+	 * @return void
+	 */
+	public function setActionId($actionId) {
+		$this->setKey('ActionId', $actionId);
+	}
 
-    /**
-     * Constructor.
-     *
-     * @param string $rawContent Literal message as received from ami.
-     *
-     * @return void
-     */
-    public function __construct($rawContent)
-    {
-        parent::__construct($rawContent);
-        $this->_events = array();
-        $this->_eventsCount = 0;
-        $this->_completed = !$this->isList();
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param string $rawContent Literal message as received from ami.
+	 *
+	 * @return void
+	 */
+	public function __construct($rawContent) {
+		parent::__construct($rawContent);
+		$this->_events = array();
+		$this->_eventsCount = 0;
+		$this->_completed = !$this->isList();
+	}
 }

@@ -73,7 +73,7 @@ class LoggerFilterLevelRange extends LoggerFilter {
 	 * @var LoggerLevel
 	 */
 	protected $levelMin;
-  
+
 	/**
 	 * @var LoggerLevel
 	 */
@@ -83,9 +83,9 @@ class LoggerFilterLevelRange extends LoggerFilter {
 	 * @param boolean $acceptOnMatch
 	 */
 	public function setAcceptOnMatch($acceptOnMatch) {
-		$this->setBoolean('acceptOnMatch', $acceptOnMatch); 
+		$this->setBoolean('acceptOnMatch', $acceptOnMatch);
 	}
-	
+
 	/**
 	 * @param string $l the level min to match
 	 */
@@ -108,16 +108,16 @@ class LoggerFilterLevelRange extends LoggerFilter {
 	 */
 	public function decide(LoggerLoggingEvent $event) {
 		$level = $event->getLevel();
-		
-		if($this->levelMin !== null) {
-			if($level->isGreaterOrEqual($this->levelMin) == false) {
+
+		if ($this->levelMin !== null) {
+			if ($level->isGreaterOrEqual($this->levelMin) == false) {
 				// level of event is less than minimum
 				return LoggerFilter::DENY;
 			}
 		}
 
-		if($this->levelMax !== null) {
-			if($level->toInt() > $this->levelMax->toInt()) {
+		if ($this->levelMax !== null) {
+			if ($level->toInt() > $this->levelMax->toInt()) {
 				// level of event is greater than maximum
 				// Alas, there is no Level.isGreater method. and using
 				// a combo of isGreaterOrEqual && !Equal seems worse than
@@ -126,7 +126,7 @@ class LoggerFilterLevelRange extends LoggerFilter {
 			}
 		}
 
-		if($this->acceptOnMatch) {
+		if ($this->acceptOnMatch) {
 			// this filter set up to bypass later filters and always return
 			// accept if level in range
 			return LoggerFilter::ACCEPT;

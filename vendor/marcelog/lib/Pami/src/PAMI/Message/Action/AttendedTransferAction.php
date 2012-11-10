@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Atxfer action message.
  *
@@ -41,24 +40,22 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class AttendedTransferAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $channel   Transferer's channel.
-     * @param string $extension Extension to transfer to.
-     * @param string $context   Context to transfer to.
-     * @param string $priority  Priority to transfer to.
-     *
-     * @return void
-     */
-    public function __construct($channel, $extension, $context, $priority)
-    {
-        parent::__construct('Atxfer');
-        $this->setKey('Channel', $channel);
-        $this->setKey('Exten', $extension);
-        $this->setKey('Context', $context);
-        $this->setKey('Priority', $priority);
-    }
+class AttendedTransferAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $channel   Transferer's channel.
+	 * @param string $extension Extension to transfer to.
+	 * @param string $context   Context to transfer to.
+	 * @param string $priority  Priority to transfer to.
+	 *
+	 * @return void
+	 */
+	public function __construct($channel, $extension, $context, $priority) {
+		parent::__construct('Atxfer');
+		$this->setKey('Channel', $channel);
+		$this->setKey('Exten', $extension);
+		$this->setKey('Context', $context);
+		$this->setKey('Priority', $priority);
+	}
 }

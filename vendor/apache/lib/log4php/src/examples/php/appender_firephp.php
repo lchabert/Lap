@@ -31,8 +31,8 @@
 //Change next line to URL path following domain. I.e. chop off 'http://localhost'
 define('INSIGHT_SERVER_PATH', $_SERVER['REQUEST_URI']);
 //define('INSIGHT_SERVER_PATH', $_SERVER['SCRIPT_NAME']);
-define('INSIGHT_DEBUG', true);  //Comment, after config is debugged, to remove 'Flushing headers'
-define('INSIGHT_IPS', '*');		//Your IP here for extra security
+define('INSIGHT_DEBUG', true); //Comment, after config is debugged, to remove 'Flushing headers'
+define('INSIGHT_IPS', '*'); //Your IP here for extra security
 //Works, but replace next line with free key from Developer Companion, for security on live sites
 define('INSIGHT_AUTHKEYS', '*');
 define('INSIGHT_PATHS', dirname(__FILE__));
@@ -40,17 +40,15 @@ define('INSIGHT_PATHS', dirname(__FILE__));
 //EDIT YOUR FirePHP LOCATION HERE
 // If using ZIP Archive
 //TODO: Add 'lib/' of extracted archive to include path
-require_once 'FirePHP/Init.php';	//Must be declared before log4php
+require_once 'FirePHP/Init.php'; //Must be declared before log4php
 
 // If using PHAR Archive (php 5.3+)
 //require_once('phar://.../firephp.phar/FirePHP/Init.php');
 // TODO: Replace ----^^^
 
+require_once dirname(__FILE__) . '/../../main/php/Logger.php';
 
-
-require_once dirname(__FILE__).'/../../main/php/Logger.php';
-
-Logger::configure(dirname(__FILE__).'/../resources/appender_firephp.xml');
+Logger::configure(dirname(__FILE__) . '/../resources/appender_firephp.xml');
 
 ?>
 <!-- RUN THIS FROM WEB DOCUMENT_ROOT (~/public_html/ or /var/www/) -->
@@ -113,7 +111,6 @@ Logger::configure(dirname(__FILE__).'/../resources/appender_firephp.xml');
 </ul>
 
 <h2>If you see a greeting in Firebug, you can now return to work!</h2>
-
 <?php
 $log = Logger::getLogger('FirePhp_Example_Logger_Name');
 $log->debug('Congrats! Enjoy log4php with FirePHP!');

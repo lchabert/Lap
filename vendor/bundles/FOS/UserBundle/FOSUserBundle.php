@@ -10,7 +10,6 @@
  */
 
 namespace FOS\UserBundle;
-
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -18,6 +17,5 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  * @author Matthieu Bontemps <matthieu@knplabs.com>
  * @author Thibault Duplessis <thibault.duplessis@gmail.com>
  */
-class FOSUserBundle extends Bundle
-{
+class FOSUserBundle extends Bundle {
 }

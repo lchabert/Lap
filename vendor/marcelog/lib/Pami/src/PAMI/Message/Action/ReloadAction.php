@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Reload action message.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class ReloadAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $module Optional module name.
-     *
-     * @return void
-     */
-    public function __construct($module = false)
-    {
-        parent::__construct('Reload');
-        if ($module !== false) {
-            $this->setKey('Module', $module);
-        }
-    }
+class ReloadAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $module Optional module name.
+	 *
+	 * @return void
+	 */
+	public function __construct($module = false) {
+		parent::__construct('Reload');
+		if ($module !== false) {
+			$this->setKey('Module', $module);
+		}
+	}
 }

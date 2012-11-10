@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * DBDelTree action message.
  *
@@ -41,22 +40,20 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DBDelTreeAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $family Family.
-     * @param string $key    Name (optional)
-     *
-     * @return void
-     */
-    public function __construct($family, $key = false)
-    {
-        parent::__construct('DBDelTree');
-        $this->setKey('Family', $family);
-        if ($key != false) {
-            $this->setKey('Key', $key);
-        }
-    }
+class DBDelTreeAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $family Family.
+	 * @param string $key    Name (optional)
+	 *
+	 * @return void
+	 */
+	public function __construct($family, $key = false) {
+		parent::__construct('DBDelTree');
+		$this->setKey('Family', $family);
+		if ($key != false) {
+			$this->setKey('Key', $key);
+		}
+	}
 }

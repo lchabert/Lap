@@ -32,4 +32,3 @@ class LoggerPatternConverterNDC extends LoggerPatternConverter {
 		return $event->getNDC();
 	}
 }
- 

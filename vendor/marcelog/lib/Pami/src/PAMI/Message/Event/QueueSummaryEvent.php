@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,65 +42,58 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class QueueSummaryEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Queue'.
-     *
-     * @return string
-     */
-    public function getQueue()
-    {
-        return $this->getKey('Queue');
-    }
+class QueueSummaryEvent extends EventMessage {
+	/**
+	 * Returns key: 'Queue'.
+	 *
+	 * @return string
+	 */
+	public function getQueue() {
+		return $this->getKey('Queue');
+	}
 
-    /**
-     * Returns key: 'LoggedIn'.
-     *
-     * @return string
-     */
-    public function getLoggedIn()
-    {
-        return $this->getKey('LoggedIn');
-    }
+	/**
+	 * Returns key: 'LoggedIn'.
+	 *
+	 * @return string
+	 */
+	public function getLoggedIn() {
+		return $this->getKey('LoggedIn');
+	}
 
-    /**
-     * Returns key: 'Available'.
-     *
-     * @return string
-     */
-    public function getAvailable()
-    {
-        return $this->getKey('Available');
-    }
+	/**
+	 * Returns key: 'Available'.
+	 *
+	 * @return string
+	 */
+	public function getAvailable() {
+		return $this->getKey('Available');
+	}
 
-    /**
-     * Returns key: 'Callers'.
-     *
-     * @return string
-     */
-    public function getCallers()
-    {
-        return $this->getKey('Callers');
-    }
+	/**
+	 * Returns key: 'Callers'.
+	 *
+	 * @return string
+	 */
+	public function getCallers() {
+		return $this->getKey('Callers');
+	}
 
-    /**
-     * Returns key: 'HoldTime'.
-     *
-     * @return integer
-     */
-    public function getHoldTime()
-    {
-        return $this->getKey('HoldTime');
-    }
+	/**
+	 * Returns key: 'HoldTime'.
+	 *
+	 * @return integer
+	 */
+	public function getHoldTime() {
+		return $this->getKey('HoldTime');
+	}
 
-    /**
-     * Returns key: 'LongestHoldTime'.
-     *
-     * @return integer
-     */
-    public function getLongestHoldTime()
-    {
-        return $this->getKey('LongestHoldTime');
-    }
+	/**
+	 * Returns key: 'LongestHoldTime'.
+	 *
+	 * @return integer
+	 */
+	public function getLongestHoldTime() {
+		return $this->getKey('LongestHoldTime');
+	}
 }

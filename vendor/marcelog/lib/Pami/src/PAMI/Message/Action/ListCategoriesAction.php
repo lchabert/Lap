@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * ListCategories action message.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class ListCategoriesAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $file File to dump categories from.
-     *
-     * @return void
-     */
-    public function __construct($file)
-    {
-        parent::__construct('ListCategories');
-        $this->setKey('Filename', $file);
-    }
+class ListCategoriesAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $file File to dump categories from.
+	 *
+	 * @return void
+	 */
+	public function __construct($file) {
+		parent::__construct('ListCategories');
+		$this->setKey('Filename', $file);
+	}
 }

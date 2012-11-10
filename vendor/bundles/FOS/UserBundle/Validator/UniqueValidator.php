@@ -10,7 +10,6 @@
  */
 
 namespace FOS\UserBundle\Validator;
-
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use FOS\UserBundle\Model\UserManagerInterface;
@@ -20,47 +19,45 @@ use FOS\UserBundle\Model\UserInterface;
 /**
  * UniqueValidator
  */
-class UniqueValidator extends ConstraintValidator
-{
-    /**
-     * @var UserManagerInterface
-     */
-    protected $userManager;
+class UniqueValidator extends ConstraintValidator {
+	/**
+	 * @var UserManagerInterface
+	 */
+	protected $userManager;
 
-    /**
-     * Constructor
-     *
-     * @param UserManagerInterface $userManager
-     */
-    public function __construct(UserManagerInterface $userManager)
-    {
-        $this->userManager = $userManager;
-    }
+	/**
+	 * Constructor
+	 *
+	 * @param UserManagerInterface $userManager
+	 */
+	public function __construct(UserManagerInterface $userManager) {
+		$this->userManager = $userManager;
+	}
 
-    /**
-     * Checks if the passed value is valid.
-     *
-     * @param mixed      $value      The value that should be validated
-     * @param Constraint $constraint The constrain for the validation
-     *
-     * @return Boolean Whether or not the value is valid
-     *
-     * @throws UnexpectedTypeException if $value is not instance of \FOS\UserBundle\Model\UserInterface
-     */
-    public function isValid($value, Constraint $constraint)
-    {
-        if (!$value instanceof UserInterface) {
-            throw new UnexpectedTypeException($value, 'FOS\UserBundle\Model\UserInterface');
-        }
+	/**
+	 * Checks if the passed value is valid.
+	 *
+	 * @param mixed      $value      The value that should be validated
+	 * @param Constraint $constraint The constrain for the validation
+	 *
+	 * @return Boolean Whether or not the value is valid
+	 *
+	 * @throws UnexpectedTypeException if $value is not instance of \FOS\UserBundle\Model\UserInterface
+	 */
+	public function isValid($value, Constraint $constraint) {
+		if (!$value instanceof UserInterface) {
+			throw new UnexpectedTypeException($value,
+					'FOS\UserBundle\Model\UserInterface');
+		}
 
-        if (!$this->userManager->validateUnique($value, $constraint)) {
-            $this->setMessage($constraint->message, array(
-                '%property%' => $constraint->property
-            ));
+		if (!$this->userManager->validateUnique($value, $constraint)) {
+			$this
+					->setMessage($constraint->message,
+							array('%property%' => $constraint->property));
 
-            return false;
-        }
+			return false;
+		}
 
-        return true;
-    }
+		return true;
+	}
 }

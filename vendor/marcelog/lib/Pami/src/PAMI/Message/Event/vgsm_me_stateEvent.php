@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,45 +42,40 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class vgsm_me_stateEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class vgsm_me_stateEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
 	/**
-     * Returns key: 'X-vGSM-ME-State'.
-     *
-     * @return string
-     */
-    public function getState()
-    {
-        return $this->getKey('X-vGSM-ME-State');
-    }
+	 * Returns key: 'X-vGSM-ME-State'.
+	 *
+	 * @return string
+	 */
+	public function getState() {
+		return $this->getKey('X-vGSM-ME-State');
+	}
 
 	/**
-     * Returns key: 'X-vGSM-ME-Old-State'.
-     *
-     * @return string
-     */
-    public function getOldState()
-    {
-        return $this->getKey('X-vGSM-ME-Old-State');
-    }
+	 * Returns key: 'X-vGSM-ME-Old-State'.
+	 *
+	 * @return string
+	 */
+	public function getOldState() {
+		return $this->getKey('X-vGSM-ME-Old-State');
+	}
 
 	/**
-     * Returns key: 'X-vGSM-ME-State-Change-Reason'.
-     *
-     * @return string
-     */
-    public function getReason()
-    {
-        return $this->getKey('X-vGSM-ME-State-Change-Reason');
-    }
+	 * Returns key: 'X-vGSM-ME-State-Change-Reason'.
+	 *
+	 * @return string
+	 */
+	public function getReason() {
+		return $this->getKey('X-vGSM-ME-State-Change-Reason');
+	}
 }

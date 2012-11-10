@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Starts a dongle.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DongleStartAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $device Dongle device name.
-     *
-     * @return void
-     */
-    public function __construct($device)
-    {
-        parent::__construct('DongleStart');
-        $this->setKey('device', $device);
-    }
+class DongleStartAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $device Dongle device name.
+	 *
+	 * @return void
+	 */
+	public function __construct($device) {
+		parent::__construct('DongleStart');
+		$this->setKey('device', $device);
+	}
 }

@@ -32,7 +32,7 @@
  * @since 0.5
  */
 class LoggerLevel {
-	
+
 	const OFF = 2147483647;
 	const FATAL = 50000;
 	const ERROR = 40000;
@@ -44,7 +44,7 @@ class LoggerLevel {
 
 	/** Integer level value. */
 	private $level;
-	
+
 	/** Contains a list of instantiated levels. */
 	private static $levelMap;
 
@@ -77,22 +77,23 @@ class LoggerLevel {
 	 * @return boolean 
 	 */
 	public function equals($other) {
-		if($other instanceof LoggerLevel) {
-			if($this->level == $other->level) {
+		if ($other instanceof LoggerLevel) {
+			if ($this->level == $other->level) {
 				return true;
 			}
 		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Returns an Off Level
 	 * @return LoggerLevel
 	 */
 	public static function getLevelOff() {
-		if(!isset(self::$levelMap[LoggerLevel::OFF])) {
-			self::$levelMap[LoggerLevel::OFF] = new LoggerLevel(LoggerLevel::OFF, 'OFF', LOG_ALERT);
+		if (!isset(self::$levelMap[LoggerLevel::OFF])) {
+			self::$levelMap[LoggerLevel::OFF] = new LoggerLevel(
+					LoggerLevel::OFF, 'OFF', LOG_ALERT);
 		}
 		return self::$levelMap[LoggerLevel::OFF];
 	}
@@ -102,30 +103,33 @@ class LoggerLevel {
 	 * @return LoggerLevel
 	 */
 	public static function getLevelFatal() {
-		if(!isset(self::$levelMap[LoggerLevel::FATAL])) {
-			self::$levelMap[LoggerLevel::FATAL] = new LoggerLevel(LoggerLevel::FATAL, 'FATAL', LOG_ALERT);
+		if (!isset(self::$levelMap[LoggerLevel::FATAL])) {
+			self::$levelMap[LoggerLevel::FATAL] = new LoggerLevel(
+					LoggerLevel::FATAL, 'FATAL', LOG_ALERT);
 		}
 		return self::$levelMap[LoggerLevel::FATAL];
 	}
-	
+
 	/**
 	 * Returns an Error Level
 	 * @return LoggerLevel
 	 */
 	public static function getLevelError() {
-		if(!isset(self::$levelMap[LoggerLevel::ERROR])) {
-			self::$levelMap[LoggerLevel::ERROR] = new LoggerLevel(LoggerLevel::ERROR, 'ERROR', LOG_ERR);
+		if (!isset(self::$levelMap[LoggerLevel::ERROR])) {
+			self::$levelMap[LoggerLevel::ERROR] = new LoggerLevel(
+					LoggerLevel::ERROR, 'ERROR', LOG_ERR);
 		}
 		return self::$levelMap[LoggerLevel::ERROR];
 	}
-	
+
 	/**
 	 * Returns a Warn Level
 	 * @return LoggerLevel
 	 */
 	public static function getLevelWarn() {
-		if(!isset(self::$levelMap[LoggerLevel::WARN])) {
-			self::$levelMap[LoggerLevel::WARN] = new LoggerLevel(LoggerLevel::WARN, 'WARN', LOG_WARNING);
+		if (!isset(self::$levelMap[LoggerLevel::WARN])) {
+			self::$levelMap[LoggerLevel::WARN] = new LoggerLevel(
+					LoggerLevel::WARN, 'WARN', LOG_WARNING);
 		}
 		return self::$levelMap[LoggerLevel::WARN];
 	}
@@ -135,8 +139,9 @@ class LoggerLevel {
 	 * @return LoggerLevel
 	 */
 	public static function getLevelInfo() {
-		if(!isset(self::$levelMap[LoggerLevel::INFO])) {
-			self::$levelMap[LoggerLevel::INFO] = new LoggerLevel(LoggerLevel::INFO, 'INFO', LOG_INFO);
+		if (!isset(self::$levelMap[LoggerLevel::INFO])) {
+			self::$levelMap[LoggerLevel::INFO] = new LoggerLevel(
+					LoggerLevel::INFO, 'INFO', LOG_INFO);
 		}
 		return self::$levelMap[LoggerLevel::INFO];
 	}
@@ -146,34 +151,37 @@ class LoggerLevel {
 	 * @return LoggerLevel
 	 */
 	public static function getLevelDebug() {
-		if(!isset(self::$levelMap[LoggerLevel::DEBUG])) {
-			self::$levelMap[LoggerLevel::DEBUG] = new LoggerLevel(LoggerLevel::DEBUG, 'DEBUG', LOG_DEBUG);
+		if (!isset(self::$levelMap[LoggerLevel::DEBUG])) {
+			self::$levelMap[LoggerLevel::DEBUG] = new LoggerLevel(
+					LoggerLevel::DEBUG, 'DEBUG', LOG_DEBUG);
 		}
 		return self::$levelMap[LoggerLevel::DEBUG];
 	}
-	
+
 	/**
 	 * Returns a Trace Level
 	 * @return LoggerLevel
 	 */
 	public static function getLevelTrace() {
-		if(!isset(self::$levelMap[LoggerLevel::TRACE])) {
-			self::$levelMap[LoggerLevel::TRACE] = new LoggerLevel(LoggerLevel::TRACE, 'TRACE', LOG_DEBUG);
+		if (!isset(self::$levelMap[LoggerLevel::TRACE])) {
+			self::$levelMap[LoggerLevel::TRACE] = new LoggerLevel(
+					LoggerLevel::TRACE, 'TRACE', LOG_DEBUG);
 		}
 		return self::$levelMap[LoggerLevel::TRACE];
-	}	
+	}
 
 	/**
 	 * Returns an All Level
 	 * @return LoggerLevel
 	 */
 	public static function getLevelAll() {
-		if(!isset(self::$levelMap[LoggerLevel::ALL])) {
-			self::$levelMap[LoggerLevel::ALL] = new LoggerLevel(LoggerLevel::ALL, 'ALL', LOG_DEBUG);
+		if (!isset(self::$levelMap[LoggerLevel::ALL])) {
+			self::$levelMap[LoggerLevel::ALL] = new LoggerLevel(
+					LoggerLevel::ALL, 'ALL', LOG_DEBUG);
 		}
 		return self::$levelMap[LoggerLevel::ALL];
 	}
-	
+
 	/**
 	 * Return the syslog equivalent of this level as an integer.
 	 * @return integer
@@ -201,7 +209,7 @@ class LoggerLevel {
 	public function toString() {
 		return $this->levelStr;
 	}
-	
+
 	/**
 	 * Returns the string representation of this level.
 	 * @return string
@@ -227,29 +235,47 @@ class LoggerLevel {
 	 * @return LoggerLevel 
 	 */
 	public static function toLevel($arg, $defaultLevel = null) {
-		if(is_int($arg)) {
-			switch($arg) {
-				case self::ALL:	return self::getLevelAll();
-				case self::TRACE: return self::getLevelTrace();
-				case self::DEBUG: return self::getLevelDebug();
-				case self::INFO: return self::getLevelInfo();
-				case self::WARN: return self::getLevelWarn();
-				case self::ERROR: return self::getLevelError();
-				case self::FATAL: return self::getLevelFatal();
-				case self::OFF:	return self::getLevelOff();
-				default: return $defaultLevel;
+		if (is_int($arg)) {
+			switch ($arg) {
+			case self::ALL:
+				return self::getLevelAll();
+			case self::TRACE:
+				return self::getLevelTrace();
+			case self::DEBUG:
+				return self::getLevelDebug();
+			case self::INFO:
+				return self::getLevelInfo();
+			case self::WARN:
+				return self::getLevelWarn();
+			case self::ERROR:
+				return self::getLevelError();
+			case self::FATAL:
+				return self::getLevelFatal();
+			case self::OFF:
+				return self::getLevelOff();
+			default:
+				return $defaultLevel;
 			}
 		} else {
-			switch(strtoupper($arg)) {
-				case 'ALL':	return self::getLevelAll();
-				case 'TRACE': return self::getLevelTrace();
-				case 'DEBUG': return self::getLevelDebug();
-				case 'INFO': return self::getLevelInfo();
-				case 'WARN': return self::getLevelWarn();
-				case 'ERROR': return self::getLevelError();
-				case 'FATAL': return self::getLevelFatal();
-				case 'OFF':	return self::getLevelOff();
-				default: return $defaultLevel;
+			switch (strtoupper($arg)) {
+			case 'ALL':
+				return self::getLevelAll();
+			case 'TRACE':
+				return self::getLevelTrace();
+			case 'DEBUG':
+				return self::getLevelDebug();
+			case 'INFO':
+				return self::getLevelInfo();
+			case 'WARN':
+				return self::getLevelWarn();
+			case 'ERROR':
+				return self::getLevelError();
+			case 'FATAL':
+				return self::getLevelFatal();
+			case 'OFF':
+				return self::getLevelOff();
+			default:
+				return $defaultLevel;
 			}
 		}
 	}

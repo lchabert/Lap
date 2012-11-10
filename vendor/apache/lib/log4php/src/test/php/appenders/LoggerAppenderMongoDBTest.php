@@ -32,32 +32,32 @@
  * @group appenders
  */
 class LoggerAppenderMongoDBTest extends PHPUnit_Framework_TestCase {
-		
+
 	protected $appender;
 	protected $event;
-	
+
 	protected function setUp() {
 		if (!extension_loaded('mongo')) {
-			$this->markTestSkipped(
-				'The Mongo extension is not available.'
-			);
+			$this
+					->markTestSkipped('The Mongo extension is not available.');
 		} else {
 			$this->appender = new LoggerAppenderMongoDB('mongo_appender');
-			$this->event = LoggerTestHelper::getErrorEvent('mongo logging event', 'test_mongo');
+			$this->event = LoggerTestHelper::getErrorEvent(
+					'mongo logging event', 'test_mongo');
 		}
 	}
 
 	protected function tearDown() {
 		unset($this->appender);
 	}
-	
+
 	public function testHost() {
 		$expected = 'mongodb://localhost';
 		$this->appender->setHost($expected);
 		$result = $this->appender->getHost();
 		$this->assertEquals($expected, $result);
 	}
-	
+
 	public function testPort() {
 		$expected = 27017;
 		$this->appender->setPort($expected);
@@ -68,42 +68,44 @@ class LoggerAppenderMongoDBTest extends PHPUnit_Framework_TestCase {
 	public function testDatabaseName() {
 		$expected = 'log4php_mongodb';
 		$this->appender->setDatabaseName($expected);
-		$result	= $this->appender->getDatabaseName();
+		$result = $this->appender->getDatabaseName();
 		$this->assertEquals($expected, $result);
 	}
-	
+
 	public function testCollectionName() {
 		$expected = 'logs';
 		$this->appender->setCollectionName($expected);
 		$result = $this->appender->getCollectionName();
 		$this->assertEquals($expected, $result);
 	}
-	
+
 	public function testUserName() {
 		$expected = 'char0n';
 		$this->appender->setUserName($expected);
 		$result = $this->appender->getUserName();
 		$this->assertEquals($expected, $result);
 	}
-	
+
 	public function testPassword() {
 		$expected = 'secret pass';
 		$this->appender->setPassword($expected);
-		$result	= $this->appender->getPassword();
+		$result = $this->appender->getPassword();
 		$this->assertEquals($expected, $result);
 	}
 
 	public function testTimeout() {
 		$expected = 4000;
 		$this->appender->setTimeout($expected);
-		$result	= $this->appender->getTimeout();
+		$result = $this->appender->getTimeout();
 		$this->assertEquals($expected, $result);
 	}
 
 	public function testActivateOptions() {
 		$this->appender->activateOptions();
 		$this->assertInstanceOf('Mongo', $this->appender->getConnection());
-		$this->assertInstanceOf('MongoCollection', $this->appender->getCollection());
+		$this
+				->assertInstanceOf('MongoCollection',
+						$this->appender->getCollection());
 	}
 
 	public function testActivateOptionsNoCredentials() {
@@ -111,97 +113,103 @@ class LoggerAppenderMongoDBTest extends PHPUnit_Framework_TestCase {
 		$this->appender->setPassword(null);
 		$this->appender->activateOptions();
 		$this->assertInstanceOf('Mongo', $this->appender->getConnection());
-		$this->assertInstanceOf('MongoCollection', $this->appender->getCollection());
+		$this
+				->assertInstanceOf('MongoCollection',
+						$this->appender->getCollection());
 	}
 
 	public function testFormat() {
 		$this->appender->activateOptions();
 		$record = $this->logOne($this->event);
-		
+
 		$this->assertEquals('ERROR', $record['level']);
 		$this->assertEquals('mongo logging event', $record['message']);
 		$this->assertEquals('test_mongo', $record['loggerName']);
-		
-		$this->assertEquals('NA', $record['fileName']);		
+
+		$this->assertEquals('NA', $record['fileName']);
 		$this->assertEquals('getLocationInformation', $record['method']);
 		$this->assertEquals('NA', $record['lineNumber']);
 		$this->assertEquals('LoggerLoggingEvent', $record['className']);
-		
+
 		$this->assertTrue(is_int($record['thread']));
 		$this->assertSame(getmypid(), $record['thread']);
-		$this->assertTrue(is_int($record['lineNumber']) || $record['lineNumber'] == 'NA');
+		$this
+				->assertTrue(
+						is_int($record['lineNumber'])
+								|| $record['lineNumber'] == 'NA');
 	}
 
 	public function testFormatThrowableInfo() {
 		$this->appender->activateOptions();
-		$event = new LoggerLoggingEvent(
-			'testFqcn',
-			new Logger('test.Logger'),
-			LoggerLevel::getLevelWarn(),
-			'test message',
-			microtime(true),
-			new Exception('test exception', 1)
-		);
-		
+		$event = new LoggerLoggingEvent('testFqcn', new Logger('test.Logger'),
+				LoggerLevel::getLevelWarn(), 'test message', microtime(true),
+				new Exception('test exception', 1));
+
 		$record = $this->logOne($event);
-		
+
 		$this->assertArrayHasKey('exception', $record);
 		$this->assertEquals(1, $record['exception']['code']);
 		$this->assertEquals('test exception', $record['exception']['message']);
-		$this->assertContains('[internal function]: LoggerAppenderMongoDBTest', $record['exception']['stackTrace']);
+		$this
+				->assertContains(
+						'[internal function]: LoggerAppenderMongoDBTest',
+						$record['exception']['stackTrace']);
 	}
 
-	 public function testFormatThrowableInfoWithInnerException() {
+	public function testFormatThrowableInfoWithInnerException() {
 
-		 // Skip test if PHP version is lower than 5.3.0 (no inner exception support)
-		 if (version_compare(PHP_VERSION, '5.3.0') < 0) {
-			 $this->markTestSkipped();
-		 }
+		// Skip test if PHP version is lower than 5.3.0 (no inner exception support)
+		if (version_compare(PHP_VERSION, '5.3.0') < 0) {
+			$this->markTestSkipped();
+		}
 
-		 $this->appender->activateOptions();
-		 $event = new LoggerLoggingEvent(
-			 'testFqcn',
-			 new Logger('test.Logger'),
-			 LoggerLevel::getLevelWarn(),
-			 'test message',
-			 microtime(true),
-			 new Exception('test exception', 1, new Exception('test exception inner', 2))
-		 );
+		$this->appender->activateOptions();
+		$event = new LoggerLoggingEvent('testFqcn', new Logger('test.Logger'),
+				LoggerLevel::getLevelWarn(), 'test message', microtime(true),
+				new Exception('test exception', 1,
+						new Exception('test exception inner', 2)));
 
-		 $record = $this->logOne($event);
+		$record = $this->logOne($event);
 
-		 $this->assertArrayHasKey('exception', $record);
-		 $this->assertEquals(1, $record['exception']['code']);
-		 $this->assertEquals('test exception', $record['exception']['message']);
-		 $this->assertContains('[internal function]: LoggerAppenderMongoDBTest', $record['exception']['stackTrace']);
+		$this->assertArrayHasKey('exception', $record);
+		$this->assertEquals(1, $record['exception']['code']);
+		$this->assertEquals('test exception', $record['exception']['message']);
+		$this
+				->assertContains(
+						'[internal function]: LoggerAppenderMongoDBTest',
+						$record['exception']['stackTrace']);
 
-		 $this->assertArrayHasKey('innerException', $record['exception']);
-		 $this->assertEquals(2, $record['exception']['innerException']['code']);
-		 $this->assertEquals('test exception inner', $record['exception']['innerException']['message']);
-	 }
+		$this->assertArrayHasKey('innerException', $record['exception']);
+		$this->assertEquals(2, $record['exception']['innerException']['code']);
+		$this
+				->assertEquals('test exception inner',
+						$record['exception']['innerException']['message']);
+	}
 
-
-	 public function testClose() {
-		 $this->appender->activateOptions();
-		 $this->assertInstanceOf('Mongo', $this->appender->getConnection());
-		 $this->assertInstanceOf('MongoCollection', $this->appender->getCollection());
-		 $this->appender->close();
-		 $this->assertNull($this->appender->getConnection());
-		 $this->assertNull($this->appender->getCollection());
-	 }
+	public function testClose() {
+		$this->appender->activateOptions();
+		$this->assertInstanceOf('Mongo', $this->appender->getConnection());
+		$this
+				->assertInstanceOf('MongoCollection',
+						$this->appender->getCollection());
+		$this->appender->close();
+		$this->assertNull($this->appender->getConnection());
+		$this->assertNull($this->appender->getCollection());
+	}
 
 	/**
 	 * Logs the event and returns the record from the database.
 	 * @param LoggerLoggingEvent $event
 	 * @return array
 	 */
-	private function logOne($event)
-	{
+	private function logOne($event) {
 		$collection = $this->appender->getCollection();
 		$collection->drop();
 		$this->appender->append($event);
 		$record = $collection->findOne();
-		$this->assertNotNull($record, 'Could not read the record from the database.');
+		$this
+				->assertNotNull($record,
+						'Could not read the record from the database.');
 		return $record;
 	}
 }

@@ -34,10 +34,10 @@
  * @package log4php
  */
 class LoggerMDC {
-	
+
 	/** Holds the context map. */
 	private static $map = array();
-		
+
 	/**
 	 * Stores a context value as identified with the key parameter into the 
 	 * context map.
@@ -48,7 +48,7 @@ class LoggerMDC {
 	public static function put($key, $value) {
 		self::$map[$key] = $value;
 	}
-  
+
 	/**
 	 * Returns the context value identified by the key parameter.
 	 *
@@ -78,7 +78,7 @@ class LoggerMDC {
 	public static function remove($key) {
 		unset(self::$map[$key]);
 	}
-	
+
 	/**
 	 * Clears the mapped diagnostic context.
 	 */

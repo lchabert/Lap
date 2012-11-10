@@ -10,7 +10,6 @@
  */
 
 namespace FOS\UserBundle\Command;
-
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -21,59 +20,56 @@ use FOS\UserBundle\Model\User;
 /**
  * @author Antoine Hérault <antoine.herault@gmail.com>
  */
-class DeactivateUserCommand extends ContainerAwareCommand
-{
-    /**
-     * @see Command
-     */
-    protected function configure()
-    {
-        $this
-            ->setName('fos:user:deactivate')
-            ->setDescription('Deactivate a user')
-            ->setDefinition(array(
-                new InputArgument('username', InputArgument::REQUIRED, 'The username'),
-            ))
-            ->setHelp(<<<EOT
+class DeactivateUserCommand extends ContainerAwareCommand {
+	/**
+	 * @see Command
+	 */
+	protected function configure() {
+		$this->setName('fos:user:deactivate')
+				->setDescription('Deactivate a user')
+				->setDefinition(
+						array(
+								new InputArgument('username',
+										InputArgument::REQUIRED,
+										'The username'),))
+				->setHelp(
+						<<<EOT
 The <info>fos:user:deactivate</info> command deactivates a user (will not be able to log in)
 
   <info>php app/console fos:user:deactivate matthieu</info>
 EOT
-            );
-    }
+				);
+	}
 
-    /**
-     * @see Command
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        $username = $input->getArgument('username');
+	/**
+	 * @see Command
+	 */
+	protected function execute(InputInterface $input, OutputInterface $output) {
+		$username = $input->getArgument('username');
 
-        $manipulator = $this->getContainer()->get('fos_user.util.user_manipulator');
-        $manipulator->deactivate($username);
+		$manipulator = $this->getContainer()
+				->get('fos_user.util.user_manipulator');
+		$manipulator->deactivate($username);
 
-        $output->writeln(sprintf('User "%s" has been deactivated.', $username));
-    }
+		$output->writeln(sprintf('User "%s" has been deactivated.', $username));
+	}
 
-    /**
-     * @see Command
-     */
-    protected function interact(InputInterface $input, OutputInterface $output)
-    {
-        if (!$input->getArgument('username')) {
-            $username = $this->getHelper('dialog')->askAndValidate(
-                $output,
-                'Please choose a username:',
-                function($username)
-                {
-                    if (empty($username)) {
-                        throw new \Exception('Username can not be empty');
-                    }
+	/**
+	 * @see Command
+	 */
+	protected function interact(InputInterface $input, OutputInterface $output) {
+		if (!$input->getArgument('username')) {
+			$username = $this->getHelper('dialog')
+					->askAndValidate($output, 'Please choose a username:',
+							function ($username) {
+								if (empty($username)) {
+									throw new \Exception(
+											'Username can not be empty');
+								}
 
-                    return $username;
-                }
-            );
-            $input->setArgument('username', $username);
-        }
-    }
+								return $username;
+							});
+			$input->setArgument('username', $username);
+		}
+	}
 }

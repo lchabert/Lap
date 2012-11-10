@@ -39,7 +39,9 @@ if ($sock === false) {
 }
 
 if (socket_set_option($sock, SOL_SOCKET, SO_REUSEADDR, 1) === false) {
-	die("Failed setting socket options: " . socket_strerror(socket_last_error()));
+	die(
+			"Failed setting socket options: "
+					. socket_strerror(socket_last_error()));
 }
 
 if (socket_bind($sock, 'localhost', SERVER_PORT) === false) {
@@ -56,35 +58,37 @@ myLog("Server Listening on $addr:$port");
 // Buffer which will store incoming messages
 $playback = "";
 
-while(true) {
+while (true) {
 	myLog("Waiting for incoming connections...");
-	
+
 	$msgsock = socket_accept($sock);
 	if ($msgsock === false) {
-		myLog("Failed accepting a connection: " . socket_strerror(socket_last_error()));
+		myLog(
+				"Failed accepting a connection: "
+						. socket_strerror(socket_last_error()));
 		break;
 	}
-	
+
 	$buf = socket_read($msgsock, 2048, PHP_NORMAL_READ);
 
 	myLog('Received: "' . trim($buf) . '"');
-	
+
 	// Shutdown command
 	if (trim($buf) == 'shutdown') {
 		myLog("Shutting down.");
 		socket_close($msgsock);
 		break;
-	} 
+	}
 	// Playback command
-	else if (trim($buf) == 'playback') {
+ else if (trim($buf) == 'playback') {
 		myLog("Returning playback: \"$playback\"");
 		socket_write($msgsock, $playback);
-	} 
-	// Default: add to playback buffer
-	else {
-		$playback .= trim($buf); 
 	}
-	
+	// Default: add to playback buffer
+ else {
+		$playback .= trim($buf);
+	}
+
 	socket_close($msgsock);
 }
 

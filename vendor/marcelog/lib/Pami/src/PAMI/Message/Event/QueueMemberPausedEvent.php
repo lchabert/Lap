@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,55 +42,49 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class QueueMemberPausedEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class QueueMemberPausedEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'Queue'.
-     *
-     * @return string
-     */
-    public function getQueue()
-    {
-        return $this->getKey('Queue');
-    }
+	/**
+	 * Returns key: 'Queue'.
+	 *
+	 * @return string
+	 */
+	public function getQueue() {
+		return $this->getKey('Queue');
+	}
 
-    /**
-     * Returns key: 'Location'.
-     *
-     * @return string
-     */
-    public function getLocation()
-    {
-        return $this->getKey('Location');
-    }
+	/**
+	 * Returns key: 'Location'.
+	 *
+	 * @return string
+	 */
+	public function getLocation() {
+		return $this->getKey('Location');
+	}
 
-    /**
-     * Returns key: 'MemberName'.
-     *
-     * @return string
-     */
-    public function getMemberName()
-    {
-        return $this->getKey('MemberName');
-    }
+	/**
+	 * Returns key: 'MemberName'.
+	 *
+	 * @return string
+	 */
+	public function getMemberName() {
+		return $this->getKey('MemberName');
+	}
 
-    /**
-     * Returns key: 'Paused'.
-     *
-     * @return boolean
-     */
-    public function getPaused()
-    {
-        return intval($this->getKey('Paused')) != 0;
-    }
+	/**
+	 * Returns key: 'Paused'.
+	 *
+	 * @return boolean
+	 */
+	public function getPaused() {
+		return intval($this->getKey('Paused')) != 0;
+	}
 }

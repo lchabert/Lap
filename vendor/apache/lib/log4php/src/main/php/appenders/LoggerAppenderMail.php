@@ -53,7 +53,7 @@ class LoggerAppenderMail extends LoggerAppender {
 	 * @var string
 	 */
 	protected $subject = 'Log4php Report';
-	
+
 	/**
 	 * One or more comma separated email addresses to which to send the email. 
 	 * @var string
@@ -72,48 +72,50 @@ class LoggerAppenderMail extends LoggerAppender {
 	 * @var string  
 	 */
 	protected $body = '';
-	
+
 	public function append(LoggerLoggingEvent $event) {
-		if($this->layout !== null) {
+		if ($this->layout !== null) {
 			$this->body .= $this->layout->format($event);
 		}
 	}
-	
+
 	public function close() {
-		if($this->closed != true) {
+		if ($this->closed != true) {
 			$from = $this->from;
 			$to = $this->to;
-	
-			if(!empty($this->body) and $from !== null and $to !== null and $this->layout !== null) {
+
+			if (!empty($this->body) and $from !== null and $to !== null
+					and $this->layout !== null) {
 				$subject = $this->subject;
-				if(!$this->dry) {
-					mail(
-						$to, $subject, 
-						$this->layout->getHeader() . $this->body . $this->layout->getFooter(),
-						"From: {$from}\r\n");
+				if (!$this->dry) {
+					mail($to, $subject,
+							$this->layout->getHeader() . $this->body
+									. $this->layout->getFooter(),
+							"From: {$from}\r\n");
 				} else {
-				    echo "DRY MODE OF MAIL APP.: Send mail to: ".$to." with content: ".$this->body;
+					echo "DRY MODE OF MAIL APP.: Send mail to: " . $to
+							. " with content: " . $this->body;
 				}
 			}
 			$this->closed = true;
 		}
 	}
-	
+
 	/** Sets the 'subject' parameter. */
 	public function setSubject($subject) {
 		$this->setString('subject', $subject);
 	}
-	
+
 	/** Returns the 'subject' parameter. */
 	public function getSubject() {
 		return $this->subject;
 	}
-	
+
 	/** Sets the 'to' parameter. */
 	public function setTo($to) {
 		$this->setString('to', $to);
 	}
-	
+
 	/** Returns the 'to' parameter. */
 	public function getTo() {
 		return $this->to;
@@ -123,7 +125,7 @@ class LoggerAppenderMail extends LoggerAppender {
 	public function setFrom($from) {
 		$this->setString('from', $from);
 	}
-	
+
 	/** Returns the 'from' parameter. */
 	public function getFrom() {
 		return $this->from;

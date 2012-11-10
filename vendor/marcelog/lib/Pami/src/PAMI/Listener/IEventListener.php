@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Listener;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,14 +42,13 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-interface IEventListener
-{
-    /**
-     * Event handler.
-     *
-     * @param PAMI\Message\Event\EventMessage $event The received event.
-     *
-     * @return void
-     */
-    public function handle(EventMessage $event);
+interface IEventListener {
+	/**
+	 * Event handler.
+	 *
+	 * @param PAMI\Message\Event\EventMessage $event The received event.
+	 *
+	 * @return void
+	 */
+	public function handle(EventMessage $event);
 }

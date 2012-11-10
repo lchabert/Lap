@@ -26,34 +26,34 @@
  * @since 0.3
  */
 class LoggerLocationInfo {
-	
+
 	/** The value to return when the location information is not available. */
 	const LOCATION_INFO_NA = 'NA';
-	
+
 	/**
 	 * Caller line number.
 	 * @var integer 
 	 */
 	protected $lineNumber;
-	
+
 	/**
 	 * Caller file name.
 	 * @var string 
 	 */
 	protected $fileName;
-	
+
 	/**
 	 * Caller class name.
 	 * @var string 
 	 */
 	protected $className;
-	
+
 	/**
 	 * Caller method name.
 	 * @var string 
 	 */
 	protected $methodName;
-	
+
 	/**
 	 * All the information combined.
 	 * @var string 
@@ -70,34 +70,41 @@ class LoggerLocationInfo {
 		$this->lineNumber = isset($trace['line']) ? $trace['line'] : null;
 		$this->fileName = isset($trace['file']) ? $trace['file'] : null;
 		$this->className = isset($trace['class']) ? $trace['class'] : null;
-		$this->methodName = isset($trace['function']) ? $trace['function'] : null;
-		$this->fullInfo = $this->getClassName() . '.' . $this->getMethodName() . 
-			'(' . $this->getFileName() . ':' . $this->getLineNumber() . ')';
+		$this->methodName = isset($trace['function']) ? $trace['function']
+				: null;
+		$this->fullInfo = $this->getClassName() . '.' . $this->getMethodName()
+				. '(' . $this->getFileName() . ':' . $this->getLineNumber()
+				. ')';
 	}
 
 	/** Returns the caller class name. */
 	public function getClassName() {
-		return ($this->className === null) ? self::LOCATION_INFO_NA : $this->className; 
+		return ($this->className === null) ? self::LOCATION_INFO_NA
+				: $this->className;
 	}
 
 	/** Returns the caller file name. */
 	public function getFileName() {
-		return ($this->fileName === null) ? self::LOCATION_INFO_NA : $this->fileName; 
+		return ($this->fileName === null) ? self::LOCATION_INFO_NA
+				: $this->fileName;
 	}
 
 	/** Returns the caller line number. */
 	public function getLineNumber() {
-		return ($this->lineNumber === null) ? self::LOCATION_INFO_NA : $this->lineNumber; 
+		return ($this->lineNumber === null) ? self::LOCATION_INFO_NA
+				: $this->lineNumber;
 	}
 
 	/** Returns the caller method name. */
 	public function getMethodName() {
-		return ($this->methodName === null) ? self::LOCATION_INFO_NA : $this->methodName; 
+		return ($this->methodName === null) ? self::LOCATION_INFO_NA
+				: $this->methodName;
 	}
 
 	/** Returns the full information of the caller. */
 	public function getFullInfo() {
-		return ($this->fullInfo === null) ? self::LOCATION_INFO_NA : $this->fullInfo;
+		return ($this->fullInfo === null) ? self::LOCATION_INFO_NA
+				: $this->fullInfo;
 	}
 
 }

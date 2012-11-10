@@ -25,13 +25,13 @@
  * @since 2.1
  */
 class LoggerThrowableInformation {
-	
+
 	/** @var Exception Throwable to log */
 	private $throwable;
-	
+
 	/** @var array Array of throwable messages */
 	private $throwableArray;
-	
+
 	/**
 	 * Create a new instance
 	 * 
@@ -41,16 +41,16 @@ class LoggerThrowableInformation {
 	public function __construct(Exception $throwable) {
 		$this->throwable = $throwable;
 	}
-	
+
 	/**
-	* Return source exception
-	* 
-	* @return Exception
-	*/
+	 * Return source exception
+	 * 
+	 * @return Exception
+	 */
 	public function getThrowable() {
 		return $this->throwable;
 	}
-	
+
 	/**
 	 * @desc Returns string representation of throwable
 	 * 
@@ -59,10 +59,11 @@ class LoggerThrowableInformation {
 	public function getStringRepresentation() {
 		if (!is_array($this->throwableArray)) {
 			$renderer = new LoggerRendererException();
-			
-			$this->throwableArray = explode("\n", $renderer->render($this->throwable));
+
+			$this->throwableArray = explode("\n",
+					$renderer->render($this->throwable));
 		}
-		
+
 		return $this->throwableArray;
 	}
 }

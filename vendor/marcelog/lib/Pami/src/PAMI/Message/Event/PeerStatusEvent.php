@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,45 +42,40 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class PeerStatusEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class PeerStatusEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'ChannelType'.
-     *
-     * @return string
-     */
-    public function getChannelType()
-    {
-        return $this->getKey('ChannelType');
-    }
+	/**
+	 * Returns key: 'ChannelType'.
+	 *
+	 * @return string
+	 */
+	public function getChannelType() {
+		return $this->getKey('ChannelType');
+	}
 
-    /**
-     * Returns key: 'Peer'.
-     *
-     * @return string
-     */
-    public function getPeer()
-    {
-        return $this->getKey('Peer');
-    }
+	/**
+	 * Returns key: 'Peer'.
+	 *
+	 * @return string
+	 */
+	public function getPeer() {
+		return $this->getKey('Peer');
+	}
 
-    /**
-     * Returns key: 'PeerStatus'.
-     *
-     * @return string
-     */
-    public function getPeerStatus()
-    {
-        return $this->getKey('PeerStatus');
-    }
+	/**
+	 * Returns key: 'PeerStatus'.
+	 *
+	 * @return string
+	 */
+	public function getPeerStatus() {
+		return $this->getKey('PeerStatus');
+	}
 }

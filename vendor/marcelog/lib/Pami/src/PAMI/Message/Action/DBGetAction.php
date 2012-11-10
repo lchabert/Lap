@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * DBGet action message.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DBGetAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $family Family.
-     * @param string $key    Name.
-     *
-     * @return void
-     */
-    public function __construct($family, $key)
-    {
-        parent::__construct('DBGet');
-        $this->setKey('Family', $family);
-        $this->setKey('Key', $key);
-    }
+class DBGetAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $family Family.
+	 * @param string $key    Name.
+	 *
+	 * @return void
+	 */
+	public function __construct($family, $key) {
+		parent::__construct('DBGet');
+		$this->setKey('Family', $family);
+		$this->setKey('Key', $key);
+	}
 }

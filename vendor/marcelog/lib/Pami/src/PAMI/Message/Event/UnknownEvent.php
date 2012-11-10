@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\IncomingMessage;
 
 /**
@@ -43,6 +42,5 @@ use PAMI\Message\IncomingMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class UnknownEvent extends EventMessage
-{
+class UnknownEvent extends EventMessage {
 }

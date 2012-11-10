@@ -46,13 +46,13 @@ class LoggerAppenderFile extends LoggerAppender {
 	 * @var boolean
 	 */
 	protected $locking = true;
-	
+
 	/**
 	 * If set to true, appends to file. Otherwise overwrites it.
 	 * @var boolean
 	 */
 	protected $append = true;
-	
+
 	/**
 	 * Path to the target file.
 	 * @var string 
@@ -64,14 +64,14 @@ class LoggerAppenderFile extends LoggerAppender {
 	 * @var resource
 	 */
 	protected $fp;
-	
+
 	/** 
 	 * Helper function which can be easily overriden by daily file appender. 
 	 */
 	protected function getTargetFile() {
 		return $this->file;
 	}
-	
+
 	/**
 	 * Acquires the target file resource, creates the destination folder if 
 	 * necessary. Writes layout header to file.
@@ -82,19 +82,21 @@ class LoggerAppenderFile extends LoggerAppender {
 		$file = $this->getTargetFile();
 
 		// Create the target folder if needed
-		if(!is_file($file)) {
+		if (!is_file($file)) {
 			$dir = dirname($file);
 
-			if(!is_dir($dir)) {
+			if (!is_dir($dir)) {
 				$success = mkdir($dir, 0777, true);
 				if ($success === false) {
-					$this->warn("Failed creating target directory [$dir]. Closing appender.");
+					$this
+							->warn(
+									"Failed creating target directory [$dir]. Closing appender.");
 					$this->closed = true;
 					return false;
 				}
 			}
 		}
-		
+
 		$mode = $this->append ? 'a' : 'w';
 		$this->fp = fopen($file, $mode);
 		if ($this->fp === false) {
@@ -103,40 +105,40 @@ class LoggerAppenderFile extends LoggerAppender {
 			$this->closed = true;
 			return false;
 		}
-		
+
 		// Required when appending with concurrent access
-		if($this->append) {
+		if ($this->append) {
 			fseek($this->fp, 0, SEEK_END);
 		}
-		
+
 		// Write the header
 		$this->write($this->layout->getHeader());
 	}
-	
+
 	/**
 	 * Writes a string to the target file. Opens file if not already open.
 	 * @param string $string Data to write.
 	 */
 	protected function write($string) {
 		// Lazy file open
-		if(!isset($this->fp)) {
+		if (!isset($this->fp)) {
 			if ($this->openFile() === false) {
 				return; // Do not write if file open failed.
 			}
 		}
-		
+
 		if ($this->locking) {
 			$this->writeWithLocking($string);
 		} else {
 			$this->writeWithoutLocking($string);
 		}
 	}
-	
+
 	protected function writeWithLocking($string) {
-		if(flock($this->fp, LOCK_EX)) {
-			if(fwrite($this->fp, $string) === false) {
+		if (flock($this->fp, LOCK_EX)) {
+			if (fwrite($this->fp, $string) === false) {
 				$this->warn("Failed writing to file. Closing appender.");
-				$this->closed = true;				
+				$this->closed = true;
 			}
 			flock($this->fp, LOCK_UN);
 		} else {
@@ -144,14 +146,14 @@ class LoggerAppenderFile extends LoggerAppender {
 			$this->closed = true;
 		}
 	}
-	
+
 	protected function writeWithoutLocking($string) {
-		if(fwrite($this->fp, $string) === false) {
+		if (fwrite($this->fp, $string) === false) {
 			$this->warn("Failed writing to file. Closing appender.");
-			$this->closed = true;				
+			$this->closed = true;
 		}
 	}
-	
+
 	public function activateOptions() {
 		if (empty($this->file)) {
 			$this->warn("Required parameter 'file' not set. Closing appender.");
@@ -159,7 +161,7 @@ class LoggerAppenderFile extends LoggerAppender {
 			return;
 		}
 	}
-	
+
 	public function close() {
 		if (is_resource($this->fp)) {
 			$this->write($this->layout->getFooter());
@@ -172,7 +174,7 @@ class LoggerAppenderFile extends LoggerAppender {
 	public function append(LoggerLoggingEvent $event) {
 		$this->write($this->layout->format($event));
 	}
-	
+
 	/**
 	 * Sets the 'file' parameter.
 	 * @param string $file
@@ -180,7 +182,7 @@ class LoggerAppenderFile extends LoggerAppender {
 	public function setFile($file) {
 		$this->setString('file', $file);
 	}
-	
+
 	/**
 	 * Returns the 'file' parameter.
 	 * @return string
@@ -188,7 +190,7 @@ class LoggerAppenderFile extends LoggerAppender {
 	public function getFile() {
 		return $this->file;
 	}
-	
+
 	/**
 	 * Returns the 'append' parameter.
 	 * @return boolean
@@ -213,7 +215,7 @@ class LoggerAppenderFile extends LoggerAppender {
 	public function setFileName($fileName) {
 		$this->setFile($fileName);
 	}
-	
+
 	/**
 	 * Returns the 'file' parmeter. Left for legacy reasons.
 	 * @return string

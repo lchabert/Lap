@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Unpauses the Monitor for a given channel.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class UnpauseMonitorAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $channel Channel monitored to unpause.
-     *
-     * @return void
-     */
-    public function __construct($channel)
-    {
-        parent::__construct('UnpauseMonitor');
-        $this->setKey('Channel', $channel);
-    }
+class UnpauseMonitorAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $channel Channel monitored to unpause.
+	 *
+	 * @return void
+	 */
+	public function __construct($channel) {
+		parent::__construct('UnpauseMonitor');
+		$this->setKey('Channel', $channel);
+	}
 }

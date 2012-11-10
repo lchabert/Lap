@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Reload a dongle.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DongleReloadAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $when now | gracefully | when convenient
-     *
-     * @return void
-     */
-    public function __construct($when)
-    {
-        parent::__construct('DongleReload');
-        $this->setKey('when', $when);
-    }
+class DongleReloadAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $when now | gracefully | when convenient
+	 *
+	 * @return void
+	 */
+	public function __construct($when) {
+		parent::__construct('DongleReload');
+		$this->setKey('when', $when);
+	}
 }

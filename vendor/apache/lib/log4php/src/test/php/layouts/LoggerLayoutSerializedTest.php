@@ -36,70 +36,59 @@ class LoggerLayoutSerializedTest extends PHPUnit_Framework_TestCase {
 		$layout->setLocationInfo(false);
 		self::assertFalse($layout->getLocationInfo());
 	}
-	
+
 	/**
- 	 * @expectedException PHPUnit_Framework_Error
- 	 * @expectedExceptionMessage Invalid value given for 'locationInfo' property: ['foo']. Expected a boolean value. Property not changed.
+	 * @expectedException PHPUnit_Framework_Error
+	 * @expectedExceptionMessage Invalid value given for 'locationInfo' property: ['foo']. Expected a boolean value. Property not changed.
 	 */
 	public function testLocationInfoFail() {
 		$layout = new LoggerLayoutSerialized();
 		$layout->setLocationInfo('foo');
 	}
-	
+
 	public function testLayout() {
-		Logger::configure(array(
-			'appenders' => array(
-				'default' => array(
-					'class' => 'LoggerAppenderEcho',
-					'layout' => array(
-						'class' => 'LoggerLayoutSerialized'
-					)
-				)
-			),
-			'rootLogger' => array(
-				'appenders' => array('default')
-			)
-		));
+		Logger::configure(
+				array(
+						'appenders' => array(
+								'default' => array(
+										'class' => 'LoggerAppenderEcho',
+										'layout' => array(
+												'class' => 'LoggerLayoutSerialized'))),
+						'rootLogger' => array('appenders' => array('default'))));
 
 		ob_start();
 		$foo = Logger::getLogger('foo');
 		$foo->info("Interesting message.");
 		$actual = ob_get_contents();
 		ob_end_clean();
-		
+
 		$event = unserialize($actual);
-		
+
 		self::assertInstanceOf('LoggerLoggingEvent', $event);
 		self::assertEquals('Interesting message.', $event->getMessage());
 		self::assertEquals(LoggerLevel::getLevelInfo(), $event->getLevel());
 	}
-	
+
 	public function testLayoutWithLocationInfo() {
-		Logger::configure(array(
-			'appenders' => array(
-				'default' => array(
-					'class' => 'LoggerAppenderEcho',
-					'layout' => array(
-						'class' => 'LoggerLayoutSerialized',
-						'params' => array(
-							'locationInfo' => true
-						)
-					)
-				)
-			),
-			'rootLogger' => array(
-				'appenders' => array('default')
-			)
-		));
-	
+		Logger::configure(
+				array(
+						'appenders' => array(
+								'default' => array(
+										'class' => 'LoggerAppenderEcho',
+										'layout' => array(
+												'class' => 'LoggerLayoutSerialized',
+												'params' => array(
+														'locationInfo' => true)))),
+						'rootLogger' => array('appenders' => array('default'))));
+
 		ob_start();
 		$foo = Logger::getLogger('foo');
 		$foo->info("Interesting message.");
 		$actual = ob_get_contents();
 		ob_end_clean();
-	
+
 		$event = unserialize($actual);
-	
+
 		self::assertInstanceOf('LoggerLoggingEvent', $event);
 		self::assertEquals('Interesting message.', $event->getMessage());
 		self::assertEquals(LoggerLevel::getLevelInfo(), $event->getLevel());

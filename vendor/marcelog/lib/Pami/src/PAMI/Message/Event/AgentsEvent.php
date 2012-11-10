@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,75 +42,67 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class AgentsEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Status'.
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->getKey('Status');
-    }
+class AgentsEvent extends EventMessage {
+	/**
+	 * Returns key: 'Status'.
+	 *
+	 * @return string
+	 */
+	public function getStatus() {
+		return $this->getKey('Status');
+	}
 
-    /**
-     * Returns key: 'Agent'.
-     *
-     * @return string
-     */
-    public function getAgent()
-    {
-        return $this->getKey('Agent');
-    }
+	/**
+	 * Returns key: 'Agent'.
+	 *
+	 * @return string
+	 */
+	public function getAgent() {
+		return $this->getKey('Agent');
+	}
 
-    /**
-     * Returns key: 'Name'.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->getKey('Name');
-    }
+	/**
+	 * Returns key: 'Name'.
+	 *
+	 * @return string
+	 */
+	public function getName() {
+		return $this->getKey('Name');
+	}
 
-    /**
-     * Returns key: 'LoggedInChan'.
-     *
-     * @return string
-     */
-    public function getChannel()
-    {
-        return $this->getKey('LoggedInChan');
-    }
+	/**
+	 * Returns key: 'LoggedInChan'.
+	 *
+	 * @return string
+	 */
+	public function getChannel() {
+		return $this->getKey('LoggedInChan');
+	}
 
-    /**
-     * Returns key: 'LoggedInTime'.
-     *
-     * @return integer
-     */
-    public function getLoggedInTime()
-    {
-        return $this->getKey('LoggedInTime');
-    }
+	/**
+	 * Returns key: 'LoggedInTime'.
+	 *
+	 * @return integer
+	 */
+	public function getLoggedInTime() {
+		return $this->getKey('LoggedInTime');
+	}
 
-    /**
-     * Returns key: 'TalkingTo'.
-     *
-     * @return integer
-     */
-    public function getTalkingTo()
-    {
-        return $this->getKey('TalkingTo');
-    }
+	/**
+	 * Returns key: 'TalkingTo'.
+	 *
+	 * @return integer
+	 */
+	public function getTalkingTo() {
+		return $this->getKey('TalkingTo');
+	}
 
-    /**
-     * Returns key: 'TalkingToChannel'.
-     *
-     * @return integer
-     */
-    public function getTalkingToChannel()
-    {
-        return $this->getKey('TalkingToChannel');
-    }
+	/**
+	 * Returns key: 'TalkingToChannel'.
+	 *
+	 * @return integer
+	 */
+	public function getTalkingToChannel() {
+		return $this->getKey('TalkingToChannel');
+	}
 }

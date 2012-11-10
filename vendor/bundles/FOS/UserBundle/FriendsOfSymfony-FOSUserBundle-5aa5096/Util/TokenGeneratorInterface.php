@@ -10,8 +10,6 @@
  */
 
 namespace FOS\UserBundle\Util;
-
-interface TokenGeneratorInterface
-{
-    public function generateToken();
+interface TokenGeneratorInterface {
+	public function generateToken();
 }

@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * SIPNotify action message.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class SIPNotifyAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $channel Peer to receive the notify.
-     *
-     * @return void
-     */
-    public function __construct($channel)
-    {
-        parent::__construct('SIPnotify');
-        $this->setKey('Channel', $channel);
-    }
+class SIPNotifyAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $channel Peer to receive the notify.
+	 *
+	 * @return void
+	 */
+	public function __construct($channel) {
+		parent::__construct('SIPnotify');
+		$this->setKey('Channel', $channel);
+	}
 }

@@ -54,11 +54,11 @@
 class LoggerLayoutTTCC extends LoggerLayout {
 
 	// Internal representation of options
-	protected $threadPrinting    = true;
+	protected $threadPrinting = true;
 	protected $categoryPrefixing = true;
-	protected $contextPrinting   = true;
+	protected $contextPrinting = true;
 	protected $microSecondsPrinting = true;
-	
+
 	/**
 	 * @var string date format. See {@link PHP_MANUAL#strftime} for details
 	 */
@@ -71,7 +71,9 @@ class LoggerLayoutTTCC extends LoggerLayout {
 	 * @see dateFormat
 	 */
 	public function __construct($dateFormat = '') {
-		$this->warn("LoggerLayout TTCC is deprecated and will be removed in a future release. Please use LoggerLayoutPattern instead.");
+		$this
+				->warn(
+						"LoggerLayout TTCC is deprecated and will be removed in a future release. Please use LoggerLayoutPattern instead.");
 		if (!empty($dateFormat)) {
 			$this->dateFormat = $dateFormat;
 		}
@@ -123,7 +125,7 @@ class LoggerLayoutTTCC extends LoggerLayout {
 	public function getContextPrinting() {
 		return $this->contextPrinting;
 	}
-	
+
 	/**
 	 * The <b>MicroSecondsPrinting</b> option specifies if microseconds infos
 	 * should be printed at the end of timestamp.
@@ -139,12 +141,11 @@ class LoggerLayoutTTCC extends LoggerLayout {
 	public function getMicroSecondsPrinting() {
 		return $this->microSecondsPrinting;
 	}
-	
-	
+
 	public function setDateFormat($dateFormat) {
 		$this->setString('dateFormat', $dateFormat);
 	}
-	
+
 	/**
 	 * @return string
 	 */
@@ -161,37 +162,37 @@ class LoggerLayoutTTCC extends LoggerLayout {
 	 * @return string
 	 */
 	public function format(LoggerLoggingEvent $event) {
-		$timeStamp = (float)$event->getTimeStamp();
-		$format = strftime($this->dateFormat, (int)$timeStamp);
-		
+		$timeStamp = (float) $event->getTimeStamp();
+		$format = strftime($this->dateFormat, (int) $timeStamp);
+
 		if ($this->microSecondsPrinting) {
-			$usecs = floor(($timeStamp - (int)$timeStamp) * 1000);
+			$usecs = floor(($timeStamp - (int) $timeStamp) * 1000);
 			$format .= sprintf(',%03d', $usecs);
 		}
-			
+
 		$format .= ' ';
-		
+
 		if ($this->threadPrinting) {
-			$format .= '['.getmypid().'] ';
+			$format .= '[' . getmypid() . '] ';
 		}
-		
+
 		$level = $event->getLevel();
-		$format .= $level.' ';
-		
-		if($this->categoryPrefixing) {
-			$format .= $event->getLoggerName().' ';
+		$format .= $level . ' ';
+
+		if ($this->categoryPrefixing) {
+			$format .= $event->getLoggerName() . ' ';
 		}
-	   
-		if($this->contextPrinting) {
+
+		if ($this->contextPrinting) {
 			$ndc = $event->getNDC();
-			if($ndc != null) {
-				$format .= $ndc.' ';
+			if ($ndc != null) {
+				$format .= $ndc . ' ';
 			}
 		}
-		
-		$format .= '- '.$event->getRenderedMessage();
+
+		$format .= '- ' . $event->getRenderedMessage();
 		$format .= PHP_EOL;
-		
+
 		return $format;
 	}
 

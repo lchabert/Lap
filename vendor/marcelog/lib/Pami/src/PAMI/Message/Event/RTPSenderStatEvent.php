@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,75 +42,67 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class RTPSenderStatEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class RTPSenderStatEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'SSRC'.
-     *
-     * @return string
-     */
-    public function getSSRC()
-    {
-        return $this->getKey('SSRC');
-    }
+	/**
+	 * Returns key: 'SSRC'.
+	 *
+	 * @return string
+	 */
+	public function getSSRC() {
+		return $this->getKey('SSRC');
+	}
 
-    /**
-     * Returns key: 'SentPackets'.
-     *
-     * @return string
-     */
-    public function getSentPackets()
-    {
-        return $this->getKey('SentPackets');
-    }
+	/**
+	 * Returns key: 'SentPackets'.
+	 *
+	 * @return string
+	 */
+	public function getSentPackets() {
+		return $this->getKey('SentPackets');
+	}
 
-    /**
-     * Returns key: 'LostPackets'.
-     *
-     * @return string
-     */
-    public function getLostPackets()
-    {
-        return $this->getKey('LostPackets');
-    }
+	/**
+	 * Returns key: 'LostPackets'.
+	 *
+	 * @return string
+	 */
+	public function getLostPackets() {
+		return $this->getKey('LostPackets');
+	}
 
-    /**
-     * Returns key: 'Jitter'.
-     *
-     * @return string
-     */
-    public function getJitter()
-    {
-        return $this->getKey('Jitter');
-    }
+	/**
+	 * Returns key: 'Jitter'.
+	 *
+	 * @return string
+	 */
+	public function getJitter() {
+		return $this->getKey('Jitter');
+	}
 
-    /**
-     * Returns key: 'RTT'.
-     *
-     * @return string
-     */
-    public function getRTT()
-    {
-        return $this->getKey('RTT');
-    }
+	/**
+	 * Returns key: 'RTT'.
+	 *
+	 * @return string
+	 */
+	public function getRTT() {
+		return $this->getKey('RTT');
+	}
 
-    /**
-     * Returns key: 'SRCount'.
-     *
-     * @return string
-     */
-    public function getSRCount()
-    {
-        return $this->getKey('SRCount');
-    }
+	/**
+	 * Returns key: 'SRCount'.
+	 *
+	 * @return string
+	 */
+	public function getSRCount() {
+		return $this->getKey('SRCount');
+	}
 }

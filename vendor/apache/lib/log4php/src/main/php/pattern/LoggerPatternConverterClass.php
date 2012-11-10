@@ -31,34 +31,34 @@ class LoggerPatternConverterClass extends LoggerPatternConverter {
 
 	/** Length to which to shorten the class name. */
 	private $length;
-	
+
 	/** Holds processed class names. */
 	private $cache = array();
-	
+
 	public function activateOptions() {
 		// Parse the option (desired output length)
-		if (isset($this->option) && is_numeric($this->option) && $this->option >= 0) {
+		if (isset($this->option) && is_numeric($this->option)
+				&& $this->option >= 0) {
 			$this->length = (integer) $this->option;
 		}
 	}
 
 	public function convert(LoggerLoggingEvent $event) {
 		$name = $event->getLocationInformation()->getClassName();
-	
+
 		if (!isset($this->cache[$name])) {
-	
+
 			// If length is set return shortened class name
 			if (isset($this->length)) {
-				$this->cache[$name] = LoggerUtils::shortenClassName($name, $this->length);
+				$this->cache[$name] = LoggerUtils::shortenClassName($name,
+						$this->length);
 			}
-				
 			// If no length is specified return the full class name
-			else {
+ else {
 				$this->cache[$name] = $name;
 			}
 		}
-	
+
 		return $this->cache[$name];
 	}
 }
- 

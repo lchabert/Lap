@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,55 +42,49 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class NewAccountCodeEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class NewAccountCodeEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'Channel'.
-     *
-     * @return string
-     */
-    public function getChannel()
-    {
-        return $this->getKey('Channel');
-    }
+	/**
+	 * Returns key: 'Channel'.
+	 *
+	 * @return string
+	 */
+	public function getChannel() {
+		return $this->getKey('Channel');
+	}
 
-    /**
-     * Returns key: 'UniqueID'.
-     *
-     * @return string
-     */
-    public function getUniqueID()
-    {
-        return $this->getKey('UniqueID');
-    }
+	/**
+	 * Returns key: 'UniqueID'.
+	 *
+	 * @return string
+	 */
+	public function getUniqueID() {
+		return $this->getKey('UniqueID');
+	}
 
-    /**
-     * Returns key: 'AccountCode'.
-     *
-     * @return string
-     */
-    public function getAccountCode()
-    {
-        return $this->getKey('AccountCode');
-    }
+	/**
+	 * Returns key: 'AccountCode'.
+	 *
+	 * @return string
+	 */
+	public function getAccountCode() {
+		return $this->getKey('AccountCode');
+	}
 
-    /**
-     * Returns key: 'OldAccountCode'.
-     *
-     * @return string
-     */
-    public function getOldAccountCode()
-    {
-        return $this->getKey('OldAccountCode');
-    }
+	/**
+	 * Returns key: 'OldAccountCode'.
+	 *
+	 * @return string
+	 */
+	public function getOldAccountCode() {
+		return $this->getKey('OldAccountCode');
+	}
 }

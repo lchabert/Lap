@@ -27,10 +27,10 @@
  * @since 0.5
  */
 class LoggerOptionConverter {
-	
+
 	/** String values which are converted to boolean TRUE. */
 	private static $trueValues = array('1', 'true', 'yes', 'on');
-	
+
 	/** 
 	 * String values which are converted to boolean FALSE.
 	 * 
@@ -39,7 +39,7 @@ class LoggerOptionConverter {
 	 * converts the value _false_ to an empty string.
 	 */
 	private static $falseValues = array('0', 'false', 'no', 'off', '');
-	
+
 	/**
 	 * Read a predefined var.
 	 *
@@ -54,12 +54,12 @@ class LoggerOptionConverter {
 	 *					value if there is no property with that key.
 	 */
 	public static function getSystemProperty($key, $def) {
-		if(defined($key)) {
-			return (string)constant($key);
-		} else if(isset($_SERVER[$key])) {
-			return (string)$_SERVER[$key];
-		} else if(isset($_ENV[$key])) {
-			return (string)$_ENV[$key];
+		if (defined($key)) {
+			return (string) constant($key);
+		} else if (isset($_SERVER[$key])) {
+			return (string) $_SERVER[$key];
+		} else if (isset($_ENV[$key])) {
+			return (string) $_ENV[$key];
 		} else {
 			return $def;
 		}
@@ -79,10 +79,12 @@ class LoggerOptionConverter {
 				return false;
 			}
 		}
-		
-		throw new LoggerException("Given value [" . var_export($value, true) . "] cannot be converted to boolean.");
+
+		throw new LoggerException(
+				"Given value [" . var_export($value, true)
+						. "] cannot be converted to boolean.");
 	}
-	
+
 	/** 
 	 * Converts $value to integer, or throws an exception if not possible. 
 	 * Floats cannot be converted to integer.
@@ -94,10 +96,12 @@ class LoggerOptionConverter {
 		if (is_numeric($value) && ($value == (integer) $value)) {
 			return (integer) $value;
 		}
-	
-		throw new LoggerException("Given value [" . var_export($value, true) . "] cannot be converted to integer.");
+
+		throw new LoggerException(
+				"Given value [" . var_export($value, true)
+						. "] cannot be converted to integer.");
 	}
-	
+
 	/**
 	 * Converts $value to integer, or throws an exception if not possible.
 	 * Floats cannot be converted to integer.
@@ -109,8 +113,10 @@ class LoggerOptionConverter {
 		if (is_numeric($value) && ($value == (integer) $value) && $value > 0) {
 			return (integer) $value;
 		}
-	
-		throw new LoggerException("Given value [" . var_export($value, true) . "] cannot be converted to a positive integer.");
+
+		throw new LoggerException(
+				"Given value [" . var_export($value, true)
+						. "] cannot be converted to a positive integer.");
 	}
 
 	/** Converts the value to a level. Throws an exception if not possible. */
@@ -120,7 +126,9 @@ class LoggerOptionConverter {
 		}
 		$level = LoggerLevel::toLevel($value);
 		if ($level === null) {
-			throw new LoggerException("Given value [" . var_export($value, true) . "] cannot be converted to a logger level.");
+			throw new LoggerException(
+					"Given value [" . var_export($value, true)
+							. "] cannot be converted to a logger level.");
 		}
 		return $level;
 	}
@@ -142,36 +150,46 @@ class LoggerOptionConverter {
 	 * @return integer Parsed file size.
 	 */
 	public static function toFileSizeEx($value) {
-		
+
 		if (empty($value)) {
-			throw new LoggerException("Empty value cannot be converted to a file size.");
+			throw new LoggerException(
+					"Empty value cannot be converted to a file size.");
 		}
-		
+
 		if (is_numeric($value)) {
 			return (integer) $value;
 		}
-		
+
 		if (!is_string($value)) {
-			throw new LoggerException("Given value [" . var_export($value, true) . "] cannot be converted to a file size.");
+			throw new LoggerException(
+					"Given value [" . var_export($value, true)
+							. "] cannot be converted to a file size.");
 		}
-		
+
 		$str = strtoupper(trim($value));
 		$count = preg_match('/^([0-9.]+)(KB|MB|GB)?$/', $str, $matches);
-		
+
 		if ($count > 0) {
 			$size = $matches[1];
 			$unit = $matches[2];
-			
-			switch($unit) {
-				case 'KB': $size *= pow(1024, 1); break;
-				case 'MB': $size *= pow(1024, 2); break;
-				case 'GB': $size *= pow(1024, 3); break;
+
+			switch ($unit) {
+			case 'KB':
+				$size *= pow(1024, 1);
+				break;
+			case 'MB':
+				$size *= pow(1024, 2);
+				break;
+			case 'GB':
+				$size *= pow(1024, 3);
+				break;
 			}
-			
+
 			return (integer) $size;
 		}
-		
-		throw new LoggerException("Given value [$value] cannot be converted to a file size.");
+
+		throw new LoggerException(
+				"Given value [$value] cannot be converted to a file size.");
 	}
 
 	/** 
@@ -191,10 +209,12 @@ class LoggerOptionConverter {
 		if (is_object($value) && method_exists($value, '__toString')) {
 			return (string) $value;
 		}
-	
-		throw new LoggerException("Given value [" . var_export($value, true) . "] cannot be converted to string.");
+
+		throw new LoggerException(
+				"Given value [" . var_export($value, true)
+						. "] cannot be converted to string.");
 	}
-	
+
 	/**
 	 * Performs value substitution for string options.
 	 * 
@@ -214,8 +234,8 @@ class LoggerOptionConverter {
 	 */
 	public static function substConstants($string) {
 		preg_match_all('/\${([^}]+)}/', $string, $matches);
-		
-		foreach($matches[1] as $key => $match) {
+
+		foreach ($matches[1] as $key => $match) {
 			$match = trim($match);
 			$search = $matches[0][$key];
 			$replacement = defined($match) ? constant($match) : '';

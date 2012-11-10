@@ -28,9 +28,9 @@
 class LoggerRendererException implements LoggerRenderer {
 
 	public function render($input) {
-		
+
 		// Exception class has a very decent __toString method
 		// so let's just use that instead of writing lots of code.
-		return (string) $input; 
+		return (string) $input;
 	}
 }

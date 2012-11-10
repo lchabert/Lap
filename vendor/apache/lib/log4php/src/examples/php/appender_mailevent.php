@@ -16,8 +16,9 @@
  * limitations under the License.
  */
 // START SNIPPET: doxia
-require_once dirname(__FILE__).'/../../main/php/Logger.php';
+require_once dirname(__FILE__) . '/../../main/php/Logger.php';
 
-Logger::configure(dirname(__FILE__).'/../resources/appender_mailevent.properties');
+Logger::configure(
+		dirname(__FILE__) . '/../resources/appender_mailevent.properties');
 $logger = Logger::getRootLogger();
 $logger->fatal("Some critical message!");

@@ -41,23 +41,23 @@ abstract class LoggerLayout extends LoggerConfigurable {
 	 */
 	public function format(LoggerLoggingEvent $event) {
 		return $event->getRenderedMessage();
-	} 
-	
+	}
+
 	/**
 	 * Returns the content type output by this layout.
 	 * @return string
 	 */
 	public function getContentType() {
 		return "text/plain";
-	} 
-			
+	}
+
 	/**
 	 * Returns the footer for the layout format.
 	 * @return string
 	 */
 	public function getFooter() {
 		return null;
-	} 
+	}
 
 	/**
 	 * Returns the header for the layout format.
@@ -66,9 +66,10 @@ abstract class LoggerLayout extends LoggerConfigurable {
 	public function getHeader() {
 		return null;
 	}
-	
+
 	/** Triggers a warning for this layout with the given message. */
 	protected function warn($message) {
-		trigger_error("log4php: [" . get_class($this) . "]: $message", E_USER_WARNING);
+		trigger_error("log4php: [" . get_class($this) . "]: $message",
+				E_USER_WARNING);
 	}
 }

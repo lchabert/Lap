@@ -10,7 +10,6 @@
  */
 
 namespace FOS\UserBundle\Mailer;
-
 use FOS\UserBundle\Model\UserInterface;
 
 /**
@@ -20,15 +19,12 @@ use FOS\UserBundle\Model\UserInterface;
  *
  * @author Thibault Duplessis <thibault.duplessis@gmail.com>
  */
-class NoopMailer implements MailerInterface
-{
-    public function sendConfirmationEmailMessage(UserInterface $user)
-    {
-        // nothing happens.
-    }
+class NoopMailer implements MailerInterface {
+	public function sendConfirmationEmailMessage(UserInterface $user) {
+		// nothing happens.
+	}
 
-    public function sendResettingEmailMessage(UserInterface $user)
-    {
-        // nothing happens.
-    }
+	public function sendResettingEmailMessage(UserInterface $user) {
+		// nothing happens.
+	}
 }

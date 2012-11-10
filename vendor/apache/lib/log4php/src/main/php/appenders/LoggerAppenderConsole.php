@@ -35,17 +35,17 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @link http://logging.apache.org/log4php/docs/appenders/console.html Appender documentation
  */
- class LoggerAppenderConsole extends LoggerAppender {
+class LoggerAppenderConsole extends LoggerAppender {
 
 	/** The standard otuput stream.  */
 	const STDOUT = 'php://stdout';
-	
+
 	/** The standard error stream.*/
 	const STDERR = 'php://stderr';
 
 	/** The 'target' parameter. */
 	protected $target = self::STDOUT;
-	
+
 	/**
 	 * Stream resource for the target stream.
 	 * @var resource
@@ -54,15 +54,14 @@
 
 	public function activateOptions() {
 		$this->fp = fopen($this->target, 'w');
-		if(is_resource($this->fp) && $this->layout !== null) {
+		if (is_resource($this->fp) && $this->layout !== null) {
 			fwrite($this->fp, $this->layout->getHeader());
 		}
-		$this->closed = (bool)is_resource($this->fp) === false;
+		$this->closed = (bool) is_resource($this->fp) === false;
 	}
-	
-	
+
 	public function close() {
-		if($this->closed != true) {
+		if ($this->closed != true) {
 			if (is_resource($this->fp) && $this->layout !== null) {
 				fwrite($this->fp, $this->layout->getFooter());
 				fclose($this->fp);
@@ -76,7 +75,7 @@
 			fwrite($this->fp, $this->layout->format($event));
 		}
 	}
-	
+
 	/**
 	 * Sets the 'target' parameter.
 	 * @param string $target
@@ -89,10 +88,12 @@
 			$this->target = self::STDERR;
 		} else {
 			$target = var_export($target);
-			$this->warn("Invalid value given for 'target' property: [$target]. Property not set.");
+			$this
+					->warn(
+							"Invalid value given for 'target' property: [$target]. Property not set.");
 		}
 	}
-	
+
 	/**
 	 * Returns the value of the 'target' parameter.
 	 * @return string

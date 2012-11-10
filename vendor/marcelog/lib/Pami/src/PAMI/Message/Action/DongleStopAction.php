@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Stops a dongle.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DongleStopAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $when   now | gracefully | when convenient
-     * @param string $device Dongle device name.
-     *
-     * @return void
-     */
-    public function __construct($when, $device)
-    {
-        parent::__construct('DongleStop');
-        $this->setKey('when', $when);
-        $this->setKey('device', $device);
-    }
+class DongleStopAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $when   now | gracefully | when convenient
+	 * @param string $device Dongle device name.
+	 *
+	 * @return void
+	 */
+	public function __construct($when, $device) {
+		parent::__construct('DongleStop');
+		$this->setKey('when', $when);
+		$this->setKey('device', $device);
+	}
 }

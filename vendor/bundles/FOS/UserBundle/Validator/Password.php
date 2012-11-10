@@ -10,33 +10,28 @@
  */
 
 namespace FOS\UserBundle\Validator;
-
 use Symfony\Component\Validator\Constraint;
 
 /**
  * @Annotation
  */
-class Password extends Constraint
-{
-    public $message = 'The entered password is invalid.';
-    public $passwordProperty;
-    public $userProperty;
+class Password extends Constraint {
+	public $message = 'The entered password is invalid.';
+	public $passwordProperty;
+	public $userProperty;
 
-    public function getRequiredOptions()
-    {
-        return array('passwordProperty', 'userProperty');
-    }
+	public function getRequiredOptions() {
+		return array('passwordProperty', 'userProperty');
+	}
 
-    public function validatedBy()
-    {
-        return 'fos_user.validator.password';
-    }
+	public function validatedBy() {
+		return 'fos_user.validator.password';
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getTargets()
-    {
-        return self::CLASS_CONSTRAINT;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getTargets() {
+		return self::CLASS_CONSTRAINT;
+	}
 }

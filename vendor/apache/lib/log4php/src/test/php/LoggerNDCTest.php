@@ -27,20 +27,19 @@
  * @group main
  */
 class LoggerNDCTest extends PHPUnit_Framework_TestCase {
-	
-	public function testItemHandling()
-	{
+
+	public function testItemHandling() {
 		// Test the empty stack
 		self::assertSame('', LoggerNDC::get());
 		self::assertSame('', LoggerNDC::peek());
 		self::assertSame(0, LoggerNDC::getDepth());
 		self::assertSame('', LoggerNDC::pop());
-		
+
 		// Add some data to the stack
 		LoggerNDC::push('1');
 		LoggerNDC::push('2');
 		LoggerNDC::push('3');
-		
+
 		self::assertSame('1 2 3', LoggerNDC::get());
 		self::assertSame('3', LoggerNDC::peek());
 		self::assertSame(3, LoggerNDC::getDepth());
@@ -60,9 +59,8 @@ class LoggerNDCTest extends PHPUnit_Framework_TestCase {
 		self::assertSame(0, LoggerNDC::getDepth());
 		self::assertSame('', LoggerNDC::pop());
 	}
-	
-	public function testMaxDepth()
-	{
+
+	public function testMaxDepth() {
 		// Clear stack; add some testing data
 		LoggerNDC::clear();
 		LoggerNDC::push('1');
@@ -71,18 +69,18 @@ class LoggerNDCTest extends PHPUnit_Framework_TestCase {
 		LoggerNDC::push('4');
 		LoggerNDC::push('5');
 		LoggerNDC::push('6');
-		
+
 		self::assertSame('1 2 3 4 5 6', LoggerNDC::get());
-		
+
 		// Edge case, should not change stack
 		LoggerNDC::setMaxDepth(6);
 		self::assertSame('1 2 3 4 5 6', LoggerNDC::get());
 		self::assertSame(6, LoggerNDC::getDepth());
-		
+
 		LoggerNDC::setMaxDepth(3);
 		self::assertSame('1 2 3', LoggerNDC::get());
 		self::assertSame(3, LoggerNDC::getDepth());
-		
+
 		LoggerNDC::setMaxDepth(0);
 		self::assertSame('', LoggerNDC::get());
 		self::assertSame(0, LoggerNDC::getDepth());

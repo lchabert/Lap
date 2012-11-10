@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * QueueReload action message.
  *
@@ -41,27 +40,25 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class QueueReloadAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string  $queue      Queue name.
-     * @param boolean $members    Reload members.
-     * @param boolean $rules      Reload rules.
-     * @param boolean $parameters Reload parameters.
-     *
-     * @return void
-     */
-    public function __construct(
-        $queue = false, $members = false, $rules = false, $parameters = false
-    ) {
-        parent::__construct('QueueReload');
-        if ($queue !== false) {
-            $this->setKey('Queue', $queue);
-        }
-        $this->setKey('Members', $members ? 'yes' : 'no');
-        $this->setKey('Rules', $rules ? 'yes' : 'no');
-        $this->setKey('Parameters', $parameters ? 'yes' : 'no');
-    }
+class QueueReloadAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string  $queue      Queue name.
+	 * @param boolean $members    Reload members.
+	 * @param boolean $rules      Reload rules.
+	 * @param boolean $parameters Reload parameters.
+	 *
+	 * @return void
+	 */
+	public function __construct($queue = false, $members = false,
+			$rules = false, $parameters = false) {
+		parent::__construct('QueueReload');
+		if ($queue !== false) {
+			$this->setKey('Queue', $queue);
+		}
+		$this->setKey('Members', $members ? 'yes' : 'no');
+		$this->setKey('Rules', $rules ? 'yes' : 'no');
+		$this->setKey('Parameters', $parameters ? 'yes' : 'no');
+	}
 }

@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,105 +42,94 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DialEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class DialEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'SubEvent'.
-     *
-     * @return string
-     */
-    public function getSubEvent()
-    {
-        return $this->getKey('SubEvent');
-    }
+	/**
+	 * Returns key: 'SubEvent'.
+	 *
+	 * @return string
+	 */
+	public function getSubEvent() {
+		return $this->getKey('SubEvent');
+	}
 
-    /**
-     * Returns key: 'Channel'.
-     *
-     * @return string
-     */
-    public function getChannel()
-    {
-        return $this->getKey('Channel');
-    }
+	/**
+	 * Returns key: 'Channel'.
+	 *
+	 * @return string
+	 */
+	public function getChannel() {
+		return $this->getKey('Channel');
+	}
 
-    /**
-     * Returns key: 'Destination'.
-     *
-     * @return string
-     */
-    public function getDestination()
-    {
-        return $this->getKey('Destination');
-    }
+	/**
+	 * Returns key: 'Destination'.
+	 *
+	 * @return string
+	 */
+	public function getDestination() {
+		return $this->getKey('Destination');
+	}
 
-    /**
-     * Returns key: 'CallerIDNum'.
-     *
-     * @return string
-     */
-    public function getCallerIDNum()
-    {
-        return $this->getKey('CallerIDNum');
-    }
+	/**
+	 * Returns key: 'CallerIDNum'.
+	 *
+	 * @return string
+	 */
+	public function getCallerIDNum() {
+		return $this->getKey('CallerIDNum');
+	}
 
-    /**
-     * Returns key: 'CallerIDName'.
-     *
-     * @return string
-     */
-    public function getCallerIDName()
-    {
-        return $this->getKey('CallerIDName');
-    }
+	/**
+	 * Returns key: 'CallerIDName'.
+	 *
+	 * @return string
+	 */
+	public function getCallerIDName() {
+		return $this->getKey('CallerIDName');
+	}
 
-    /**
-     * Returns key: 'UniqueID'.
-     *
-     * @return string
-     */
-    public function getUniqueID()
-    {
-        return $this->getKey('UniqueID');
-    }
+	/**
+	 * Returns key: 'UniqueID'.
+	 *
+	 * @return string
+	 */
+	public function getUniqueID() {
+		return $this->getKey('UniqueID');
+	}
 
-    /**
-     * Returns key: 'DestUniqueID'.
-     *
-     * @return string
-     */
-    public function getDestUniqueID()
-    {
-        return $this->getKey('DestUniqueID');
-    }
+	/**
+	 * Returns key: 'DestUniqueID'.
+	 *
+	 * @return string
+	 */
+	public function getDestUniqueID() {
+		return $this->getKey('DestUniqueID');
+	}
 
-    /**
-     * Returns key: 'DialString'.
-     *
-     * @return string
-     */
-    public function getDialString()
-    {
-        return $this->getKey('DialString');
-    }
+	/**
+	 * Returns key: 'DialString'.
+	 *
+	 * @return string
+	 */
+	public function getDialString() {
+		return $this->getKey('DialString');
+	}
 
-    /**
-     * Returns key: 'DialStatus'.
-     *
-     * @return string
-     */
-    public function getDialStatus()
-    {
-        return $this->getKey('DialStatus');
-    }
+	/**
+	 * Returns key: 'DialStatus'.
+	 *
+	 * @return string
+	 */
+	public function getDialStatus() {
+		return $this->getKey('DialStatus');
+	}
 }

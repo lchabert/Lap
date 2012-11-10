@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,85 +42,76 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class QueueMemberEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Queue'.
-     *
-     * @return string
-     */
-    public function getQueue()
-    {
-        return $this->getKey('Queue');
-    }
+class QueueMemberEvent extends EventMessage {
+	/**
+	 * Returns key: 'Queue'.
+	 *
+	 * @return string
+	 */
+	public function getQueue() {
+		return $this->getKey('Queue');
+	}
 
-    /**
-     * Returns key: 'Location'.
-     *
-     * @return string
-     */
-    public function getLocation()
-    {
-        return $this->getKey('Location');
-    }
+	/**
+	 * Returns key: 'Location'.
+	 *
+	 * @return string
+	 */
+	public function getLocation() {
+		return $this->getKey('Location');
+	}
 
-    /**
-     * Returns key: 'MemberName'.
-     *
-     * @return string
-     */
-    public function getMemberName()
-    {
-        return $this->getKey('Name');
-    }
+	/**
+	 * Returns key: 'MemberName'.
+	 *
+	 * @return string
+	 */
+	public function getMemberName() {
+		return $this->getKey('Name');
+	}
 
-    /**
-     * Returns key: 'Membership'.
-     *
-     * @return string
-     */
-    public function getMembership()
-    {
-        return $this->getKey('Membership');
-    }
+	/**
+	 * Returns key: 'Membership'.
+	 *
+	 * @return string
+	 */
+	public function getMembership() {
+		return $this->getKey('Membership');
+	}
 
-    /**
-     * Returns key: 'Penalty'.
-     *
-     * @return integer
-     */
-    public function getPenalty()
-    {
-        return $this->getKey('Penalty');
-    }
+	/**
+	 * Returns key: 'Penalty'.
+	 *
+	 * @return integer
+	 */
+	public function getPenalty() {
+		return $this->getKey('Penalty');
+	}
 
-    /**
-     * Returns key: 'CallsTaken'.
-     *
-     * @return integer
-     */
-    public function getCallsTaken()
-    {
-        return $this->getKey('CallsTaken');
-    }
+	/**
+	 * Returns key: 'CallsTaken'.
+	 *
+	 * @return integer
+	 */
+	public function getCallsTaken() {
+		return $this->getKey('CallsTaken');
+	}
 
-    /**
-     * Returns key: 'Status'.
-     *
-     * @return integer
-     */
-    public function getStatus()
-    {
-        return $this->getKey('Status');
-    }
+	/**
+	 * Returns key: 'Status'.
+	 *
+	 * @return integer
+	 */
+	public function getStatus() {
+		return $this->getKey('Status');
+	}
 
-    /**
-     * Returns key: 'Pause'.
-     *
-     * @return boolean
-     */
-    public function getPaused()
-    {
-        return intval($this->getKey('Paused')) != 0;
-    }
+	/**
+	 * Returns key: 'Pause'.
+	 *
+	 * @return boolean
+	 */
+	public function getPaused() {
+		return intval($this->getKey('Paused')) != 0;
+	}
 }

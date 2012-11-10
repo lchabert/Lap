@@ -32,7 +32,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Monitor action message. Will always record with .wav format and mixing the
  * input and output channels. Also, the filename is mandatory:
@@ -49,22 +48,20 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class MonitorAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $channel  Channel to monitor.
-     * @param string $filename Absolute path to target filename.
-     *
-     * @return void
-     */
-    public function __construct($channel, $filename)
-    {
-        parent::__construct('Monitor');
-        $this->setKey('Channel', $channel);
-        $this->setKey('Mix', 'true');
-        $this->setKey('Format', 'wav');
-        $this->setKey('File', $filename);
-    }
+class MonitorAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $channel  Channel to monitor.
+	 * @param string $filename Absolute path to target filename.
+	 *
+	 * @return void
+	 */
+	public function __construct($channel, $filename) {
+		parent::__construct('Monitor');
+		$this->setKey('Channel', $channel);
+		$this->setKey('Mix', 'true');
+		$this->setKey('Format', 'wav');
+		$this->setKey('File', $filename);
+	}
 }

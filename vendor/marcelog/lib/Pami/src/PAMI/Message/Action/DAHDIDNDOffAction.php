@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * DAHDIDNDoff action message.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DAHDIDNDOffAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $channel Target dahdi Channel.
-     *
-     * @return void
-     */
-    public function __construct($channel)
-    {
-        parent::__construct('DAHDIDNDOff');
-        $this->setKey('DAHDIChannel', $channel);
-    }
+class DAHDIDNDOffAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $channel Target dahdi Channel.
+	 *
+	 * @return void
+	 */
+	public function __construct($channel) {
+		parent::__construct('DAHDIDNDOff');
+		$this->setKey('DAHDIChannel', $channel);
+	}
 }

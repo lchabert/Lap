@@ -63,7 +63,7 @@ class LoggerFilterStringMatch extends LoggerFilter {
 	public function setAcceptOnMatch($acceptOnMatch) {
 		$this->setBoolean('acceptOnMatch', $acceptOnMatch);
 	}
-	
+
 	/**
 	 * @param string $s the string to match
 	 */
@@ -76,13 +76,14 @@ class LoggerFilterStringMatch extends LoggerFilter {
 	 */
 	public function decide(LoggerLoggingEvent $event) {
 		$msg = $event->getRenderedMessage();
-		
-		if($msg === null or $this->stringToMatch === null) {
+
+		if ($msg === null or $this->stringToMatch === null) {
 			return LoggerFilter::NEUTRAL;
 		}
-		
-		if(strpos($msg, $this->stringToMatch) !== false ) {
-			return ($this->acceptOnMatch) ? LoggerFilter::ACCEPT : LoggerFilter::DENY;
+
+		if (strpos($msg, $this->stringToMatch) !== false) {
+			return ($this->acceptOnMatch) ? LoggerFilter::ACCEPT
+					: LoggerFilter::DENY;
 		}
 		return LoggerFilter::NEUTRAL;
 	}

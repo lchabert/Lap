@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,15 +42,13 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DongleShowDevicesCompleteEvent extends EventMessage
-{
-    /**
-     * Returns key: 'ListItems'.
-     *
-     * @return string
-     */
-    public function getListItems()
-    {
-        return $this->getKey('listitems');
-    }
+class DongleShowDevicesCompleteEvent extends EventMessage {
+	/**
+	 * Returns key: 'ListItems'.
+	 *
+	 * @return string
+	 */
+	public function getListItems() {
+		return $this->getKey('listitems');
+	}
 }

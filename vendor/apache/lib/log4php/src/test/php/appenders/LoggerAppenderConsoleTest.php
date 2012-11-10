@@ -27,63 +27,55 @@
  * @group appenders
  */
 class LoggerAppenderConsoleTest extends PHPUnit_Framework_TestCase {
-	
+
 	private $config = array(
-		'rootLogger' => array(
-			'appenders' => array('default'),
-		),
-		'appenders' => array(
-			'default' => array(
-				'class' => 'LoggerAppenderConsole',
-				'layout' => array(
-					'class' => 'LoggerLayoutPattern',
-					'params' => array(
-						// Intentionally blank so output doesn't clutter phpunit output
-						'conversionPattern' => '' 
-					)
-				),
-			)
-		)
-	);
-	
+			'rootLogger' => array('appenders' => array('default'),),
+			'appenders' => array(
+					'default' => array('class' => 'LoggerAppenderConsole',
+							'layout' => array(
+									'class' => 'LoggerLayoutPattern',
+									'params' => array(
+									// Intentionally blank so output doesn't clutter phpunit output
+									'conversionPattern' => '')),)));
+
 	public function testRequiresLayout() {
-		$appender = new LoggerAppenderConsole(); 
+		$appender = new LoggerAppenderConsole();
 		self::assertTrue($appender->requiresLayout());
 	}
-	
-    public function testAppendDefault() {
-    	Logger::configure($this->config);
-    	$log = Logger::getRootLogger();
-    	
-    	$expected = LoggerAppenderConsole::STDOUT;
-    	$actual = $log->getAppender('default')->getTarget();
-    	$this->assertSame($expected, $actual);
-    	
-    	$log->info("hello");
-    }
 
-    public function testAppendStdout() {
-    	$this->config['appenders']['default']['params']['target'] = 'stdout';
-    	
-    	Logger::configure($this->config);
-    	$log = Logger::getRootLogger();
-    	 
-    	$expected = LoggerAppenderConsole::STDOUT;
-    	$actual = $log->getAppender('default')->getTarget();
-    	$this->assertSame($expected, $actual);
-    	 
-    	$log->info("hello");
-    }
-    
-    public function testAppendStderr() {
-    	$this->config['appenders']['default']['params']['target'] = 'stderr';
-    	Logger::configure($this->config);
-    	$log = Logger::getRootLogger();
-    	$expected = LoggerAppenderConsole::STDERR;
-    	 
-    	$actual = $log->getAppender('default')->getTarget();
-    	$this->assertSame($expected, $actual);
-    	 
-    	$log->info("hello");
-    }
+	public function testAppendDefault() {
+		Logger::configure($this->config);
+		$log = Logger::getRootLogger();
+
+		$expected = LoggerAppenderConsole::STDOUT;
+		$actual = $log->getAppender('default')->getTarget();
+		$this->assertSame($expected, $actual);
+
+		$log->info("hello");
+	}
+
+	public function testAppendStdout() {
+		$this->config['appenders']['default']['params']['target'] = 'stdout';
+
+		Logger::configure($this->config);
+		$log = Logger::getRootLogger();
+
+		$expected = LoggerAppenderConsole::STDOUT;
+		$actual = $log->getAppender('default')->getTarget();
+		$this->assertSame($expected, $actual);
+
+		$log->info("hello");
+	}
+
+	public function testAppendStderr() {
+		$this->config['appenders']['default']['params']['target'] = 'stderr';
+		Logger::configure($this->config);
+		$log = Logger::getRootLogger();
+		$expected = LoggerAppenderConsole::STDERR;
+
+		$actual = $log->getAppender('default')->getTarget();
+		$this->assertSame($expected, $actual);
+
+		$log->info("hello");
+	}
 }

@@ -22,7 +22,7 @@
  * @link       http://logging.apache.org/log4php
  */
 
-error_reporting(E_ALL | E_STRICT); 
+error_reporting(E_ALL | E_STRICT);
 
 // Required for testing logging of sessionID in pattern layout
 session_start();

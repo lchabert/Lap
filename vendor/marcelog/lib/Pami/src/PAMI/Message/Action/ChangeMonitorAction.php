@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Changes the monitor filename.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class ChangeMonitorAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $channel  Channel to monitor.
-     * @param string $filename Absolute path to target filename.
-     *
-     * @return void
-     */
-    public function __construct($channel, $filename)
-    {
-        parent::__construct('ChangeMonitor');
-        $this->setKey('Channel', $channel);
-        $this->setKey('File', $filename);
-    }
+class ChangeMonitorAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $channel  Channel to monitor.
+	 * @param string $filename Absolute path to target filename.
+	 *
+	 * @return void
+	 */
+	public function __construct($channel, $filename) {
+		parent::__construct('ChangeMonitor');
+		$this->setKey('Channel', $channel);
+		$this->setKey('File', $filename);
+	}
 }

@@ -27,7 +27,6 @@
  *
  */
 namespace PAMI\Message;
-
 /**
  * A generic ami message, in-or-outbound.
  *
@@ -39,8 +38,7 @@ namespace PAMI\Message;
  * @license  http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link     http://marcelog.github.com/PAMI/
  */
-abstract class Message
-{
+abstract class Message {
 	/**
 	 * End Of Line means this token.
 	 * @var string
@@ -78,24 +76,22 @@ abstract class Message
 	 */
 	protected $createdDate;
 
-    /**
-     * Serialize function.
-     *
-     * @return string[]
-     */
-    public function __sleep()
-    {
-        return array('lines', 'variables', 'keys', 'createdDate');
-    }
+	/**
+	 * Serialize function.
+	 *
+	 * @return string[]
+	 */
+	public function __sleep() {
+		return array('lines', 'variables', 'keys', 'createdDate');
+	}
 
 	/**
 	 * Returns created date.
 	 *
 	 * @return integer
 	 */
-	public function getCreatedDate()
-	{
-	    return $this->createdDate;
+	public function getCreatedDate() {
+		return $this->createdDate;
 	}
 
 	/**
@@ -106,10 +102,9 @@ abstract class Message
 	 *
 	 * @return void
 	 */
-	public function setVariable($key, $value)
-	{
-	    $key = strtolower($key);
-	    $this->variables[$key] = $value;
+	public function setVariable($key, $value) {
+		$key = strtolower($key);
+		$this->variables[$key] = $value;
 	}
 
 	/**
@@ -119,11 +114,10 @@ abstract class Message
 	 *
 	 * @return string
 	 */
-	public function getVariable($key)
-	{
-	    $key = strtolower($key);
+	public function getVariable($key) {
+		$key = strtolower($key);
 		if (!isset($this->variables[$key])) {
-		    return null;
+			return null;
 		}
 		return $this->variables[$key];
 	}
@@ -136,10 +130,9 @@ abstract class Message
 	 *
 	 * @return void
 	 */
-	protected function setKey($key, $value)
-	{
-	    $key = strtolower((string)$key);
-	    $this->keys[$key] = (string)$value;
+	protected function setKey($key, $value) {
+		$key = strtolower((string) $key);
+		$this->keys[$key] = (string) $value;
 	}
 
 	/**
@@ -149,13 +142,12 @@ abstract class Message
 	 *
 	 * @return string
 	 */
-	public function getKey($key)
-	{
-	    $key = strtolower($key);
-	    if (!isset($this->keys[$key])) {
-		    return null;
+	public function getKey($key) {
+		$key = strtolower($key);
+		if (!isset($this->keys[$key])) {
+			return null;
 		}
-		return (string)$this->keys[$key];
+		return (string) $this->keys[$key];
 	}
 
 	/**
@@ -163,9 +155,8 @@ abstract class Message
 	 *
 	 * @return string[]
 	 */
-	public function getKeys()
-	{
-	    return $this->keys;
+	public function getKeys() {
+		return $this->keys;
 	}
 
 	/**
@@ -173,9 +164,8 @@ abstract class Message
 	 *
 	 * @return string[]
 	 */
-	public function getVariables()
-	{
-	    return $this->variables;
+	public function getVariables() {
+		return $this->variables;
 	}
 
 	/**
@@ -183,8 +173,7 @@ abstract class Message
 	 *
 	 * @return string
 	 */
-	protected function finishMessage($message)
-	{
+	protected function finishMessage($message) {
 		return $message . self::EOL . self::EOL;
 	}
 
@@ -196,8 +185,7 @@ abstract class Message
 	 *
 	 * @return string
 	 */
-	private function serializeVariable($key, $value)
-	{
+	private function serializeVariable($key, $value) {
 		return "Variable: $key=$value";
 	}
 
@@ -207,42 +195,39 @@ abstract class Message
 	 *
 	 * @return string
 	 */
-	public function serialize()
-	{
-	    $result = array();
-	    foreach ($this->getKeys() as $k => $v) {
-	        $result[] = $k . ': ' . $v;
-	    }
-	    foreach ($this->getVariables() as $k => $v) {
-            if (is_array($v)) {
-                foreach ($v as $singleValue) {
-        	        $result[] = $this->serializeVariable($k, $singleValue);
-                }
-            } else {
-        	    $result[] = $this->serializeVariable($k, $v);
-            }
-	    }
-	    $mStr = $this->finishMessage(implode(self::EOL, $result));
-	    return $mStr;
+	public function serialize() {
+		$result = array();
+		foreach ($this->getKeys() as $k => $v) {
+			$result[] = $k . ': ' . $v;
+		}
+		foreach ($this->getVariables() as $k => $v) {
+			if (is_array($v)) {
+				foreach ($v as $singleValue) {
+					$result[] = $this->serializeVariable($k, $singleValue);
+				}
+			} else {
+				$result[] = $this->serializeVariable($k, $v);
+			}
+		}
+		$mStr = $this->finishMessage(implode(self::EOL, $result));
+		return $mStr;
 	}
 
 	/**
-     * Returns key: 'ActionID'.
-     *
-     * @return string
-     */
-    public function getActionID()
-    {
-        return $this->getKey('ActionID');
-    }
+	 * Returns key: 'ActionID'.
+	 *
+	 * @return string
+	 */
+	public function getActionID() {
+		return $this->getKey('ActionID');
+	}
 
 	/**
 	 * Constructor.
 	 *
 	 * @return void
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		$this->lines = array();
 		$this->variables = array();
 		$this->keys = array();

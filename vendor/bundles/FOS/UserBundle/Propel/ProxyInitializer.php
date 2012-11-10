@@ -10,7 +10,6 @@
  */
 
 namespace FOS\UserBundle\Propel;
-
 use Symfony\Component\Validator\ObjectInitializerInterface;
 
 /**
@@ -19,12 +18,10 @@ use Symfony\Component\Validator\ObjectInitializerInterface;
  *
  * @todo Drop it once we get rid of the UserProxy
  */
-class ProxyInitializer implements ObjectInitializerInterface
-{
-    public function initialize($object)
-    {
-        if ($object instanceof UserProxy) {
-            $object->updateParent();
-        }
-    }
+class ProxyInitializer implements ObjectInitializerInterface {
+	public function initialize($object) {
+		if ($object instanceof UserProxy) {
+			$object->updateParent();
+		}
+	}
 }

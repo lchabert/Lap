@@ -30,25 +30,27 @@ class LoggerLayoutPatternTest extends PHPUnit_Framework_TestCase {
 
 	/** Pattern used for testing. */
 	private $pattern = "%-6level %logger: %msg from %class::%method() in %file at %line%n";
-	
+
 	public function testComplexLayout() {
-		
+
 		$config = LoggerTestHelper::getEchoPatternConfig($this->pattern);
 		Logger::configure($config);
-		
+
 		ob_start();
 		$log = Logger::getLogger('LoggerTest');
-		$log->error("my message"); $line = __LINE__;
+		$log->error("my message");
+		$line = __LINE__;
 		$actual = ob_get_contents();
 		ob_end_clean();
-		
+
 		$file = __FILE__;
 		$class = __CLASS__;
 		$method = __FUNCTION__;
-		
-		$expected = "ERROR  LoggerTest: my message from $class::$method() in $file at $line" . PHP_EOL;
+
+		$expected = "ERROR  LoggerTest: my message from $class::$method() in $file at $line"
+				. PHP_EOL;
 		self::assertSame($expected, $actual);
-		
+
 		Logger::resetConfiguration();
-    }
+	}
 }

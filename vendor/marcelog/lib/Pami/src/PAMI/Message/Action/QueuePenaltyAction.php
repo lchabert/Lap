@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * QueuePenalty action message.
  *
@@ -41,23 +40,21 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class QueuePenaltyAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $queue Queue name.
-     * @param string $event Event.
-     *
-     * @return void
-     */
-    public function __construct($interface, $penalty, $queue = false)
-    {
-        parent::__construct('QueuePenalty');
-        $this->setKey('Interface', $interface);
-        $this->setKey('Penalty', $penalty);
-        if ($queue !== false) {
-            $this->setKey('Queue', $queue);
-        }
-    }
+class QueuePenaltyAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $queue Queue name.
+	 * @param string $event Event.
+	 *
+	 * @return void
+	 */
+	public function __construct($interface, $penalty, $queue = false) {
+		parent::__construct('QueuePenalty');
+		$this->setKey('Interface', $interface);
+		$this->setKey('Penalty', $penalty);
+		if ($queue !== false) {
+			$this->setKey('Queue', $queue);
+		}
+	}
 }

@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Hangup action message.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class HangupAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $channel Channel to hangup.
-     *
-     * @return void
-     */
-    public function __construct($channel)
-    {
-        parent::__construct('Hangup');
-        $this->setKey('Channel', $channel);
-    }
+class HangupAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $channel Channel to hangup.
+	 *
+	 * @return void
+	 */
+	public function __construct($channel) {
+		parent::__construct('Hangup');
+		$this->setKey('Channel', $channel);
+	}
 }

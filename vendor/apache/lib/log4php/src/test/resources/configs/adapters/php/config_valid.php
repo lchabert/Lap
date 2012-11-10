@@ -22,21 +22,12 @@
  * @version    $Revision: 1374580 $
  * @link       http://logging.apache.org/log4php
  */
- 
+
 return array(
-	'rootLogger' => array(
-		'level' => 'info',
-		'appenders' => array('default')
-	),
-	'appenders' => array(
-		'default' => array(
-			'class' => 'LoggerAppenderEcho',
-			'layout' => array(
-				'class' => 'LoggerLayoutSimple'
-			 )
-		)
-	)
-)
-;
+		'rootLogger' => array('level' => 'info',
+				'appenders' => array('default')),
+		'appenders' => array(
+				'default' => array('class' => 'LoggerAppenderEcho',
+						'layout' => array('class' => 'LoggerLayoutSimple'))));
 
 ?>

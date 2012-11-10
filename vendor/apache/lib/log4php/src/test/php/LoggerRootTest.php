@@ -26,7 +26,7 @@
  * @group main
  */
 class LoggerRootTest extends PHPUnit_Framework_TestCase {
-    
+
 	public function testInitialSetup() {
 		$root = new LoggerRoot();
 		self::assertSame(LoggerLevel::getLevelAll(), $root->getLevel());
@@ -44,14 +44,14 @@ class LoggerRootTest extends PHPUnit_Framework_TestCase {
 		$logger = new Logger('test');
 		$root->setParent($logger);
 	}
-	
+
 	public function testSetParentResult() {
 		$root = new LoggerRoot();
 		$logger = new Logger('test');
 		@$root->setParent($logger);
 		self::assertNull($root->getParent());
 	}
-	
+
 	/**
 	 * @expectedException PHPUnit_Framework_Error
 	 * @expectedExceptionMessage log4php: Cannot set LoggerRoot level to null.

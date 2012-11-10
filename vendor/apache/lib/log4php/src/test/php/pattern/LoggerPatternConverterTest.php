@@ -24,7 +24,8 @@
  */
 
 /** Converter referencing non-existant superglobal variable. */
-class LoggerInvalidSuperglobalConverter extends LoggerPatternConverterSuperglobal {
+class LoggerInvalidSuperglobalConverter extends
+		LoggerPatternConverterSuperglobal {
 	protected $name = '_FOO';
 }
 
@@ -82,7 +83,7 @@ class LoggerPatternConverterTest extends PHPUnit_Framework_TestCase {
 		$actual = $converter->convert($this->event);
 		$expected = date('c', $this->event->getTimeStamp());
 		self::assertSame($expected, $actual);
-		
+
 		$converter = new LoggerPatternConverterDate($this->info, '');
 		$actual = $converter->convert($this->event);
 		$expected = date('c', $this->event->getTimeStamp());
@@ -157,42 +158,46 @@ class LoggerPatternConverterTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testLocation() {
-		$config = LoggerTestHelper::getEchoPatternConfig("%file:%line:%class:%method");
+		$config = LoggerTestHelper::getEchoPatternConfig(
+				"%file:%line:%class:%method");
 		Logger::configure($config);
 
 		// Test by capturing output. Logging methods of a Logger object must
 		// be used for the location info to be formed correctly.
 		ob_start();
 		$log = Logger::getLogger('foo');
-		$log->info('foo'); $line = __LINE__; // Do NOT move this to next line.
+		$log->info('foo');
+		$line = __LINE__; // Do NOT move this to next line.
 		$actual = ob_get_contents();
 		ob_end_clean();
 
-		$expected = implode(':', array(__FILE__, $line, __CLASS__, __FUNCTION__));
+		$expected = implode(':',
+				array(__FILE__, $line, __CLASS__, __FUNCTION__));
 		self::assertSame($expected, $actual);
 
 		Logger::resetConfiguration();
 	}
-	
+
 	public function testLocation2() {
 		$config = LoggerTestHelper::getEchoPatternConfig("%location");
 		Logger::configure($config);
-	
+
 		// Test by capturing output. Logging methods of a Logger object must
 		// be used for the location info to be formed correctly.
 		ob_start();
 		$log = Logger::getLogger('foo');
-		$log->info('foo'); $line = __LINE__; // Do NOT move this to next line.
+		$log->info('foo');
+		$line = __LINE__; // Do NOT move this to next line.
 		$actual = ob_get_contents();
 		ob_end_clean();
-	
+
 		$class = __CLASS__;
 		$func = __FUNCTION__;
 		$file = __FILE__;
-		
+
 		$expected = "$class.$func($file:$line)";
 		self::assertSame($expected, $actual);
-	
+
 		Logger::resetConfiguration();
 	}
 
@@ -256,7 +261,8 @@ class LoggerPatternConverterTest extends PHPUnit_Framework_TestCase {
 
 	public function testRelative() {
 		$converter = new LoggerPatternConverterRelative($this->info);
-		$expected = number_format($this->event->getTimeStamp() - $this->event->getStartTime(), 4);
+		$expected = number_format(
+				$this->event->getTimeStamp() - $this->event->getStartTime(), 4);
 		$actual = $converter->convert($this->event);
 		self::assertSame($expected, $actual);
 	}

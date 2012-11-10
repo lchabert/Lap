@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,75 +42,67 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class ListDialPlanEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Context'.
-     *
-     * @return string
-     */
-    public function getContext()
-    {
-        return $this->getKey('Context');
-    }
+class ListDialPlanEvent extends EventMessage {
+	/**
+	 * Returns key: 'Context'.
+	 *
+	 * @return string
+	 */
+	public function getContext() {
+		return $this->getKey('Context');
+	}
 
-    /**
-     * Returns key: 'Extension'.
-     *
-     * @return string
-     */
-    public function getExtension()
-    {
-        return $this->getKey('Extension');
-    }
+	/**
+	 * Returns key: 'Extension'.
+	 *
+	 * @return string
+	 */
+	public function getExtension() {
+		return $this->getKey('Extension');
+	}
 
-    /**
-     * Returns key: 'Priority'.
-     *
-     * @return string
-     */
-    public function getPriority()
-    {
-        return $this->getKey('Priority');
-    }
+	/**
+	 * Returns key: 'Priority'.
+	 *
+	 * @return string
+	 */
+	public function getPriority() {
+		return $this->getKey('Priority');
+	}
 
-    /**
-     * Returns key: 'Application'.
-     *
-     * @return string
-     */
-    public function getApplication()
-    {
-        return $this->getKey('Application');
-    }
+	/**
+	 * Returns key: 'Application'.
+	 *
+	 * @return string
+	 */
+	public function getApplication() {
+		return $this->getKey('Application');
+	}
 
-    /**
-     * Returns key: 'AppData'.
-     *
-     * @return string
-     */
-    public function getApplicationData()
-    {
-        return $this->getKey('AppData');
-    }
+	/**
+	 * Returns key: 'AppData'.
+	 *
+	 * @return string
+	 */
+	public function getApplicationData() {
+		return $this->getKey('AppData');
+	}
 
-    /**
-     * Returns key: 'Registrar'.
-     *
-     * @return string
-     */
-    public function getRegistrar()
-    {
-        return $this->getKey('Registrar');
-    }
+	/**
+	 * Returns key: 'Registrar'.
+	 *
+	 * @return string
+	 */
+	public function getRegistrar() {
+		return $this->getKey('Registrar');
+	}
 
-    /**
-     * Returns key: 'IncludeContext'.
-     *
-     * @return string
-     */
-    public function getIncludeContext()
-    {
-        return $this->getKey('IncludeContext');
-    }
+	/**
+	 * Returns key: 'IncludeContext'.
+	 *
+	 * @return string
+	 */
+	public function getIncludeContext() {
+		return $this->getKey('IncludeContext');
+	}
 }

@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,95 +42,85 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class AgentConnectEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class AgentConnectEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'HoldTime'.
-     *
-     * @return string
-     */
-    public function getHoldTime()
-    {
-        return $this->getKey('HoldTime');
-    }
+	/**
+	 * Returns key: 'HoldTime'.
+	 *
+	 * @return string
+	 */
+	public function getHoldTime() {
+		return $this->getKey('HoldTime');
+	}
 
-    /**
-     * Returns key: 'BridgedChannel'.
-     *
-     * @return string
-     */
-    public function getBridgedChannel()
-    {
-        return $this->getKey('BridgedChannel');
-    }
+	/**
+	 * Returns key: 'BridgedChannel'.
+	 *
+	 * @return string
+	 */
+	public function getBridgedChannel() {
+		return $this->getKey('BridgedChannel');
+	}
 
-    /**
-     * Returns key: 'RingTime'.
-     *
-     * @return string
-     */
-    public function getRingTime()
-    {
-        return $this->getKey('RingTime');
-    }
+	/**
+	 * Returns key: 'RingTime'.
+	 *
+	 * @return string
+	 */
+	public function getRingTime() {
+		return $this->getKey('RingTime');
+	}
 
-    /**
-     * Returns key: 'Member'.
-     *
-     * @return string
-     */
-    public function getMember()
-    {
-        return $this->getKey('Member');
-    }
+	/**
+	 * Returns key: 'Member'.
+	 *
+	 * @return string
+	 */
+	public function getMember() {
+		return $this->getKey('Member');
+	}
 
-    /**
-     * Returns key: 'MemberName'.
-     *
-     * @return string
-     */
-    public function getMemberName()
-    {
-        return $this->getKey('MemberName');
-    }
+	/**
+	 * Returns key: 'MemberName'.
+	 *
+	 * @return string
+	 */
+	public function getMemberName() {
+		return $this->getKey('MemberName');
+	}
 
-    /**
-     * Returns key: 'Queue'.
-     *
-     * @return string
-     */
-    public function getQueue()
-    {
-        return $this->getKey('Queue');
-    }
+	/**
+	 * Returns key: 'Queue'.
+	 *
+	 * @return string
+	 */
+	public function getQueue() {
+		return $this->getKey('Queue');
+	}
 
-    /**
-     * Returns key: 'UniqueID'.
-     *
-     * @return string
-     */
-    public function getUniqueID()
-    {
-        return $this->getKey('UniqueID');
-    }
+	/**
+	 * Returns key: 'UniqueID'.
+	 *
+	 * @return string
+	 */
+	public function getUniqueID() {
+		return $this->getKey('UniqueID');
+	}
 
-    /**
-     * Returns key: 'Channel'.
-     *
-     * @return string
-     */
-    public function getChannel()
-    {
-        return $this->getKey('Channel');
-    }
+	/**
+	 * Returns key: 'Channel'.
+	 *
+	 * @return string
+	 */
+	public function getChannel() {
+		return $this->getKey('Channel');
+	}
 }

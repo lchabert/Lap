@@ -36,174 +36,177 @@
 class LoggerAppenderSyslogTest extends PHPUnit_Framework_TestCase {
 
 	public function testSettersGetters() {
-		
+
 		// Setters should accept any value, without validation 
 		$expected = "Random string value";
-		
+
 		$appender = new LoggerAppenderSyslog();
 		$appender->setIdent($expected);
 		$appender->setFacility($expected);
 		$appender->setOverridePriority($expected);
 		$appender->setPriority($expected);
 		$appender->setOption($expected);
-		
-		$actuals = array(
-			$appender->getIdent(),
-			$appender->getFacility(),
-			$appender->getOverridePriority(),
-			$appender->getPriority(),
-			$appender->getOption()
-		);
-		
-		foreach($actuals as $actual) {
+
+		$actuals = array($appender->getIdent(), $appender->getFacility(),
+				$appender->getOverridePriority(), $appender->getPriority(),
+				$appender->getOption());
+
+		foreach ($actuals as $actual) {
 			$this->assertSame($expected, $actual);
 		}
 	}
-	
+
 	public function testRequiresLayout() {
 		$appender = new LoggerAppenderSyslog();
 		$this->assertTrue($appender->requiresLayout());
 	}
-	
+
 	public function testLogging() {
 		$appender = new LoggerAppenderSyslog("myname");
 		$appender->setLayout(new LoggerLayoutSimple());
 		$appender->activateOptions();
-		
-		$event = new LoggerLoggingEvent(__CLASS__, new Logger("TestLogger"), LoggerLevel::getLevelError(), "testmessage");
+
+		$event = new LoggerLoggingEvent(__CLASS__, new Logger("TestLogger"),
+				LoggerLevel::getLevelError(), "testmessage");
 		$appender->append($event);
 	}
 
 	/** Tests parsing of "option" parameter. */
 	public function testOption() {
-		if(!method_exists('ReflectionProperty', 'setAccessible')) {
-			$this->markTestSkipped("ReflectionProperty::setAccessible() required to perform this test (available in PHP 5.3.2+).");
+		if (!method_exists('ReflectionProperty', 'setAccessible')) {
+			$this
+					->markTestSkipped(
+							"ReflectionProperty::setAccessible() required to perform this test (available in PHP 5.3.2+).");
 		}
-		
-		$options = array(
-			'CONS' => LOG_CONS,
-			'NDELAY' => LOG_NDELAY,
-			'ODELAY' => LOG_ODELAY,
-			'PERROR' => LOG_PERROR,
-			'PID' => LOG_PID,
-			
-			// test some combinations
-			'CONS|NDELAY' => LOG_CONS | LOG_NDELAY,
-			'PID|PERROR' => LOG_PID | LOG_PERROR,
-			'CONS|PID|NDELAY' => LOG_CONS | LOG_PID | LOG_NDELAY
-		);
+
+		$options = array('CONS' => LOG_CONS, 'NDELAY' => LOG_NDELAY,
+				'ODELAY' => LOG_ODELAY, 'PERROR' => LOG_PERROR,
+				'PID' => LOG_PID, 
+				// test some combinations
+				'CONS|NDELAY' => LOG_CONS | LOG_NDELAY,
+				'PID|PERROR' => LOG_PID | LOG_PERROR,
+				'CONS|PID|NDELAY' => LOG_CONS | LOG_PID | LOG_NDELAY);
 
 		// Defaults
 		$defaultStr = "PID|CONS";
 		$default = LOG_PID | LOG_CONS;
-		
+
 		// This makes reading of a private property possible
 		$property = new ReflectionProperty('LoggerAppenderSyslog', 'intOption');
 		$property->setAccessible(true);
-		
+
 		// Check default value first
 		$appender = new LoggerAppenderSyslog();
 		$appender->activateOptions();
 		$actual = $property->getValue($appender);
-		$this->assertSame($default, $actual, "Failed setting default option [$defaultStr]");
-		
-		foreach($options as $option => $expected) {
+		$this
+				->assertSame($default, $actual,
+						"Failed setting default option [$defaultStr]");
+
+		foreach ($options as $option => $expected) {
 			$appender = new LoggerAppenderSyslog();
 			$appender->setOption($option);
 			$appender->activateOptions();
-			
+
 			$actual = $property->getValue($appender);
-			$this->assertSame($expected, $actual, "Failed setting option [$option].");
+			$this
+					->assertSame($expected, $actual,
+							"Failed setting option [$option].");
 		}
 	}
-	
+
 	/** Tests parsing of "priority" parameter. */
 	public function testPriority() {
-		if(!method_exists('ReflectionProperty', 'setAccessible')) {
-			$this->markTestSkipped("ReflectionProperty::setAccessible() required to perform this test (available in PHP 5.3.2+).");
+		if (!method_exists('ReflectionProperty', 'setAccessible')) {
+			$this
+					->markTestSkipped(
+							"ReflectionProperty::setAccessible() required to perform this test (available in PHP 5.3.2+).");
 		}
-	
+
 		$default = null;
 		$defaultStr = 'null';
-	
-		$priorities = array(
-			'EMERG' => LOG_EMERG,
-			'ALERT' => LOG_ALERT,
-			'CRIT' => LOG_CRIT,
-			'ERR' => LOG_ERR,
-			'WARNING' => LOG_WARNING,
-			'NOTICE' => LOG_NOTICE,
-			'INFO' => LOG_INFO,
-			'DEBUG' => LOG_DEBUG
-		);
-	
+
+		$priorities = array('EMERG' => LOG_EMERG, 'ALERT' => LOG_ALERT,
+				'CRIT' => LOG_CRIT, 'ERR' => LOG_ERR, 'WARNING' => LOG_WARNING,
+				'NOTICE' => LOG_NOTICE, 'INFO' => LOG_INFO,
+				'DEBUG' => LOG_DEBUG);
+
 		// This makes reading of a private property possible
-		$property = new ReflectionProperty('LoggerAppenderSyslog', 'intPriority');
+		$property = new ReflectionProperty('LoggerAppenderSyslog',
+				'intPriority');
 		$property->setAccessible(true);
-	
+
 		// Check default value first
 		$appender = new LoggerAppenderSyslog();
 		$appender->activateOptions();
 		$actual = $property->getValue($appender);
-		$this->assertSame($default, $actual, "Failed setting default priority [$defaultStr].");
-	
-		foreach($priorities as $priority => $expected) {
+		$this
+				->assertSame($default, $actual,
+						"Failed setting default priority [$defaultStr].");
+
+		foreach ($priorities as $priority => $expected) {
 			$appender = new LoggerAppenderSyslog();
 			$appender->setPriority($priority);
 			$appender->activateOptions();
-				
+
 			$actual = $property->getValue($appender);
-			$this->assertSame($expected, $actual, "Failed setting priority [$priority].");
+			$this
+					->assertSame($expected, $actual,
+							"Failed setting priority [$priority].");
 		}
 	}
-	
+
 	/** Tests parsing of "facility" parameter. */
 	public function testFacility() {
-		if(!method_exists('ReflectionProperty', 'setAccessible')) {
-			$this->markTestSkipped("ReflectionProperty::setAccessible() required to perform this test (available in PHP 5.3.2+).");
+		if (!method_exists('ReflectionProperty', 'setAccessible')) {
+			$this
+					->markTestSkipped(
+							"ReflectionProperty::setAccessible() required to perform this test (available in PHP 5.3.2+).");
 		}
-	
+
 		// Default value is the same on all OSs
 		$default = LOG_USER;
 		$defaultStr = 'USER';
 
 		// All possible facility strings (some of which might not exist depending on the OS)
-		$strings = array(
-			'KERN', 'USER', 'MAIL', 'DAEMON', 'AUTH',
-			'SYSLOG', 'LPR', 'NEWS', 'UUCP', 'CRON', 'AUTHPRIV',
-			'LOCAL0', 'LOCAL1', 'LOCAL2', 'LOCAL3', 'LOCAL4',
-			'LOCAL5', 'LOCAL6', 'LOCAL7',
-		);
-		
+		$strings = array('KERN', 'USER', 'MAIL', 'DAEMON', 'AUTH', 'SYSLOG',
+				'LPR', 'NEWS', 'UUCP', 'CRON', 'AUTHPRIV', 'LOCAL0', 'LOCAL1',
+				'LOCAL2', 'LOCAL3', 'LOCAL4', 'LOCAL5', 'LOCAL6', 'LOCAL7',);
+
 		// Only test facilities which exist on this OS
 		$facilities = array();
-		foreach($strings as $string) {
+		foreach ($strings as $string) {
 			$const = "LOG_$string";
 			if (defined($const)) {
-				$facilities[$string] = constant($const); 
+				$facilities[$string] = constant($const);
 			}
 		}
-		
+
 		// This makes reading of a private property possible
-		$property = new ReflectionProperty('LoggerAppenderSyslog', 'intFacility');
+		$property = new ReflectionProperty('LoggerAppenderSyslog',
+				'intFacility');
 		$property->setAccessible(true);
-	
+
 		// Check default value first
 		$appender = new LoggerAppenderSyslog();
 		$appender->activateOptions();
 		$actual = $property->getValue($appender);
-		$this->assertSame($default, $default, "Failed setting default facility [$defaultStr].");
-	
-		foreach($facilities as $facility => $expected) {
+		$this
+				->assertSame($default, $default,
+						"Failed setting default facility [$defaultStr].");
+
+		foreach ($facilities as $facility => $expected) {
 			$appender = new LoggerAppenderSyslog();
 			$appender->setFacility($facility);
 			$appender->activateOptions();
-	
+
 			$actual = $property->getValue($appender);
-			$this->assertSame($expected, $actual, "Failed setting priority [$facility].");
+			$this
+					->assertSame($expected, $actual,
+							"Failed setting priority [$facility].");
 		}
 	}
-	
+
 	/**
 	 * @expectedException PHPUnit_Framework_Error
 	 */
@@ -212,7 +215,7 @@ class LoggerAppenderSyslogTest extends PHPUnit_Framework_TestCase {
 		$appender->setOption('CONS|XYZ');
 		$appender->activateOptions();
 	}
-	
+
 	/**
 	 * @expectedException PHPUnit_Framework_Error
 	 */
@@ -221,7 +224,7 @@ class LoggerAppenderSyslogTest extends PHPUnit_Framework_TestCase {
 		$appender->setPriority('XYZ');
 		$appender->activateOptions();
 	}
-	
+
 	/**
 	 * @expectedException PHPUnit_Framework_Error
 	 */
@@ -230,35 +233,33 @@ class LoggerAppenderSyslogTest extends PHPUnit_Framework_TestCase {
 		$appender->setFacility('XYZ');
 		$appender->activateOptions();
 	}
-	
-	
+
 	public function testPriorityOverride() {
-		if(!method_exists('ReflectionProperty', 'setAccessible')) {
-			$this->markTestSkipped("ReflectionProperty::setAccessible() required to perform this test (available in PHP 5.3.2+).");
+		if (!method_exists('ReflectionProperty', 'setAccessible')) {
+			$this
+					->markTestSkipped(
+							"ReflectionProperty::setAccessible() required to perform this test (available in PHP 5.3.2+).");
 		}
-		
+
 		$appender = new LoggerAppenderSyslog();
 		$appender->setPriority('EMERG');
 		$appender->setOverridePriority(true);
 		$appender->activateOptions();
-		
-		$levels = array(
-			LoggerLevel::getLevelTrace(),
-			LoggerLevel::getLevelDebug(),
-			LoggerLevel::getLevelInfo(),
-			LoggerLevel::getLevelWarn(),
-			LoggerLevel::getLevelError(),
-			LoggerLevel::getLevelFatal(),
-		);
-		
+
+		$levels = array(LoggerLevel::getLevelTrace(),
+				LoggerLevel::getLevelDebug(), LoggerLevel::getLevelInfo(),
+				LoggerLevel::getLevelWarn(), LoggerLevel::getLevelError(),
+				LoggerLevel::getLevelFatal(),);
+
 		$expected = LOG_EMERG;
-		
-		$method = new ReflectionMethod('LoggerAppenderSyslog', 'getSyslogPriority');
+
+		$method = new ReflectionMethod('LoggerAppenderSyslog',
+				'getSyslogPriority');
 		$method->setAccessible(true);
-		
-		foreach($levels as $level) {
+
+		foreach ($levels as $level) {
 			$actual = $method->invoke($appender, $level);
-			$this->assertSame($expected, $actual);		
+			$this->assertSame($expected, $actual);
 		}
 	}
 }

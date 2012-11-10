@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * GetConfig action message.
  *
@@ -41,22 +40,20 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class GetConfigAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string  $filename Configuration filename (e.g.: foo.conf).
-     * @param boolean $category Category in configuration file.
-     *
-     * @return void
-     */
-    public function __construct($filename, $category = false)
-    {
-        parent::__construct('GetConfig');
-        $this->setKey('Filename', $filename);
-        if ($category != false) {
-            $this->setKey('Category', $category);
-        }
-    }
+class GetConfigAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string  $filename Configuration filename (e.g.: foo.conf).
+	 * @param boolean $category Category in configuration file.
+	 *
+	 * @return void
+	 */
+	public function __construct($filename, $category = false) {
+		parent::__construct('GetConfig');
+		$this->setKey('Filename', $filename);
+		if ($category != false) {
+			$this->setKey('Category', $category);
+		}
+	}
 }

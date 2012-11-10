@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,35 +42,31 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class MessageWaitingEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class MessageWaitingEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'Mailbox'.
-     *
-     * @return string
-     */
-    public function getMailbox()
-    {
-        return $this->getKey('Mailbox');
-    }
+	/**
+	 * Returns key: 'Mailbox'.
+	 *
+	 * @return string
+	 */
+	public function getMailbox() {
+		return $this->getKey('Mailbox');
+	}
 
-    /**
-     * Returns key: 'Waiting'.
-     *
-     * @return string
-     */
-    public function getWaiting()
-    {
-        return $this->getKey('Waiting');
-    }
+	/**
+	 * Returns key: 'Waiting'.
+	 *
+	 * @return string
+	 */
+	public function getWaiting() {
+		return $this->getKey('Waiting');
+	}
 }

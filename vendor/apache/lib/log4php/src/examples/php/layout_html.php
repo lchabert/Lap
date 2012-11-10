@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 // START SNIPPET: doxia
-require_once dirname(__FILE__).'/../../main/php/Logger.php';
+require_once dirname(__FILE__) . '/../../main/php/Logger.php';
 
-Logger::configure(dirname(__FILE__).'/../resources/layout_html.properties');
+Logger::configure(dirname(__FILE__) . '/../resources/layout_html.properties');
 $logger = Logger::getRootLogger();
 $logger->info("Hello World!");

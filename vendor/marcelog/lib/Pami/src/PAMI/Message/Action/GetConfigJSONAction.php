@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * GetConfigJSON action message.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class GetConfigJSONAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $filename Configuration filename (e.g.: foo.conf).
-     *
-     * @return void
-     */
-    public function __construct($filename)
-    {
-        parent::__construct('GetConfigJSON');
-        $this->setKey('Filename', $filename);
-    }
+class GetConfigJSONAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $filename Configuration filename (e.g.: foo.conf).
+	 *
+	 * @return void
+	 */
+	public function __construct($filename) {
+		parent::__construct('GetConfigJSON');
+		$this->setKey('Filename', $filename);
+	}
 }

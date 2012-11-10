@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * ModuleCheck action message.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class ModuleCheckAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $module Module name.
-     *
-     * @return void
-     */
-    public function __construct($module)
-    {
-        parent::__construct('ModuleCheck');
-        $this->setKey('Module', $module);
-    }
+class ModuleCheckAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $module Module name.
+	 *
+	 * @return void
+	 */
+	public function __construct($module) {
+		parent::__construct('ModuleCheck');
+		$this->setKey('Module', $module);
+	}
 }

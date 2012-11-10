@@ -22,28 +22,34 @@
  * @version    $Revision: 1374580 $
  * @link       http://logging.apache.org/log4php
  */
-class MyFilter extends LoggerFilter {}
+class MyFilter extends LoggerFilter {
+}
 
 /**
  * @group filters
  */
 class LoggerFilterTest extends PHPUnit_Framework_TestCase {
-        
+
 	public function testDecide() {
 		$filter = new MyFilter();
 		// activateOptions is empty, but should at least throw no exeception
 		$filter->activateOptions();
-		$eventError = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
-		$eventDebug = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelDebug(), "testmessage");
-		$eventWarn = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelWarn(), "testmessage");
-		
+		$eventError = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelError(),
+				"testmessage");
+		$eventDebug = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelDebug(),
+				"testmessage");
+		$eventWarn = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelWarn(), "testmessage");
+
 		$result = $filter->decide($eventError);
 		self::assertEquals($result, LoggerFilter::NEUTRAL);
-		
+
 		$result = $filter->decide($eventDebug);
 		self::assertEquals($result, LoggerFilter::NEUTRAL);
-		
+
 		$result = $filter->decide($eventWarn);
 		self::assertEquals($result, LoggerFilter::NEUTRAL);
-    }
+	}
 }

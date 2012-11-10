@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Command action message.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class CommandAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $command CLI Command to issue.
-     *
-     * @return void
-     */
-    public function __construct($command)
-    {
-        parent::__construct('Command');
-        $this->setKey('Command', $command);
-    }
+class CommandAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $command CLI Command to issue.
+	 *
+	 * @return void
+	 */
+	public function __construct($command) {
+		parent::__construct('Command');
+		$this->setKey('Command', $command);
+	}
 }

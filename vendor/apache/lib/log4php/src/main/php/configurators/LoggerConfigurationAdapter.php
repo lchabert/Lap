@@ -30,10 +30,9 @@
  * @version $Revision: 1343601 $
  * @since 2.2
  */
-interface LoggerConfigurationAdapter
-{
+interface LoggerConfigurationAdapter {
 	/** Converts the configuration file to PHP format usable by the configurator. */
-	public function convert($input); 
+	public function convert($input);
 
 }
 

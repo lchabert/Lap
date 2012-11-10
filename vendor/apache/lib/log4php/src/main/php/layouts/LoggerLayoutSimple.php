@@ -37,7 +37,7 @@
  * @version $Revision: 1213283 $
  * @package log4php
  * @subpackage layouts
- */  
+ */ 
 class LoggerLayoutSimple extends LoggerLayout {
 	/**
 	 * Returns the log statement in a format consisting of the

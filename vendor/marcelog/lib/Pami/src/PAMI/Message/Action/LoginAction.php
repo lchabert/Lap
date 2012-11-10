@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Login action message.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class LoginAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $user     AMI username.
-     * @param string $password AMI password.
-     *
-     * @return void
-     */
-    public function __construct($user, $password)
-    {
-        parent::__construct('Login');
-        $this->setKey('Username', $user);
-        $this->setKey('Secret', $password);
-    }
+class LoginAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $user     AMI username.
+	 * @param string $password AMI password.
+	 *
+	 * @return void
+	 */
+	public function __construct($user, $password) {
+		parent::__construct('Login');
+		$this->setKey('Username', $user);
+		$this->setKey('Secret', $password);
+	}
 }

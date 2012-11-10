@@ -10,11 +10,9 @@
  */
 
 namespace FOS\UserBundle\Form\Model;
-
-class ChangePassword
-{
-    /**
-     * @var string
-     */
-    public $new;
+class ChangePassword {
+	/**
+	 * @var string
+	 */
+	public $new;
 }

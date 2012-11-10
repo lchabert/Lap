@@ -26,13 +26,13 @@
  * @group main
  */
 class LoggerHierarchyTest extends PHPUnit_Framework_TestCase {
-        
+
 	private $hierarchy;
-        
+
 	protected function setUp() {
 		$this->hierarchy = new LoggerHierarchy(new LoggerRoot());
 	}
-	
+
 	public function testResetConfiguration() {
 		$root = $this->hierarchy->getRootLogger();
 		$appender = new LoggerAppenderConsole('A1');
@@ -40,56 +40,57 @@ class LoggerHierarchyTest extends PHPUnit_Framework_TestCase {
 
 		$logger = $this->hierarchy->getLogger('test');
 		self::assertEquals(1, count($this->hierarchy->getCurrentLoggers()));
-		
+
 		$this->hierarchy->resetConfiguration();
 		self::assertEquals(LoggerLevel::getLevelDebug(), $root->getLevel());
-		self::assertEquals(LoggerLevel::getLevelAll(), $this->hierarchy->getThreshold());
+		self::assertEquals(LoggerLevel::getLevelAll(),
+				$this->hierarchy->getThreshold());
 		self::assertEquals(1, count($this->hierarchy->getCurrentLoggers()));
-		
-		foreach($this->hierarchy->getCurrentLoggers() as $logger) {
+
+		foreach ($this->hierarchy->getCurrentLoggers() as $logger) {
 			self::assertNull($logger->getLevel());
 			self::assertTrue($logger->getAdditivity());
 			self::assertEquals(0, count($logger->getAllAppenders()), 0);
 		}
 	}
-	
+
 	public function testSettingParents() {
 		$hierarchy = $this->hierarchy;
 		$loggerDE = $hierarchy->getLogger("de");
 		$root = $loggerDE->getParent();
 		self::assertEquals('root', $root->getName());
-		
+
 		$loggerDEBLUB = $hierarchy->getLogger("de.blub");
 		self::assertEquals('de.blub', $loggerDEBLUB->getName());
 		$p = $loggerDEBLUB->getParent();
 		self::assertEquals('de', $p->getName());
-		
+
 		$loggerDEBLA = $hierarchy->getLogger("de.bla");
 		$p = $loggerDEBLA->getParent();
 		self::assertEquals('de', $p->getName());
-		
+
 		$logger3 = $hierarchy->getLogger("de.bla.third");
 		$p = $logger3->getParent();
 		self::assertEquals('de.bla', $p->getName());
-		
+
 		$p = $p->getParent();
 		self::assertEquals('de', $p->getName());
 	}
-	
+
 	public function testExists() {
 		$hierarchy = $this->hierarchy;
 		$logger = $hierarchy->getLogger("de");
-		
+
 		self::assertTrue($hierarchy->exists("de"));
-		
+
 		$logger = $hierarchy->getLogger("de.blub");
 		self::assertTrue($hierarchy->exists("de.blub"));
 		self::assertTrue($hierarchy->exists("de"));
-		
+
 		$logger = $hierarchy->getLogger("de.de");
 		self::assertTrue($hierarchy->exists("de.de"));
 	}
-	
+
 	public function testClear() {
 		$hierarchy = $this->hierarchy;
 		$logger = $hierarchy->getLogger("de");

@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * JabberSend action message.
  *
@@ -41,23 +40,21 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class JabberSendAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $jabber  Client or transport Asterisk uses to connect to JABBER.
-     * @param string $jid     XMPP/Jabber JID (Name) of recipient.
-     * @param string $message Message to be sent to the buddy.
-     *
-     * @return void
-     */
-    public function __construct($jabber, $jid, $message)
-    {
-        parent::__construct('JabberSend');
-        $this->setKey('Jabber', $jabber);
-        $this->setKey('JID', $jid);
-        $this->setKey('ScreenName', $jid);
-        $this->setKey('Message', $message);
-    }
+class JabberSendAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $jabber  Client or transport Asterisk uses to connect to JABBER.
+	 * @param string $jid     XMPP/Jabber JID (Name) of recipient.
+	 * @param string $message Message to be sent to the buddy.
+	 *
+	 * @return void
+	 */
+	public function __construct($jabber, $jid, $message) {
+		parent::__construct('JabberSend');
+		$this->setKey('Jabber', $jabber);
+		$this->setKey('JID', $jid);
+		$this->setKey('ScreenName', $jid);
+		$this->setKey('Message', $message);
+	}
 }

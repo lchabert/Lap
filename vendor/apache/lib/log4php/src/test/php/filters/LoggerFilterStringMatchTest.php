@@ -27,86 +27,105 @@
  * @group filters
  */
 class LoggerFilterStringMatchTest extends PHPUnit_Framework_TestCase {
-        
+
 	public function testDecideAccept() {
 		$filter = new LoggerFilterStringMatch();
 		$filter->setAcceptOnMatch("true");
 		$filter->setStringToMatch("testmessage");
-		
-		$eventError = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
-		$eventError2 = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelError(), "xyz");
-		$eventDebug = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
-		$eventDebug2 = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelDebug(), "xyz");
-		$eventWarn = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelWarn(), "testmessage");
-		$eventWarn2 = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelWarn(), "xyz");
-		
+
+		$eventError = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelError(),
+				"testmessage");
+		$eventError2 = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelError(), "xyz");
+		$eventDebug = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelError(),
+				"testmessage");
+		$eventDebug2 = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelDebug(), "xyz");
+		$eventWarn = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelWarn(), "testmessage");
+		$eventWarn2 = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelWarn(), "xyz");
+
 		$result = $filter->decide($eventError);
 		self::assertEquals($result, LoggerFilter::ACCEPT);
-		
+
 		$result = $filter->decide($eventError2);
 		self::assertEquals($result, LoggerFilter::NEUTRAL);
-		
+
 		$result = $filter->decide($eventDebug);
 		self::assertEquals($result, LoggerFilter::ACCEPT);
-		
+
 		$result = $filter->decide($eventDebug2);
 		self::assertEquals($result, LoggerFilter::NEUTRAL);
-		
+
 		$result = $filter->decide($eventWarn);
 		self::assertEquals($result, LoggerFilter::ACCEPT);
-		
+
 		$result = $filter->decide($eventWarn2);
 		self::assertEquals($result, LoggerFilter::NEUTRAL);
 	}
-	
+
 	public function testDecideDeny() {
 		$filter = new LoggerFilterStringMatch();
 		$filter->setAcceptOnMatch("false");
 		$filter->setStringToMatch("testmessage");
-		
-		$eventError = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
-		$eventError2 = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelError(), "xyz");
-		$eventDebug = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
-		$eventDebug2 = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelDebug(), "xyz");
-		$eventWarn = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelWarn(), "testmessage");
-		$eventWarn2 = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelWarn(), "xyz");
-		
+
+		$eventError = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelError(),
+				"testmessage");
+		$eventError2 = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelError(), "xyz");
+		$eventDebug = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelError(),
+				"testmessage");
+		$eventDebug2 = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelDebug(), "xyz");
+		$eventWarn = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelWarn(), "testmessage");
+		$eventWarn2 = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelWarn(), "xyz");
+
 		$result = $filter->decide($eventError);
 		self::assertEquals($result, LoggerFilter::DENY);
-		
+
 		$result = $filter->decide($eventError2);
 		self::assertEquals($result, LoggerFilter::NEUTRAL);
-		
+
 		$result = $filter->decide($eventDebug);
 		self::assertEquals($result, LoggerFilter::DENY);
-		
+
 		$result = $filter->decide($eventDebug2);
 		self::assertEquals($result, LoggerFilter::NEUTRAL);
-		
+
 		$result = $filter->decide($eventWarn);
 		self::assertEquals($result, LoggerFilter::DENY);
-		
+
 		$result = $filter->decide($eventWarn2);
 		self::assertEquals($result, LoggerFilter::NEUTRAL);
 	}
-	
+
 	public function testDecideNullMessage() {
 		$filter = new LoggerFilterStringMatch();
 		$filter->setAcceptOnMatch("false");
 		$filter->setStringToMatch("testmessage");
-		
-		$event = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelError(), null);
-		
+
+		$event = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelError(), null);
+
 		$result = $filter->decide($event);
 		self::assertEquals($result, LoggerFilter::NEUTRAL);
 	}
-	
+
 	public function testDecideNullMatch() {
 		$filter = new LoggerFilterStringMatch();
 		$filter->setAcceptOnMatch("false");
-		
-		$event = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
-		
+
+		$event = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelError(),
+				"testmessage");
+
 		$result = $filter->decide($event);
 		self::assertEquals($result, LoggerFilter::NEUTRAL);
 	}

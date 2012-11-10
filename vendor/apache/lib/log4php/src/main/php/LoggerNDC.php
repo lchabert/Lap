@@ -94,10 +94,10 @@
  * @since 0.3
  */
 class LoggerNDC {
-	
+
 	/** This is the repository of NDC stack */
 	private static $stack = array();
-	
+
 	/**
 	 * Clear any nested diagnostic information if any. This method is
 	 * useful in cases where the same thread can be potentially used
@@ -117,7 +117,7 @@ class LoggerNDC {
 	public static function get() {
 		return implode(' ', self::$stack);
 	}
-  
+
 	/**
 	 * Get the current nesting depth of this diagnostic context.
 	 *
@@ -138,7 +138,7 @@ class LoggerNDC {
 	 * @return string The innermost diagnostic context.
 	 */
 	public static function pop() {
-		if(count(self::$stack) > 0) {
+		if (count(self::$stack) > 0) {
 			return array_pop(self::$stack);
 		} else {
 			return '';
@@ -154,13 +154,13 @@ class LoggerNDC {
 	 * @return string The innermost diagnostic context.
 	 */
 	public static function peek() {
-		if(count(self::$stack) > 0) {
+		if (count(self::$stack) > 0) {
 			return end(self::$stack);
 		} else {
 			return '';
 		}
 	}
-	
+
 	/**
 	 * Push new diagnostic context information for the current thread.
 	 *
@@ -170,7 +170,7 @@ class LoggerNDC {
 	 * @param string $message The new diagnostic context information.
 	 */
 	public static function push($message) {
-		array_push(self::$stack, (string)$message);
+		array_push(self::$stack, (string) $message);
 	}
 
 	/**
@@ -195,8 +195,8 @@ class LoggerNDC {
 	 * @see getDepth()
 	 */
 	public static function setMaxDepth($maxDepth) {
-		$maxDepth = (int)$maxDepth;
-		if(LoggerNDC::getDepth() > $maxDepth) {
+		$maxDepth = (int) $maxDepth;
+		if (LoggerNDC::getDepth() > $maxDepth) {
 			self::$stack = array_slice(self::$stack, 0, $maxDepth);
 		}
 	}

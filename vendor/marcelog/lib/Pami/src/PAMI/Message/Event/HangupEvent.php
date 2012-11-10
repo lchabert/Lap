@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,75 +42,67 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class HangupEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class HangupEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'Channel'.
-     *
-     * @return string
-     */
-    public function getChannel()
-    {
-        return $this->getKey('Channel');
-    }
+	/**
+	 * Returns key: 'Channel'.
+	 *
+	 * @return string
+	 */
+	public function getChannel() {
+		return $this->getKey('Channel');
+	}
 
-    /**
-     * Returns key: 'CallerIDNum'.
-     *
-     * @return string
-     */
-    public function getCallerIDNum()
-    {
-        return $this->getKey('CallerIDNum');
-    }
+	/**
+	 * Returns key: 'CallerIDNum'.
+	 *
+	 * @return string
+	 */
+	public function getCallerIDNum() {
+		return $this->getKey('CallerIDNum');
+	}
 
-    /**
-     * Returns key: 'CallerIDName'.
-     *
-     * @return string
-     */
-    public function getCallerIDName()
-    {
-        return $this->getKey('CallerIDName');
-    }
+	/**
+	 * Returns key: 'CallerIDName'.
+	 *
+	 * @return string
+	 */
+	public function getCallerIDName() {
+		return $this->getKey('CallerIDName');
+	}
 
-    /**
-     * Returns key: 'UniqueID'.
-     *
-     * @return string
-     */
-    public function getUniqueID()
-    {
-        return $this->getKey('UniqueID');
-    }
+	/**
+	 * Returns key: 'UniqueID'.
+	 *
+	 * @return string
+	 */
+	public function getUniqueID() {
+		return $this->getKey('UniqueID');
+	}
 
-    /**
-     * Returns key: 'Cause'.
-     *
-     * @return string
-     */
-    public function getCause()
-    {
-        return $this->getKey('Cause');
-    }
+	/**
+	 * Returns key: 'Cause'.
+	 *
+	 * @return string
+	 */
+	public function getCause() {
+		return $this->getKey('Cause');
+	}
 
-    /**
-     * Returns key: 'Cause-txt'.
-     *
-     * @return string
-     */
-    public function getCauseText()
-    {
-        return $this->getKey('Cause-txt');
-    }
+	/**
+	 * Returns key: 'Cause-txt'.
+	 *
+	 * @return string
+	 */
+	public function getCauseText() {
+		return $this->getKey('Cause-txt');
+	}
 }

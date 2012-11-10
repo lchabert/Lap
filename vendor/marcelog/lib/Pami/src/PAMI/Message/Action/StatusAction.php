@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Queries for the status of a channel or all channels if none specified.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class StatusAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $channel Channel to query (optional)
-     *
-     * @return void
-     */
-    public function __construct($channel = false)
-    {
-        parent::__construct('Status');
-        if ($channel !== false) {
-            $this->setKey('Channel', $channel);
-        }
-    }
+class StatusAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $channel Channel to query (optional)
+	 *
+	 * @return void
+	 */
+	public function __construct($channel = false) {
+		parent::__construct('Status');
+		if ($channel !== false) {
+			$this->setKey('Channel', $channel);
+		}
+	}
 }

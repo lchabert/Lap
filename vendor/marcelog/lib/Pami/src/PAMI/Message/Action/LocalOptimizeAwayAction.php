@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * LocalOptimizeAway action message.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class LocalOptimizeAwayAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $channel The channel name to optimize away.
-     *
-     * @return void
-     */
-    public function __construct($channel)
-    {
-        parent::__construct('LocalOptimizeAway');
-        $this->setKey('Channel', $channel);
-    }
+class LocalOptimizeAwayAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $channel The channel name to optimize away.
+	 *
+	 * @return void
+	 */
+	public function __construct($channel) {
+		parent::__construct('LocalOptimizeAway');
+		$this->setKey('Channel', $channel);
+	}
 }

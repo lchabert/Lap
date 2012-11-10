@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * PlayDTMF action message.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class PlayDTMFAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $user     AMI username.
-     * @param string $password AMI password.
-     *
-     * @return void
-     */
-    public function __construct($channel, $digit)
-    {
-        parent::__construct('PlayDTMF');
-        $this->setKey('Channel', $channel);
-        $this->setKey('Digit', $digit);
-    }
+class PlayDTMFAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $user     AMI username.
+	 * @param string $password AMI password.
+	 *
+	 * @return void
+	 */
+	public function __construct($channel, $digit) {
+		parent::__construct('PlayDTMF');
+		$this->setKey('Channel', $channel);
+		$this->setKey('Digit', $digit);
+	}
 }

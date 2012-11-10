@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * DBPut action message.
  *
@@ -41,22 +40,20 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DBPutAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $family Family.
-     * @param string $key    Name.
-     * @param string $value  Value.
-     *
-     * @return void
-     */
-    public function __construct($family, $key, $value)
-    {
-        parent::__construct('DBPut');
-        $this->setKey('Family', $family);
-        $this->setKey('Key', $key);
-        $this->setKey('Val', $value);
-    }
+class DBPutAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $family Family.
+	 * @param string $key    Name.
+	 * @param string $value  Value.
+	 *
+	 * @return void
+	 */
+	public function __construct($family, $key, $value) {
+		parent::__construct('DBPut');
+		$this->setKey('Family', $family);
+		$this->setKey('Key', $key);
+		$this->setKey('Val', $value);
+	}
 }

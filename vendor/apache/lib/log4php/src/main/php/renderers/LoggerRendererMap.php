@@ -40,9 +40,9 @@ class LoggerRendererMap {
 	 * @var LoggerRenderer
 	 */
 	private $defaultRenderer;
-	
+
 	public function __construct() {
-		
+
 		// Set default config
 		$this->reset();
 	}
@@ -61,25 +61,27 @@ class LoggerRendererMap {
 	public function addRenderer($renderedClass, $renderingClass) {
 		// Check the rendering class exists
 		if (!class_exists($renderingClass)) {
-			trigger_error("log4php: Failed adding renderer. Rendering class [$renderingClass] not found.");
+			trigger_error(
+					"log4php: Failed adding renderer. Rendering class [$renderingClass] not found.");
 			return;
 		}
-		
+
 		// Create the instance
 		$renderer = new $renderingClass();
-		
+
 		// Check the class implements the right interface
 		if (!($renderer instanceof LoggerRenderer)) {
-			trigger_error("log4php: Failed adding renderer. Rendering class [$renderingClass] does not implement the LoggerRenderer interface.");
+			trigger_error(
+					"log4php: Failed adding renderer. Rendering class [$renderingClass] does not implement the LoggerRenderer interface.");
 			return;
 		}
-		
+
 		// Convert to lowercase since class names in PHP are not case sensitive
 		$renderedClass = strtolower($renderedClass);
-		
+
 		$this->map[$renderedClass] = $renderer;
 	}
-	
+
 	/**
 	 * Sets a custom default renderer class.
 	 * 
@@ -93,22 +95,24 @@ class LoggerRendererMap {
 	public function setDefaultRenderer($renderingClass) {
 		// Check the class exists
 		if (!class_exists($renderingClass)) {
-			trigger_error("log4php: Failed setting default renderer. Rendering class [$renderingClass] not found.");
+			trigger_error(
+					"log4php: Failed setting default renderer. Rendering class [$renderingClass] not found.");
 			return;
 		}
-		
+
 		// Create the instance
 		$renderer = new $renderingClass();
-		
+
 		// Check the class implements the right interface
 		if (!($renderer instanceof LoggerRenderer)) {
-			trigger_error("log4php: Failed setting default renderer. Rendering class [$renderingClass] does not implement the LoggerRenderer interface.");
+			trigger_error(
+					"log4php: Failed setting default renderer. Rendering class [$renderingClass] does not implement the LoggerRenderer interface.");
 			return;
 		}
-		
+
 		$this->defaultRenderer = $renderer;
 	}
-	
+
 	/**
 	 * Returns the default renderer.
 	 * @var LoggerRenderer
@@ -116,7 +120,7 @@ class LoggerRendererMap {
 	public function getDefaultRenderer() {
 		return $this->defaultRenderer;
 	}
-	
+
 	/**
 	 * Finds the appropriate renderer for the given <var>input</var>, and 
 	 * renders it (i.e. converts it to a string). 
@@ -128,15 +132,15 @@ class LoggerRendererMap {
 		if ($input === null) {
 			return null;
 		}
-		
+
 		// For objects, try to find a renderer in the map
-		if(is_object($input)) {
+		if (is_object($input)) {
 			$renderer = $this->getByClassName(get_class($input));
 			if (isset($renderer)) {
 				return $renderer->render($input);
 			}
 		}
-		
+
 		// Fall back to the default renderer
 		return $this->defaultRenderer->render($input);
 	}
@@ -153,7 +157,7 @@ class LoggerRendererMap {
 		}
 		return $this->getByClassName(get_class($object));
 	}
-	
+
 	/**
 	 * Returns the appropriate renderer for a given class name.
 	 * 
@@ -163,9 +167,9 @@ class LoggerRendererMap {
 	 * @return LoggerRendererObject Or null if not found.
 	 */
 	public function getByClassName($class) {
-		for(; !empty($class); $class = get_parent_class($class)) {
+		for (; !empty($class); $class = get_parent_class($class)) {
 			$class = strtolower($class);
-			if(isset($this->map[$class])) {
+			if (isset($this->map[$class])) {
 				return $this->map[$class];
 			}
 		}
@@ -176,7 +180,7 @@ class LoggerRendererMap {
 	public function clear() {
 		$this->map = array();
 	}
-	
+
 	/** Resets the renderer map to it's default configuration. */
 	public function reset() {
 		$this->defaultRenderer = new LoggerRendererDefault();

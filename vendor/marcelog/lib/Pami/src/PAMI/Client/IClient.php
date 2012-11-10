@@ -27,7 +27,6 @@
  *
  */
 namespace PAMI\Client;
-
 use PAMI\Message\OutgoingMessage;
 
 /**
@@ -42,8 +41,7 @@ use PAMI\Message\OutgoingMessage;
  * @version  SVN: $Id$
  * @link     http://marcelog.github.com/PAMI/
  */
-interface IClient
-{
+interface IClient {
 	/**
 	 * Opens a tcp connection to ami.
 	 *

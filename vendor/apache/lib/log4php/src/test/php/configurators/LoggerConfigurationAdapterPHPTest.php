@@ -28,40 +28,32 @@
  * @group configurators
  */
 class LoggerConfigurationAdapterPHPTest extends PHPUnit_Framework_TestCase {
-	
+
 	private $expected1 = array(
-		'rootLogger' => array(
-			'level' => 'info',
-			'appenders' => array('default')
-		),
-		'appenders' => array(
-			'default' => array(
-				'class' => 'LoggerAppenderEcho',
-				'layout' => array(
-					'class' => 'LoggerLayoutSimple'
-				 )
-			)
-		)
-	);
-	
+			'rootLogger' => array('level' => 'info',
+					'appenders' => array('default')),
+			'appenders' => array(
+					'default' => array('class' => 'LoggerAppenderEcho',
+							'layout' => array('class' => 'LoggerLayoutSimple'))));
+
 	public function testConfig() {
 		$url = PHPUNIT_CONFIG_DIR . '/adapters/php/config_valid.php';
 		$adapter = new LoggerConfigurationAdapterPHP();
 		$actual = $adapter->convert($url);
-		
+
 		$this->assertSame($this->expected1, $actual);
 	}
-	
+
 	/**
 	 * Test exception is thrown when file cannot be found.
- 	 * @expectedException LoggerException
- 	 * @expectedExceptionMessage File [you/will/never/find/me.conf] does not exist.
+	 * @expectedException LoggerException
+	 * @expectedExceptionMessage File [you/will/never/find/me.conf] does not exist.
 	 */
 	public function testNonExistantFileWarning() {
 		$adapter = new LoggerConfigurationAdapterPHP();
 		$adapter->convert('you/will/never/find/me.conf');
 	}
-	
+
 	/**
 	 * Test exception is thrown when file is not valid.
 	 * @expectedException LoggerException
@@ -72,7 +64,7 @@ class LoggerConfigurationAdapterPHPTest extends PHPUnit_Framework_TestCase {
 		$adapter = new LoggerConfigurationAdapterPHP();
 		$adapter->convert($url);
 	}
-	
+
 	/**
 	 * Test exception is thrown when the configuration is empty.
 	 * @expectedException LoggerException
@@ -83,7 +75,7 @@ class LoggerConfigurationAdapterPHPTest extends PHPUnit_Framework_TestCase {
 		$adapter = new LoggerConfigurationAdapterPHP();
 		$adapter->convert($url);
 	}
-	
+
 	/**
 	 * Test exception is thrown when the configuration does not contain an array.
 	 * @expectedException LoggerException

@@ -10,8 +10,6 @@
  */
 
 namespace FOS\UserBundle\Util;
-
-interface CanonicalizerInterface
-{
-    function canonicalize($string);
+interface CanonicalizerInterface {
+	function canonicalize($string);
 }

@@ -26,8 +26,7 @@
  * @version $Revision: 1213710 $
  * @since 2.2
  */
-interface LoggerConfigurator
-{
+interface LoggerConfigurator {
 	/**
 	 * Configures log4php based on the given configuration. 
 	 * 

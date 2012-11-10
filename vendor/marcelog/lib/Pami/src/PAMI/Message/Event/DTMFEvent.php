@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,75 +42,67 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DTMFEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class DTMFEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'Channel'.
-     *
-     * @return string
-     */
-    public function getChannel()
-    {
-        return $this->getKey('Channel');
-    }
+	/**
+	 * Returns key: 'Channel'.
+	 *
+	 * @return string
+	 */
+	public function getChannel() {
+		return $this->getKey('Channel');
+	}
 
-    /**
-     * Returns key: 'Digit'.
-     *
-     * @return string
-     */
-    public function getDigit()
-    {
-        return $this->getKey('Digit');
-    }
+	/**
+	 * Returns key: 'Digit'.
+	 *
+	 * @return string
+	 */
+	public function getDigit() {
+		return $this->getKey('Digit');
+	}
 
-    /**
-     * Returns key: 'Direction'.
-     *
-     * @return string
-     */
-    public function getDirection()
-    {
-        return $this->getKey('Direction');
-    }
+	/**
+	 * Returns key: 'Direction'.
+	 *
+	 * @return string
+	 */
+	public function getDirection() {
+		return $this->getKey('Direction');
+	}
 
-    /**
-     * Returns key: 'End'.
-     *
-     * @return string
-     */
-    public function getEnd()
-    {
-        return $this->getKey('End');
-    }
+	/**
+	 * Returns key: 'End'.
+	 *
+	 * @return string
+	 */
+	public function getEnd() {
+		return $this->getKey('End');
+	}
 
-    /**
-     * Returns key: 'Begin'.
-     *
-     * @return string
-     */
-    public function getBegin()
-    {
-        return $this->getKey('Begin');
-    }
+	/**
+	 * Returns key: 'Begin'.
+	 *
+	 * @return string
+	 */
+	public function getBegin() {
+		return $this->getKey('Begin');
+	}
 
-    /**
-     * Returns key: 'UniqueID'.
-     *
-     * @return string
-     */
-    public function getUniqueID()
-    {
-        return $this->getKey('UniqueID');
-    }
+	/**
+	 * Returns key: 'UniqueID'.
+	 *
+	 * @return string
+	 */
+	public function getUniqueID() {
+		return $this->getKey('UniqueID');
+	}
 }

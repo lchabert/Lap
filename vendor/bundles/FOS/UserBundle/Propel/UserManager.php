@@ -10,7 +10,6 @@
  */
 
 namespace FOS\UserBundle\Propel;
-
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManager as BaseUserManager;
 use FOS\UserBundle\Propel\User;
@@ -20,203 +19,195 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 use Symfony\Component\Validator\Constraint;
 
-class UserManager extends BaseUserManager
-{
-    protected $class;
+class UserManager extends BaseUserManager {
+	protected $class;
 
-    protected $modelClass;
+	protected $modelClass;
 
-    /**
-     * Constructor.
-     *
-     * @param EncoderFactoryInterface $encoderFactory
-     * @param CanonicalizerInterface  $usernameCanonicalizer
-     * @param CanonicalizerInterface  $emailCanonicalizer
-     * @param string                  $proxyClass
-     * @param string                  $modelClass
-     */
-    public function __construct(EncoderFactoryInterface $encoderFactory, CanonicalizerInterface $usernameCanonicalizer, CanonicalizerInterface $emailCanonicalizer, $proxyClass, $modelClass)
-    {
-        parent::__construct($encoderFactory, $usernameCanonicalizer, $emailCanonicalizer);
+	/**
+	 * Constructor.
+	 *
+	 * @param EncoderFactoryInterface $encoderFactory
+	 * @param CanonicalizerInterface  $usernameCanonicalizer
+	 * @param CanonicalizerInterface  $emailCanonicalizer
+	 * @param string                  $proxyClass
+	 * @param string                  $modelClass
+	 */
+	public function __construct(EncoderFactoryInterface $encoderFactory,
+			CanonicalizerInterface $usernameCanonicalizer,
+			CanonicalizerInterface $emailCanonicalizer, $proxyClass,
+			$modelClass) {
+		parent::__construct($encoderFactory, $usernameCanonicalizer,
+				$emailCanonicalizer);
 
-        $this->class = $proxyClass;
-        $this->modelClass = $modelClass;
-    }
+		$this->class = $proxyClass;
+		$this->modelClass = $modelClass;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public function deleteUser(UserInterface $user)
-    {
-        if (!$user instanceof UserProxy) {
-            throw new \InvalidArgumentException('This user instance is not supported by the Propel UserManager implementation');
-        }
+	/**
+	 * {@inheritDoc}
+	 */
+	public function deleteUser(UserInterface $user) {
+		if (!$user instanceof UserProxy) {
+			throw new \InvalidArgumentException(
+					'This user instance is not supported by the Propel UserManager implementation');
+		}
 
-        $user->delete();
-    }
+		$user->delete();
+	}
 
-    /**
-    * Returns an empty user instance
-    *
-    * @return UserInterface
-    */
-    public function createUser()
-    {
-        $class = $this->modelClass;
-        $user = new $class();
+	/**
+	 * Returns an empty user instance
+	 *
+	 * @return UserInterface
+	 */
+	public function createUser() {
+		$class = $this->modelClass;
+		$user = new $class();
 
-        return $this->proxyfy($user);
-    }
+		return $this->proxyfy($user);
+	}
 
-    public function getModelClass()
-    {
-        return $this->modelClass;
-    }
+	public function getModelClass() {
+		return $this->modelClass;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getClass()
-    {
-        return $this->class;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public function getClass() {
+		return $this->class;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public function findUserBy(array $criteria)
-    {
-        $query = $this->createQuery();
+	/**
+	 * {@inheritDoc}
+	 */
+	public function findUserBy(array $criteria) {
+		$query = $this->createQuery();
 
-        foreach ($criteria as $field => $value) {
-            $method = 'filterBy'.ucfirst($field);
-            $query->$method($value);
-        }
+		foreach ($criteria as $field => $value) {
+			$method = 'filterBy' . ucfirst($field);
+			$query->$method($value);
+		}
 
-        $user = $query->findOne();
+		$user = $query->findOne();
 
-        if ($user) {
-            $user = $this->proxyfy($user);
-        }
+		if ($user) {
+			$user = $this->proxyfy($user);
+		}
 
-        return $user;
-    }
+		return $user;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public function findUsers()
-    {
-        return $this->createQuery()->find();
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public function findUsers() {
+		return $this->createQuery()->find();
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public function reloadUser(UserInterface $user)
-    {
-        if (!$user instanceof UserProxy) {
-            throw new \InvalidArgumentException('This user instance is not supported by the Propel UserManager implementation');
-        }
+	/**
+	 * {@inheritDoc}
+	 */
+	public function reloadUser(UserInterface $user) {
+		if (!$user instanceof UserProxy) {
+			throw new \InvalidArgumentException(
+					'This user instance is not supported by the Propel UserManager implementation');
+		}
 
-        $user->reload();
-    }
+		$user->reload();
+	}
 
-    /**
-     * Updates a user.
-     *
-     * @param UserInterface $user
-     */
-    public function updateUser(UserInterface $user)
-    {
-        if (!$user instanceof UserProxy) {
-            throw new \InvalidArgumentException('This user instance is not supported by the Propel UserManager implementation');
-        }
+	/**
+	 * Updates a user.
+	 *
+	 * @param UserInterface $user
+	 */
+	public function updateUser(UserInterface $user) {
+		if (!$user instanceof UserProxy) {
+			throw new \InvalidArgumentException(
+					'This user instance is not supported by the Propel UserManager implementation');
+		}
 
-        $this->updateCanonicalFields($user);
-        $this->updatePassword($user);
-        $user->save();
-    }
+		$this->updateCanonicalFields($user);
+		$this->updatePassword($user);
+		$user->save();
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public function validateUnique(UserInterface $value, Constraint $constraint)
-    {
-        // Since we probably want to validate the canonical fields,
-        // we'd better make sure we have them.
-        $this->updateCanonicalFields($value);
+	/**
+	 * {@inheritDoc}
+	 */
+	public function validateUnique(UserInterface $value, Constraint $constraint) {
+		// Since we probably want to validate the canonical fields,
+		// we'd better make sure we have them.
+		$this->updateCanonicalFields($value);
 
-        $fields = array_map('trim', explode(',', $constraint->property));
-        $users = $this->findConflictualUsers($value, $fields);
+		$fields = array_map('trim', explode(',', $constraint->property));
+		$users = $this->findConflictualUsers($value, $fields);
 
-        // there is no conflictual user
-        if (empty($users)) {
-            return true;
-        }
+		// there is no conflictual user
+		if (empty($users)) {
+			return true;
+		}
 
-        // there is no conflictual user which is not the same as the value
-        if ($this->anyIsUser($value, $users)) {
-            return true;
-        }
+		// there is no conflictual user which is not the same as the value
+		if ($this->anyIsUser($value, $users)) {
+			return true;
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    /**
-     * Indicates whether the given user and all compared objects correspond to the same record.
-     *
-     * @param UserInterface $user
-     * @param array         $comparisons
-     * @return Boolean
-     */
-    protected function anyIsUser($user, array $comparisons)
-    {
-        foreach ($comparisons as $comparison) {
-            foreach ($comparison as $field => $value) {
-                if ($user->{'get'.$field}() !== $value) {
-                    return false;
-                }
-            }
-        }
+	/**
+	 * Indicates whether the given user and all compared objects correspond to the same record.
+	 *
+	 * @param UserInterface $user
+	 * @param array         $comparisons
+	 * @return Boolean
+	 */
+	protected function anyIsUser($user, array $comparisons) {
+		foreach ($comparisons as $comparison) {
+			foreach ($comparison as $field => $value) {
+				if ($user->{'get' . $field}() !== $value) {
+					return false;
+				}
+			}
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    /**
-     * Gets conflictual users for the given user and constraint.
-     *
-     * @param UserInterface $value
-     * @param array         $fields
-     * @return array
-     */
-    protected function findConflictualUsers($value, array $fields)
-    {
-        $query = $this->createQuery();
+	/**
+	 * Gets conflictual users for the given user and constraint.
+	 *
+	 * @param UserInterface $value
+	 * @param array         $fields
+	 * @return array
+	 */
+	protected function findConflictualUsers($value, array $fields) {
+		$query = $this->createQuery();
 
-        foreach ($fields as $field) {
-            $method = 'get'.ucfirst($field);
-            $query->filterBy(ucfirst($field), $value->$method());
-        }
+		foreach ($fields as $field) {
+			$method = 'get' . ucfirst($field);
+			$query->filterBy(ucfirst($field), $value->$method());
+		}
 
-        return $query->find()->toArray();
-    }
+		return $query->find()->toArray();
+	}
 
-    /**
-     * Create the propel query class corresponding to your queryclass
-     *
-     * @return \ModelCriteria the queryClass
-     */
-    protected function createQuery()
-    {
-        return \PropelQuery::from($this->modelClass);
-    }
+	/**
+	 * Create the propel query class corresponding to your queryclass
+	 *
+	 * @return \ModelCriteria the queryClass
+	 */
+	protected function createQuery() {
+		return \PropelQuery::from($this->modelClass);
+	}
 
-    protected function proxyfy($user)
-    {
-        $proxyClass = $this->getClass();
-        $proxy = new $proxyClass($user);
+	protected function proxyfy($user) {
+		$proxyClass = $this->getClass();
+		$proxy = new $proxyClass($user);
 
-        return $proxy;
-    }
+		return $proxy;
+	}
 }

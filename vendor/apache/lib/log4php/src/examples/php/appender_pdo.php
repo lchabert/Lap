@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 // START SNIPPET: doxia
-require_once dirname(__FILE__).'/../../main/php/Logger.php';
+require_once dirname(__FILE__) . '/../../main/php/Logger.php';
 
-Logger::configure(dirname(__FILE__).'/../resources/appender_pdo.properties');
+Logger::configure(dirname(__FILE__) . '/../resources/appender_pdo.properties');
 $logger = Logger::getRootLogger();
 $logger->fatal("Hello World!");

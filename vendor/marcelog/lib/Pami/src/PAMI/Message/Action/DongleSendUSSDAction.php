@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Send a USSD through dongle.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DongleSendUSSDAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $device  Device name (like dongle01).
-     * @param string $ussd    USSD to send.
-     *
-     * @return void
-     */
-    public function __construct($device, $ussd)
-    {
-        parent::__construct('DongleSendUSSD');
-        $this->setKey('Device', $device);
-        $this->setKey('Ussd', $ussd);
-    }
+class DongleSendUSSDAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $device  Device name (like dongle01).
+	 * @param string $ussd    USSD to send.
+	 *
+	 * @return void
+	 */
+	public function __construct($device, $ussd) {
+		parent::__construct('DongleSendUSSD');
+		$this->setKey('Device', $device);
+		$this->setKey('Ussd', $ussd);
+	}
 }

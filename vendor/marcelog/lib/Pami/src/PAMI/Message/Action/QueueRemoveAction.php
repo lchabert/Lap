@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * QueueRemove action message.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class QueueRemoveAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $queue     The queue.
-     * @param string $interface The interface.
-     *
-     * @return void
-     */
-    public function __construct($queue, $interface)
-    {
-        parent::__construct('QueueRemove');
-        $this->setKey('Queue', $queue);
-        $this->setKey('Interface', $interface);
-    }
+class QueueRemoveAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $queue     The queue.
+	 * @param string $interface The interface.
+	 *
+	 * @return void
+	 */
+	public function __construct($queue, $interface) {
+		parent::__construct('QueueRemove');
+		$this->setKey('Queue', $queue);
+		$this->setKey('Interface', $interface);
+	}
 }

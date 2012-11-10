@@ -60,7 +60,7 @@ class LoggerLayoutHtml extends LoggerLayout {
 	 * @var boolean
 	 */
 	protected $locationInfo = false;
-	
+
 	/**
 	 * The <b>Title</b> option takes a String value. This option sets the
 	 * document title of the generated HTML document.
@@ -68,7 +68,7 @@ class LoggerLayoutHtml extends LoggerLayout {
 	 * @var string
 	 */
 	protected $title = "Log4php Log Messages";
-	
+
 	/**
 	 * The <b>LocationInfo</b> option takes a boolean value. By
 	 * default, it is set to false which means there will be no location
@@ -90,7 +90,7 @@ class LoggerLayoutHtml extends LoggerLayout {
 	public function getLocationInfo() {
 		return $this->locationInfo;
 	}
-	
+
 	/**
 	 * The <b>Title</b> option takes a String value. This option sets the
 	 * document title of the generated HTML document.
@@ -106,33 +106,33 @@ class LoggerLayoutHtml extends LoggerLayout {
 	public function getTitle() {
 		return $this->title;
 	}
-	
+
 	/**
 	 * @return string Returns the content type output by this layout, i.e "text/html".
 	 */
 	public function getContentType() {
 		return "text/html";
 	}
-	
+
 	/**
 	 * @param LoggerLoggingEvent $event
 	 * @return string
 	 */
 	public function format(LoggerLoggingEvent $event) {
 		$sbuf = PHP_EOL . "<tr>" . PHP_EOL;
-	
+
 		$sbuf .= "<td>";
 		$sbuf .= round(1000 * $event->getRelativeTime());
 		$sbuf .= "</td>" . PHP_EOL;
-	
+
 		$sbuf .= "<td title=\"" . $event->getThreadName() . " thread\">";
 		$sbuf .= $event->getThreadName();
 		$sbuf .= "</td>" . PHP_EOL;
-	
+
 		$sbuf .= "<td title=\"Level\">";
-		
+
 		$level = $event->getLevel();
-		
+
 		if ($level->equals(LoggerLevel::getLevelDebug())) {
 			$sbuf .= "<font color=\"#339933\">$level</font>";
 		} else if ($level->equals(LoggerLevel::getLevelWarn())) {
@@ -141,15 +141,18 @@ class LoggerLayoutHtml extends LoggerLayout {
 			$sbuf .= $level;
 		}
 		$sbuf .= "</td>" . PHP_EOL;
-	
-		$sbuf .= "<td title=\"" . htmlentities($event->getLoggerName(), ENT_QUOTES) . " category\">";
+
+		$sbuf .= "<td title=\""
+				. htmlentities($event->getLoggerName(), ENT_QUOTES)
+				. " category\">";
 		$sbuf .= htmlentities($event->getLoggerName(), ENT_QUOTES);
 		$sbuf .= "</td>" . PHP_EOL;
-	
+
 		if ($this->locationInfo) {
 			$locInfo = $event->getLocationInformation();
 			$sbuf .= "<td>";
-			$sbuf .= htmlentities($locInfo->getFileName(), ENT_QUOTES). ':' . $locInfo->getLineNumber();
+			$sbuf .= htmlentities($locInfo->getFileName(), ENT_QUOTES) . ':'
+					. $locInfo->getLineNumber();
 			$sbuf .= "</td>" . PHP_EOL;
 		}
 
@@ -158,7 +161,7 @@ class LoggerLayoutHtml extends LoggerLayout {
 		$sbuf .= "</td>" . PHP_EOL;
 
 		$sbuf .= "</tr>" . PHP_EOL;
-		
+
 		if ($event->getNDC() != null) {
 			$sbuf .= "<tr><td bgcolor=\"#EEEEEE\" style=\"font-size : xx-small;\" colspan=\"6\" title=\"Nested Diagnostic Context\">";
 			$sbuf .= "NDC: " . htmlentities($event->getNDC(), ENT_QUOTES);
@@ -171,22 +174,28 @@ class LoggerLayoutHtml extends LoggerLayout {
 	 * @return string Returns appropriate HTML headers.
 	 */
 	public function getHeader() {
-		$sbuf = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">" . PHP_EOL;
+		$sbuf = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">"
+				. PHP_EOL;
 		$sbuf .= "<html>" . PHP_EOL;
 		$sbuf .= "<head>" . PHP_EOL;
 		$sbuf .= "<title>" . $this->title . "</title>" . PHP_EOL;
 		$sbuf .= "<style type=\"text/css\">" . PHP_EOL;
 		$sbuf .= "<!--" . PHP_EOL;
-		$sbuf .= "body, table {font-family: arial,sans-serif; font-size: x-small;}" . PHP_EOL;
-		$sbuf .= "th {background: #336699; color: #FFFFFF; text-align: left;}" . PHP_EOL;
+		$sbuf .= "body, table {font-family: arial,sans-serif; font-size: x-small;}"
+				. PHP_EOL;
+		$sbuf .= "th {background: #336699; color: #FFFFFF; text-align: left;}"
+				. PHP_EOL;
 		$sbuf .= "-->" . PHP_EOL;
 		$sbuf .= "</style>" . PHP_EOL;
 		$sbuf .= "</head>" . PHP_EOL;
-		$sbuf .= "<body bgcolor=\"#FFFFFF\" topmargin=\"6\" leftmargin=\"6\">" . PHP_EOL;
+		$sbuf .= "<body bgcolor=\"#FFFFFF\" topmargin=\"6\" leftmargin=\"6\">"
+				. PHP_EOL;
 		$sbuf .= "<hr size=\"1\" noshade>" . PHP_EOL;
-		$sbuf .= "Log session start time " . strftime('%c', time()) . "<br>" . PHP_EOL;
+		$sbuf .= "Log session start time " . strftime('%c', time()) . "<br>"
+				. PHP_EOL;
 		$sbuf .= "<br>" . PHP_EOL;
-		$sbuf .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"1\" bordercolor=\"#224466\" width=\"100%\">" . PHP_EOL;
+		$sbuf .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"1\" bordercolor=\"#224466\" width=\"100%\">"
+				. PHP_EOL;
 		$sbuf .= "<tr>" . PHP_EOL;
 		$sbuf .= "<th>Time</th>" . PHP_EOL;
 		$sbuf .= "<th>Thread</th>" . PHP_EOL;

@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,85 +42,76 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class JoinEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class JoinEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'Channel'.
-     *
-     * @return string
-     */
-    public function getChannel()
-    {
-        return $this->getKey('Channel');
-    }
+	/**
+	 * Returns key: 'Channel'.
+	 *
+	 * @return string
+	 */
+	public function getChannel() {
+		return $this->getKey('Channel');
+	}
 
-    /**
-     * Returns key: 'Count'.
-     *
-     * @return string
-     */
-    public function getCount()
-    {
-        return $this->getKey('Count');
-    }
+	/**
+	 * Returns key: 'Count'.
+	 *
+	 * @return string
+	 */
+	public function getCount() {
+		return $this->getKey('Count');
+	}
 
-    /**
-     * Returns key: 'Queue'.
-     *
-     * @return string
-     */
-    public function getQueue()
-    {
-        return $this->getKey('Queue');
-    }
+	/**
+	 * Returns key: 'Queue'.
+	 *
+	 * @return string
+	 */
+	public function getQueue() {
+		return $this->getKey('Queue');
+	}
 
-    /**
-     * Returns key: 'Position'.
-     *
-     * @return string
-     */
-    public function getPosition()
-    {
-        return $this->getKey('Position');
-    }
+	/**
+	 * Returns key: 'Position'.
+	 *
+	 * @return string
+	 */
+	public function getPosition() {
+		return $this->getKey('Position');
+	}
 
-    /**
-     * Returns key: 'UniqueID'.
-     *
-     * @return string
-     */
-    public function getUniqueID()
-    {
-        return $this->getKey('UniqueID');
-    }
+	/**
+	 * Returns key: 'UniqueID'.
+	 *
+	 * @return string
+	 */
+	public function getUniqueID() {
+		return $this->getKey('UniqueID');
+	}
 
-    /**
-     * Returns key: 'CallerIdNum'.
-     *
-     * @return string
-     */
-    public function getCallerIdNum()
-    {
-        return $this->getKey('CallerIdNum');
-    }
+	/**
+	 * Returns key: 'CallerIdNum'.
+	 *
+	 * @return string
+	 */
+	public function getCallerIdNum() {
+		return $this->getKey('CallerIdNum');
+	}
 
-    /**
-     * Returns key: 'CallerIdName'.
-     *
-     * @return string
-     */
-    public function getCallerIdName()
-    {
-        return $this->getKey('CallerIdName');
-    }
+	/**
+	 * Returns key: 'CallerIdName'.
+	 *
+	 * @return string
+	 */
+	public function getCallerIdName() {
+		return $this->getKey('CallerIdName');
+	}
 }

@@ -10,7 +10,6 @@
  */
 
 namespace FOS\UserBundle\Entity;
-
 use FOS\UserBundle\Model\GroupInterface;
 use Doctrine\ORM\EntityManager;
 use FOS\UserBundle\Doctrine\GroupManager as BaseGroupManager;
@@ -19,13 +18,11 @@ use FOS\UserBundle\Doctrine\GroupManager as BaseGroupManager;
  * BC class for people extending it in their bundle.
  * TODO Remove this class on July 31st
  */
-class GroupManager extends BaseGroupManager
-{
-    protected $em;
+class GroupManager extends BaseGroupManager {
+	protected $em;
 
-    public function __construct(EntityManager $em, $class)
-    {
-        parent::__construct($em, $class);
-        $this->em = $em;
-    }
+	public function __construct(EntityManager $em, $class) {
+		parent::__construct($em, $class);
+		$this->em = $em;
+	}
 }

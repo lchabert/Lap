@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,65 +42,58 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class NewCalleridEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Privilege'.
-     *
-     * @return string
-     */
-    public function getPrivilege()
-    {
-        return $this->getKey('Privilege');
-    }
+class NewCalleridEvent extends EventMessage {
+	/**
+	 * Returns key: 'Privilege'.
+	 *
+	 * @return string
+	 */
+	public function getPrivilege() {
+		return $this->getKey('Privilege');
+	}
 
-    /**
-     * Returns key: 'Channel'.
-     *
-     * @return string
-     */
-    public function getChannel()
-    {
-        return $this->getKey('Channel');
-    }
+	/**
+	 * Returns key: 'Channel'.
+	 *
+	 * @return string
+	 */
+	public function getChannel() {
+		return $this->getKey('Channel');
+	}
 
-    /**
-     * Returns key: 'CallerIDNum'.
-     *
-     * @return string
-     */
-    public function getCallerIDNum()
-    {
-        return $this->getKey('CallerIDNum');
-    }
+	/**
+	 * Returns key: 'CallerIDNum'.
+	 *
+	 * @return string
+	 */
+	public function getCallerIDNum() {
+		return $this->getKey('CallerIDNum');
+	}
 
-    /**
-     * Returns key: 'CallerIDName'.
-     *
-     * @return string
-     */
-    public function getCallerIDName()
-    {
-        return $this->getKey('CallerIDName');
-    }
+	/**
+	 * Returns key: 'CallerIDName'.
+	 *
+	 * @return string
+	 */
+	public function getCallerIDName() {
+		return $this->getKey('CallerIDName');
+	}
 
-    /**
-     * Returns key: 'UniqueID'.
-     *
-     * @return string
-     */
-    public function getUniqueID()
-    {
-        return $this->getKey('UniqueID');
-    }
+	/**
+	 * Returns key: 'UniqueID'.
+	 *
+	 * @return string
+	 */
+	public function getUniqueID() {
+		return $this->getKey('UniqueID');
+	}
 
-    /**
-     * Returns key: 'CID-CallingPres'.
-     *
-     * @return string
-     */
-    public function getCallerIdPres()
-    {
-        return $this->getKey('CID-CallingPres');
-    }
+	/**
+	 * Returns key: 'CID-CallingPres'.
+	 *
+	 * @return string
+	 */
+	public function getCallerIdPres() {
+		return $this->getKey('CID-CallingPres');
+	}
 }

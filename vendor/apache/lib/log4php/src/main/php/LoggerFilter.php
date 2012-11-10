@@ -60,13 +60,13 @@ abstract class LoggerFilter extends LoggerConfigurable {
 	 * the remaining filters, if any, in the chain.	 
 	 */
 	const ACCEPT = 1;
-	
+
 	/**
 	 * This filter is neutral with respect to the log event. The
 	 * remaining filters, if any, should be consulted for a final decision.
 	 */
 	const NEUTRAL = 0;
-	
+
 	/**
 	 * The log event must be dropped immediately without consulting
 	 * with the remaining filters, if any, in the chain.
@@ -81,7 +81,7 @@ abstract class LoggerFilter extends LoggerConfigurable {
 	/**
 	 * Usually filters options become active when set. We provide a
 	 * default do-nothing implementation for convenience.
-	*/
+	 */
 	public function activateOptions() {
 	}
 
@@ -108,13 +108,13 @@ abstract class LoggerFilter extends LoggerConfigurable {
 	 * @param $filter - the filter to add to this chain
 	 */
 	public function addNext($filter) {
-		if($this->next !== null) {
+		if ($this->next !== null) {
 			$this->next->addNext($filter);
 		} else {
 			$this->next = $filter;
 		}
 	}
-	
+
 	/**
 	 * Returns the next filter in this chain
 	 * @return the next filter

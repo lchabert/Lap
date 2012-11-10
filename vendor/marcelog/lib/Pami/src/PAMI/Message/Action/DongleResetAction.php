@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * Resets a dongle.
  *
@@ -41,18 +40,16 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DongleResetAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $device Dongle device name.
-     *
-     * @return void
-     */
-    public function __construct($device)
-    {
-        parent::__construct('DongleReset');
-        $this->setKey('device', $device);
-    }
+class DongleResetAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $device Dongle device name.
+	 *
+	 * @return void
+	 */
+	public function __construct($device) {
+		parent::__construct('DongleReset');
+		$this->setKey('device', $device);
+	}
 }

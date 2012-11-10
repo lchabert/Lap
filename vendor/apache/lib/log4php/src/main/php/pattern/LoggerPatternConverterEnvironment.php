@@ -30,6 +30,7 @@
  * @version $Revision: 1326626 $
  * @since 2.3
  */
-class LoggerPatternConverterEnvironment extends LoggerPatternConverterSuperglobal {
+class LoggerPatternConverterEnvironment extends
+		LoggerPatternConverterSuperglobal {
 	protected $name = '_ENV';
 }

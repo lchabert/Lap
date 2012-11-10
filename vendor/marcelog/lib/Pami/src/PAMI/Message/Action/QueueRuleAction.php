@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * QueueRule action message.
  *
@@ -41,20 +40,18 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class QueueRuleAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $rule Rule.
-     *
-     * @return void
-     */
-    public function __construct($rule = false)
-    {
-        parent::__construct('QueueRule');
-        if ($rule !== false) {
-            $this->setKey('Rule', $rule);
-        }
-    }
+class QueueRuleAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $rule Rule.
+	 *
+	 * @return void
+	 */
+	public function __construct($rule = false) {
+		parent::__construct('QueueRule');
+		if ($rule !== false) {
+			$this->setKey('Rule', $rule);
+		}
+	}
 }

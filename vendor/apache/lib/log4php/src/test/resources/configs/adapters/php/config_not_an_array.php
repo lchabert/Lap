@@ -22,7 +22,7 @@
  * @version    $Revision: 1374580 $
  * @link       http://logging.apache.org/log4php
  */
- 
+
 // Not an array
 return new Exception();
 

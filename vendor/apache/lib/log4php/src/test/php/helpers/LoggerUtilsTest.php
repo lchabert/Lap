@@ -27,62 +27,62 @@
  * @group helpers
  */
 class LoggerUtilsTest extends PHPUnit_Framework_TestCase {
-	
+
 	public function testShorten() {
 		$name = 'org\\apache\\logging\\log4php\\Foo';
-		
+
 		$actual = LoggerUtils::shortenClassName($name, null);
 		self::assertSame($name, $actual);
-		
+
 		$actual = LoggerUtils::shortenClassName($name, 0);
 		self::assertSame('Foo', $actual);
-		
+
 		$actual = LoggerUtils::shortenClassName($name, 5);
 		self::assertSame('o\\a\\l\\l\\Foo', $actual);
-		
+
 		$actual = LoggerUtils::shortenClassName($name, 16);
 		self::assertSame('o\\a\\l\\l\\Foo', $actual);
-		
+
 		$actual = LoggerUtils::shortenClassName($name, 17);
 		self::assertSame('o\\a\\l\\log4php\\Foo', $actual);
-		
+
 		$actual = LoggerUtils::shortenClassName($name, 25);
 		self::assertSame('o\\a\\logging\\log4php\\Foo', $actual);
-		
+
 		$actual = LoggerUtils::shortenClassName($name, 28);
 		self::assertSame('o\\apache\\logging\\log4php\\Foo', $actual);
-		
+
 		$actual = LoggerUtils::shortenClassName($name, 30);
 		self::assertSame('org\\apache\\logging\\log4php\\Foo', $actual);
 	}
-	
+
 	/** Dot separated notation must be supported for legacy reasons. */
 	public function testShortenWithDots() {
 		$name = 'org.apache.logging.log4php.Foo';
-	
+
 		$actual = LoggerUtils::shortenClassName($name, null);
 		self::assertSame($name, $actual);
-	
+
 		$actual = LoggerUtils::shortenClassName($name, 0);
 		self::assertSame('Foo', $actual);
-	
+
 		$actual = LoggerUtils::shortenClassName($name, 5);
 		self::assertSame('o\a\l\l\Foo', $actual);
-	
+
 		$actual = LoggerUtils::shortenClassName($name, 16);
 		self::assertSame('o\a\l\l\Foo', $actual);
-	
+
 		$actual = LoggerUtils::shortenClassName($name, 17);
 		self::assertSame('o\a\l\log4php\Foo', $actual);
-	
+
 		$actual = LoggerUtils::shortenClassName($name, 25);
 		self::assertSame('o\a\logging\log4php\Foo', $actual);
-	
+
 		$actual = LoggerUtils::shortenClassName($name, 28);
 		self::assertSame('o\apache\logging\log4php\Foo', $actual);
-	
+
 		$actual = LoggerUtils::shortenClassName($name, 30);
 		self::assertSame('org\apache\logging\log4php\Foo', $actual);
-	}	
-	
+	}
+
 }

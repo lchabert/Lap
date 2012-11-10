@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Event;
-
 use PAMI\Message\Event\EventMessage;
 
 /**
@@ -43,35 +42,31 @@ use PAMI\Message\Event\EventMessage;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class DBGetResponseEvent extends EventMessage
-{
-    /**
-     * Returns key: 'Family'.
-     *
-     * @return string
-     */
-    public function getFamily()
-    {
-        return $this->getKey('Family');
-    }
+class DBGetResponseEvent extends EventMessage {
+	/**
+	 * Returns key: 'Family'.
+	 *
+	 * @return string
+	 */
+	public function getFamily() {
+		return $this->getKey('Family');
+	}
 
-    /**
-     * Returns key: 'Key'.
-     *
-     * @return string
-     */
-    public function getKeyName()
-    {
-        return $this->getKey('Key');
-    }
+	/**
+	 * Returns key: 'Key'.
+	 *
+	 * @return string
+	 */
+	public function getKeyName() {
+		return $this->getKey('Key');
+	}
 
-    /**
-     * Returns key: 'Val'.
-     *
-     * @return string
-     */
-    public function getValue()
-    {
-        return $this->getKey('Val');
-    }
+	/**
+	 * Returns key: 'Val'.
+	 *
+	 * @return string
+	 */
+	public function getValue() {
+		return $this->getKey('Val');
+	}
 }

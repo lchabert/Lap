@@ -29,7 +29,6 @@
  *
  */
 namespace PAMI\Message\Event\Factory\Impl;
-
 use PAMI\Message\Event\EventMessage;
 use PAMI\Message\Event\UnknownEvent;
 use PAMI\Message\Message;
@@ -47,41 +46,38 @@ use PAMI\Message\Message;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class EventFactoryImpl
-{
-    /**
-     * This is our factory method.
-     *
-     * @param string $message Literall message as received from ami.
-     *
-     * @return EventMessage
-     */
-    public static function createFromRaw($message)
-    {
-        $eventStart = strpos($message, 'Event: ') + 7;
-/*
-        if ($eventStart > strlen($message)) {
-            return new UnknownEvent($message);
-        }
-*/
-        $eventEnd = strpos($message, Message::EOL, $eventStart);
-        if ($eventEnd === false) {
-            $eventEnd = strlen($message);
-        }
-        $name = substr($message, $eventStart, $eventEnd - $eventStart);
-        $className = '\\PAMI\\Message\\Event\\' . $name . 'Event';
-        if (class_exists($className, true)) {
-            return new $className($message);
-        }
-	    return new UnknownEvent($message);
-    }
+class EventFactoryImpl {
+	/**
+	 * This is our factory method.
+	 *
+	 * @param string $message Literall message as received from ami.
+	 *
+	 * @return EventMessage
+	 */
+	public static function createFromRaw($message) {
+		$eventStart = strpos($message, 'Event: ') + 7;
+		/*
+		        if ($eventStart > strlen($message)) {
+		            return new UnknownEvent($message);
+		        }
+		 */
+		$eventEnd = strpos($message, Message::EOL, $eventStart);
+		if ($eventEnd === false) {
+			$eventEnd = strlen($message);
+		}
+		$name = substr($message, $eventStart, $eventEnd - $eventStart);
+		$className = '\\PAMI\\Message\\Event\\' . $name . 'Event';
+		if (class_exists($className, true)) {
+			return new $className($message);
+		}
+		return new UnknownEvent($message);
+	}
 
-    /**
-     * Constructor. Nothing to see here, move along.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-    }
+	/**
+	 * Constructor. Nothing to see here, move along.
+	 *
+	 * @return void
+	 */
+	public function __construct() {
+	}
 }

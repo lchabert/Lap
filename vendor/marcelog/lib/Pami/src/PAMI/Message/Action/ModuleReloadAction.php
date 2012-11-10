@@ -28,7 +28,6 @@
  *
  */
 namespace PAMI\Message\Action;
-
 /**
  * ModuleReload action message.
  *
@@ -41,27 +40,25 @@ namespace PAMI\Message\Action;
  * @license    http://marcelog.github.com/PAMI/ Apache License 2.0
  * @link       http://marcelog.github.com/PAMI/
  */
-class ModuleReloadAction extends ActionMessage
-{
-    /**
-     * Constructor.
-     *
-     * @param string $module - Asterisk module name (including.so extension) or
-     * subsystem identifier:
-     * cdr
-     * enum
-     * dnsmgr
-     * extconfig
-     * manager
-     * rtp
-     * http Module name.
-     *
-     * @return void
-     */
-    public function __construct($module)
-    {
-        parent::__construct('ModuleLoad');
-        $this->setKey('Module', $module);
-        $this->setKey('LoadType', 'reload');
-    }
+class ModuleReloadAction extends ActionMessage {
+	/**
+	 * Constructor.
+	 *
+	 * @param string $module - Asterisk module name (including.so extension) or
+	 * subsystem identifier:
+	 * cdr
+	 * enum
+	 * dnsmgr
+	 * extconfig
+	 * manager
+	 * rtp
+	 * http Module name.
+	 *
+	 * @return void
+	 */
+	public function __construct($module) {
+		parent::__construct('ModuleLoad');
+		$this->setKey('Module', $module);
+		$this->setKey('LoadType', 'reload');
+	}
 }

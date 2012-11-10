@@ -10,7 +10,6 @@
  */
 
 namespace FOS\UserBundle\Validator;
-
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Validator\ObjectInitializerInterface;
@@ -20,19 +19,16 @@ use Symfony\Component\Validator\ObjectInitializerInterface;
  *
  * @author Christophe Coevoet <stof@notk.org>
  */
-class Initializer implements ObjectInitializerInterface
-{
-    private $userManager;
+class Initializer implements ObjectInitializerInterface {
+	private $userManager;
 
-    public function __construct(UserManagerInterface $userManager)
-    {
-        $this->userManager = $userManager;
-    }
+	public function __construct(UserManagerInterface $userManager) {
+		$this->userManager = $userManager;
+	}
 
-    public function initialize($object)
-    {
-        if ($object instanceof UserInterface) {
-            $this->userManager->updateCanonicalFields($object);
-        }
-    }
+	public function initialize($object) {
+		if ($object instanceof UserInterface) {
+			$this->userManager->updateCanonicalFields($object);
+		}
+	}
 }

@@ -27,25 +27,29 @@
  * @group appenders
  */
 class LoggerAppenderMailTest extends PHPUnit_Framework_TestCase {
-        
+
 	public function testRequiresLayout() {
-		$appender = new LoggerAppenderMail(); 
+		$appender = new LoggerAppenderMail();
 		self::assertTrue($appender->requiresLayout());
 	}
-	
+
 	public function testMail() {
 		$appender = new LoggerAppenderMail("myname ");
-		
+
 		$layout = new LoggerLayoutSimple();
 		$appender->setLayout($layout);
 		$appender->setDry(true);
 		$appender->setTo('test@example.com');
 		$appender->setFrom('Testsender');
-		
+
 		$appender->activateOptions();
-		$event = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage");
-		$event2 = new LoggerLoggingEvent("LoggerAppenderEchoTest", new Logger("TEST"), LoggerLevel::getLevelError(), "testmessage2");
-		 
+		$event = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelError(),
+				"testmessage");
+		$event2 = new LoggerLoggingEvent("LoggerAppenderEchoTest",
+				new Logger("TEST"), LoggerLevel::getLevelError(),
+				"testmessage2");
+
 		ob_start();
 		$appender->append($event);
 		$appender->append($event2);
@@ -53,8 +57,9 @@ class LoggerAppenderMailTest extends PHPUnit_Framework_TestCase {
 		$v = ob_get_contents();
 		ob_end_clean();
 
-		$e = "DRY MODE OF MAIL APP.: Send mail to: test@example.com with content: ERROR - testmessage".PHP_EOL."ERROR - testmessage2".PHP_EOL;
+		$e = "DRY MODE OF MAIL APP.: Send mail to: test@example.com with content: ERROR - testmessage"
+				. PHP_EOL . "ERROR - testmessage2" . PHP_EOL;
 		self::assertEquals($e, $v);
-    }
-    
+	}
+
 }
